@@ -3,7 +3,7 @@
 <head>
     <title>@yield('title')</title>
     @yield('css')
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
 </head>
 <body>
 <header>
@@ -49,7 +49,7 @@
     <li><a href="#"><img src="/market.png" class="market"></a></li>
     <li><a href="" class="toko">Profesi</a>
     <ul style="left: 1245px; width:157px;">
-    <li><a href="/percetakan/{{Session::get('id_profesi')}}">Profesi Saya</a></li>
+    <li><a href="/profesi/{{Session::get('id_profesi')}}">Profesi Saya</a></li>
     <li><a href="/penjualan">Penjualan</a></li>
         <li><a href="/tambah-produk">Tambah Project</a></li>
     </ul>

@@ -27,3 +27,7 @@ Route::post('/loginproses', 'UserController@login');
 Route::post('/registerproses', 'UserController@registerproses');
 
 Route::get('/logoutproses', 'UserController@logout');
+
+Route::get('/tambah-project', 'ProjectController@tambahProject');
+Route::post('/tambah-projectproses', 'ProjectController@uploadProject');
+Route::get('/project/{id}', 'ProjectController@project');

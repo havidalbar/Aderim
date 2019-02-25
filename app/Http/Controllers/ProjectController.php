@@ -22,7 +22,7 @@ class ProjectController extends Controller
 
     function tambahProject() {
         if(Session::has('nama_profesi')) {
-            return view('uploadproduk');//
+            return view('addProject');
         } else {
             return redirect()->back()->with('alert', "Anda belum mendaftar profesi");
         }

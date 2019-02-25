@@ -1,4 +1,4 @@
-@extends (\Session::has('name') ? 'layouts.navlogin' : 'layouts.nav')
+@extends (\Session::has('name') ? 'layouts.navLogin' : 'layouts.nav')
 @section('title', 'Indesign')
 @section('content')
 

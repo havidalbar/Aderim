@@ -35,7 +35,7 @@
     </div>
     <div class="profesi">
       <ul>{{ $profesis[$i]->nama_profesi}}</ul>
-      <ul><img src= "/pinblue.png" class="pin">{{ $percetakans[$i]->alamat}}</ul>
+      <ul><img src= "/pinblue.png" class="pin">{{ $profesis[$i]->alamat}}</ul>
     </div>
   </div>
   @endfor
