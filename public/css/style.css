@@ -1,0 +1,1259 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    font-size: 16px;
+    font-family: Myriad Pro;
+}
+/* navigasi */
+.boxmenu{
+    margin-left: 105px;
+}
+.logomenu{
+    width: 24px;
+    height: 24px;
+    padding-top: 9px;
+}
+.Logo{
+    width: 145px;
+    height: 31px;
+    padding-left: 10px;
+    padding-top: 8px;
+}
+#quickmenu{
+    padding-top: 4px;
+}
+#heading{
+    float: left;
+    width: 155px;
+}
+#menu {
+    background:#3097d1;
+    width: 100%;
+    min-width: 1519px;
+    height: 50px;
+    /* position: fixed; */
+    top: 0;
+}
+#menu ul {
+    list-style: none;
+}
+#menu ul li {
+    font-size: 18px;
+    float: left;
+    line-height: 50px
+}
+#menu ul li a {
+    float:left;
+    display:block;
+    text-align:justify;
+    color:#FFF;
+    text-decoration:none;
+}
+#menu ul ul {
+    display:none;
+    list-style:none;
+    position:absolute;
+    background-color:#3097d1;
+    float: none;
+    top:50px;
+    width:154px;
+}
+#menu ul li a:hover {
+    color:#f58c5c;
+    display:block;
+}
+#menu ul li:hover ul {
+    display:block;
+}
+#menu ul ul li a {
+    display:block;
+    padding-left:30px;
+    text-align:left;
+    width:160px;
+    height: 60px;
+    line-height: 60px;
+}
+#menu ul ul li a:hover {
+    color:#f58c5c;;
+}
+#menu ul form{
+    padding-bottom: 10px;
+    display: block;
+}
+.search{
+    width: 582px;
+    height: 30px;
+    padding-left: 20px;
+    padding-top: 3px;
+}
+.button{
+    width: 74px;
+    height: 30px;
+    border: none;
+    background-color: #f58c5c;
+    color: white;
+    font-family: sans-serif;
+    padding-top: 3px;
+}
+.promo{
+    font-size: 24px;
+    float: left;
+    margin-left: 7px;
+    margin-right: 15px;
+}
+.toa{
+    margin-top: 13px;
+    margin-left: 25px;
+    width: 20px;
+}
+.beli{
+    margin-top: 10px;
+    margin-left: 25px;
+    width: 25px;
+}
+.daftar{
+    margin-left: 25px;
+}
+.masuk{
+    margin-left: 25px;
+}
+.market{
+    margin-top: 12px;
+    margin-left: 25px;
+    width: 25px;
+}
+.user{
+    margin-top: 12px;
+    margin-left: 15px;
+    width: 25px;
+}
+.toko{
+    margin-top: 1px;
+    margin-left: 5px;
+}
+.akun{
+    margin-top: 1px;
+}
+
+.kategori{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+/* akhirnavigasi */
+/* informasiakun */
+.kotakinformasiakun{
+    display: flex;
+    flex-direction: column;
+}
+.informasiakun{
+    background-color: #3097d1;
+    width: 750px;
+    font-size: 24px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.infoakun{
+    background-color:#f8f8f8;
+    width: 750px;
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+}
+.infoakun p{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-family: tahoma;
+    color: #606060;
+}
+/* logohome */
+.homelogo{
+    padding-top: 10px;
+    padding-left: 60px;
+    width: 1100px;
+    float: left;
+}
+#home1{
+    display: flex;
+    flex-direction: row;
+    padding-left: 30px;
+    margin-top: 50px;
+}
+.cara{
+    display: flex;
+    flex-direction: column;
+}
+.cara img{
+    padding-left: 35px;
+    padding-top: 10px;
+    width: 204px;
+    float: left;
+}
+/*akhirlogohome */
+.tulisanhome{
+    padding-left: 89px;
+    margin-top: 20px;
+    font-size: 24px;
+    font-family: open sans;
+}
+/* listproduk */
+/* banner */
+.display{
+    display: flex;
+    flex-direction: row;
+    /* margin-left: 52px; */
+}
+.filter{
+    width: 220px;
+    height: 365px;
+    background: rgba(197, 197, 197, 1);
+    color: black;
+    top: 50%;
+    left: 50%;
+    box-sizing: border-box;
+    margin-left: 90px;
+    margin-top: 50px;
+}
+.boxfilter{
+    margin-left: 15px;
+    /* margin-top: 20px; */
+    display: flex;
+    flex-direction: column;
+    color: #434343;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    margin: 1px;
+    background-color: rgba(240, 241, 241, 1);
+}
+.boxfilter2{
+    margin-left: 15px;
+    /* margin-top: 20px; */
+    color: #434343;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    margin: 1px;
+    background-color: rgba(240, 241, 241, 1);
+    display: flex;
+    flex-direction: column;
+}
+.filter h2{
+    margin : 10px;
+}
+.filter h3{
+    margin: 10px;
+    margin-bottom: 8px;
+	padding: 0;
+	font-weight: bold;
+}
+
+.boxfilter p{
+    margin-left: 20px;
+}
+
+.filter input[type="number"]
+{
+    margin: 10px;
+    margin-bottom: 8px;
+	border: 1px transparent #434343;
+	background: rgba(f, f, f, 0.5);
+	height: 35px;
+	color: #000;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.star{
+    width: 15px;
+    height: 15px;
+}
+.ceklist{
+    width: 20px;
+    height: 20px;
+}
+.bintang{
+    margin-left: 20px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+}
+/* akhirbanner */
+/* produkbanner */
+.list2{
+    padding-left: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.boxawal2{
+    margin-left: 91px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.box2{
+    /* margin-left: 15px; */
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.produk2{
+    width: 200px;
+    height: 300px;
+    background: white;
+    color: #434343;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    margin-right: 20px;
+}
+.percetakaan2{
+    width: 200px;
+    height: 47px;
+    background: rgba(246, 248, 249, 1);
+    color: #a6a6a6;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+.pin2{
+    width: 15px;
+    height: 15px;
+}
+.produk2 img{
+    padding-top: 10px;
+    padding-left: 9px;
+    width:180px;
+    float: left;
+}
+.produk2 ul{
+    padding-left: 5px;
+    font-size: 18px;
+    font-family: sans-serif;
+}
+.produk2 ul ul{
+    padding-left: 2px;
+    font-size: 16px;
+    font-family: open sans;
+    color: #ff5722;
+}
+.percetakaan2 ul{
+    padding-top: 2px;
+    padding-left: 5px;
+    font-size: 14px;
+    font-family: tahoma;
+}
+.dropbtn {
+    background-color: #3498DB;
+    margin-left: 1052px;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+}
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    /* position: relative; */
+    display: inline-block;
+    padding-top: 50px;
+}
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-left: 970px;
+}
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+.destinasi{
+    display: flex;
+    flex-direction: column;
+    padding-left: 40px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size: 14px;
+}
+.destinasi a{
+    padding-top: 2px;
+}
+.centanglokasi{
+    display: flex;
+    flex-direction: row;
+}
+/*dropdown lokasi jawatimur*/
+.dropbtnjawatimur {
+
+    font-family: sans-serif;
+    color: black;
+    padding-bottom: 3px;
+    padding-left: 20px;
+    font-size: 15px;
+    border: none;
+    background-color:rgba(240, 241, 241, 1);
+    cursor: pointer;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-contentjawatimur {
+    display: none;
+    /* position: absolute; */
+    background-color: #f1f1f1;
+    /* min-width: 160px; */
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    z-index: 1;
+    /* margin-left: 970px; */
+}
+
+/* Links inside the dropdown */
+.dropdown-contentjawatimur a {
+    color: black;
+    text-decoration: none;
+}
+/* .dropdown-contentlokasi a:hover {background-color: #ddd} */
+.show {display:block;}
+
+
+/*dropdown lokasi jawatengah*/
+.dropbtnjawatengah {
+
+    font-family: sans-serif;
+    color: black;
+    padding-bottom: 3px;
+    padding-left: 20px;
+    font-size: 15px;
+    border: none;
+    background-color:rgba(240, 241, 241, 1);
+    cursor: pointer;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-contentjawatengah {
+    display: none;
+    /* position: absolute; */
+    background-color: #f1f1f1;
+    /* min-width: 160px; */
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    z-index: 1;
+    /* margin-left: 970px; */
+}
+
+/* Links inside the dropdown */
+.dropdown-contentjawatengah a {
+    color: black;
+    text-decoration: none;
+}
+/* .dropdown-contentlokasi a:hover {background-color: #ddd} */
+.show {display:block;}
+
+
+/*dropdown lokasi jawabarat*/
+.dropbtnjawabarat {
+
+    font-family: sans-serif;
+    color: black;
+    padding-bottom: 3px;
+    padding-left: 20px;
+    font-size: 15px;
+    border: none;
+    background-color:rgba(240, 241, 241, 1);
+    cursor: pointer;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-contentjawabarat {
+    display: none;
+    /* position: absolute; */
+    background-color: #f1f1f1;
+    /* min-width: 160px; */
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    z-index: 1;
+    /* margin-left: 970px; */
+}
+
+/* Links inside the dropdown */
+.dropdown-contentjawabarat a {
+    color: black;
+    text-decoration: none;
+}
+/* .dropdown-contentlokasi a:hover {background-color: #ddd} */
+.show {display:block;}
+/* akhirprodukbanner */
+
+.list{
+    padding-left: 75px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+/* akhir listproduk */
+/* boxproduk */
+.boxawal{
+    margin-left: 91px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.box{
+    margin-left: 15px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.produk{
+    width: 240px;
+	height: 359px;
+	background: rgba(248, 248, 248, 0.5);
+	color: #434343;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    margin-right: 20px;
+}
+.percetakaan{
+    width: 240px;
+	height: 47px;
+	background: rgba(248, 248, 248, 0.5);
+	color: #a6a6a6;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+.pin{
+    width: 15px;
+    height: 15px;
+}
+.produk img{
+    padding-top: 10px;
+    padding-left: 9px;
+    width:220px;
+    float: left;
+}
+.produk ul{
+    padding-left: 5px;
+    font-size: 22px;
+    font-family: sans-serif;
+}
+.produk ul ul{
+    padding-left: 2px;
+    font-size: 18px;
+    font-family: open sans;
+    color: #ff5722;
+}
+.percetakaan ul{
+    padding-top: 2px;
+    padding-left: 5px;
+    font-size: 14px;
+    font-family: tahoma;
+}
+/* akhirproduk */
+/*HUBUNGI*/
+.mainContent {
+    width: 35%;
+    margin: 2.5em auto;
+    background: #fff;
+    padding: 2.5em;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+.contactFrm h4 {
+    font-size: 1em;
+    font-family: open sans;
+    color: #252525;
+    margin-bottom: 0.5em;
+    font-weight: 300;
+}
+.contactFrm input[type="text"], .contactFrm input[type="number"], .contactFrm input[type="email"], .contactFrm input[type="password"] {
+    width: 93.5%;
+    outline: none;
+    font-size: 0.9em;
+    font-family: open sans;
+    padding: .7em 1em;
+    border: 1px solid #000;
+    -webkit-appearance: none;
+    display: block;
+    margin-bottom: 1.2em;
+}
+.contactFrm textarea {
+    resize: none;
+    width: 93.5%;
+    font-size: 0.9em;
+    font-family: open sans;
+    outline: none;
+    padding: .6em 1em;
+    border: 1px solid #000;
+    min-height: 10em;
+    -webkit-appearance: none;
+}
+.contactFrm input[type="submit"], .submitDropzone, .daftarp {
+    outline: none;
+    color: #FFFFFF;
+    /* padding: 0.5em 0; */
+    font-size: 1em;
+    font-family: sans-serif;
+    margin: 1em 0 0 0;
+    -webkit-appearance: none;
+    background: #3097d1;
+    transition: 0.5s all;
+    border: 1px solid #006faa;
+    -webkit-transition: 0.5s all;
+    transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    width: 47%;
+    cursor: pointer;
+    margin-top: 30px;
+    height: 30px;
+    border-radius: 5px;
+}
+.contactFrm input[type="submit"]:hover {
+    background: none;
+    color: #006faa;
+}
+p.statusMsg{font-size:18px;}
+p.succdiv{color: #008000;}
+p.errordiv{color:#E80000;}
+/* AKHIRHUBUNGI */
+
+
+/* Dropdown Button */
+.dropbtnlogin {
+    background-color: #3498DB;
+    color: white;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtnlogin:hover, .dropbtnlogin:focus {
+    background-color: #2980B9;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdownlogin {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdownlogin-content {
+    display: none;
+    position: absolute;
+    background-color: #3097d1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdownlogin-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdownlogin-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+/*view Deskripsi produk*/
+.viewproduk{
+    width: 1100px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 190px;
+    margin-right: 190px;
+    margin-top: 30px;
+}
+.tampilkiriproduk{
+    /* width: 465px; */
+    margin-left: auto;
+    margin-right: auto;
+    /* border: 1px solid yellow; */
+    display: flex;
+    flex-direction: column;
+}
+.sizekiriproduk{
+    width: 405px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    /* padding-left: 215px; */
+    /* padding-right: 80px; */
+}
+.sizekiriproduk img{
+    width: 390px;
+    margin-top:10px;
+    margin-bottom:5px;
+}
+
+.tampilkananproduk{
+    margin-left:40px;
+    /* border: 1px solid #ddd; */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    /* margin: 40px;
+    border: 1px solid grey;
+    border-radius: 3px;
+    display: inline-block;
+    padding: 2px; */
+}
+.detailproduk{
+    padding: 5px;
+    width: 650px;
+    border-bottom: 1px solid #ddd;
+}
+.deskripsiproduk{
+    padding: 5px;
+    width: 650px;
+}
+.submitcash{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 155px;
+    height: 35px;
+    background-color: #3097d1;
+    border: none;
+    color: white;
+}
+.buttonpembayaran{
+    display: flex;
+    flex-direction: row;
+}
+/*infopercetakandeskripsi*/
+.infotokodeskripsi{
+    margin-top:20px;
+    display:flex;
+    flex-direction: column;
+    font-size:16px;
+    color:#4c4c4c;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.barisinfodeskripsi{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left:25px;
+    margin-right:25px;
+    display:flex;
+    flex-direction: row;
+    color:#4c4c4c;
+}
+
+
+/*Upload page style*/
+.mainContent{
+    width: 90%;
+    border: none;
+}
+.mainContentUpload{
+    margin-top: 60px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+.boxluarupload{
+    flex-grow: 2;
+    margin-right: 10px;
+    width: 844px;
+    height: 490px;
+    border: 1px solid grey;
+    border-radius: 8px;
+    padding: 20px;
+}
+.boxluartransaksi{
+    /* flex-grow: 1; */
+    margin-left: 10px;
+    width: 500px; height: 490px;
+    border: 1px solid grey;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.dropzone{
+    width: 844px;
+    height: 390px;
+    /* padding-top: 155px; */
+    border-radius: 8px;
+    border: 2px solid grey;
+}
+.submitDropzone{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 155px;
+    height: 40px;
+    margin-left: 683px;
+}
+.flex-container2{
+
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.banyakproduk{
+    width: 90px;
+
+}
+.jenisproduk{
+    width: 335px;
+}
+.hargaproduk{
+    width: 170px;
+    padding-left: 10px;
+
+    display: flex;
+    flex-direction: column;
+}
+.total{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.totalproduk{
+    width: 335px;
+    margin-right: 50px;
+    text-align: right;
+}
+.totalhargaproduk{
+    width: 170px;
+
+}
+/*transaksi*/
+.checkoutberhasil{
+    width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:#e2f5e4;
+    border: 1px solid #afe3ae;
+    border-radius: 5px;
+}
+.luarbayar{
+    width: 760px;
+    border: 1px solid grey;
+    margin-top: 40px;
+    margin-left: 380px;
+    margin-right: 380px;
+    font-size: 22px;
+    font-family: sans-serif;
+    color:#4c4c4c;
+    border-radius: 5px;
+}
+.dalambayar{
+    width: 650px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+}
+.dalambayar p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-family: sans-serif;
+    color:#4c4c4c;
+}
+
+/*akhir transaksi*/
+
+
+.keranjang{
+    /* border: 1px solid grey;
+    border-radius: 5px; */
+    /* font-family: segoe ui; */
+    margin-top: 15px;
+    margin-left: 380px;
+    margin-right: 380px;
+    width: 760px;
+    display: flex;
+    flex-direction: column;
+    color: #4c4c4c;
+}
+.keranjang1{
+    margin-top: 20px;
+    background-color:#fff6bf;
+    border: 1px solid #edd97c;
+    font-size:17px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align:left;
+}
+.baris1{
+    display: flex;
+    flex-direction: row;
+}
+.totalbelanja{
+    display: flex;
+    flex-direction: row;
+}
+/*akhirkeranjang*/
+/*buktipembayaran*/
+.luarbukti{
+    display: flex;
+    flex-direction: column;
+    width: 760px;
+    margin-top: 40px;
+    margin-left: 380px;
+    margin-right: 380px;
+    font-size: 22px;
+    font-family: sans-serif;
+    border: 1px solid grey;
+    color:#4c4c4c;
+    border-radius: 5px;
+}
+.luarbukti input[type="text"], .luarbukti input[type="number"]{
+    height: 30px;
+    font-size: 14px;
+}
+.dropzonebukti{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid grey;
+    /* width: 150px; */
+    height: 400px;
+}
+.submitbukti{
+    color: white;
+    background: #3097d1;
+    border: 1px solid #006faa;
+    width: 80px;
+    height: 30px;
+}
+.buktiselesai{
+    color: white;
+    background: #3097d1;
+    border: 1px solid #006faa;
+    width: 80px;
+    height: 40px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    border-radius: 3px;
+}
+.buktibatal{
+    color: white;
+    background-color: #f58c5c;
+    border: 1px solid #f58c5c;
+    width: 80px;
+    height: 40px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+}
+/*daftartoko*/
+.bukatokoinfo{
+    margin-top: 40px;
+    margin-left: 380px;
+    margin-right: 380px;
+    width: 760px;
+    color: #4c4c4c;
+    background-color:#fff6bf;
+    border: 1px solid #edd97c;
+    font-size:17px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align:left;
+}
+.daftarpercetakan{
+    font-family: sans-serif;
+    margin-top: 20px;
+    margin-left: 380px;
+    margin-right: 380px;
+    height: 530px;
+    width: 760px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid grey;
+    border-radius: 5px; border-radius: 5px;
+}
+/*admin*/
+.haladmin{
+    font-family: sans-serif;
+    margin-top: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+    height: 530px;
+    min-width: 1319px;;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid grey;
+    border-radius: 5px; border-radius: 5px; */
+}
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+/*Awal kolom komentar*/
+.container{
+    margin-left:40px;
+    width: 662px;
+    margin: none;
+}
+ fieldset{
+        border-radius: 3px;
+        padding: 10px;
+        border: 1px solid #ddd;
+
+    }
+.kotak{
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+    padding-bottom: 20px;
+
+}
+.iconcoment{
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+}
+.iconcomentdetail{
+    padding-left: 15px;
+}
+.iconprofil img{
+    width: 35px;
+}
+
+.iconcoment p2{
+    font-style: italic;
+    font-size: 12px;
+}
+.ulasan{
+    padding-top: 10px;
+}
+.container legend{
+    font-size: 20px;
+}
+
+/*History transaksi*/
+.boxluarhistory{
+    margin-left: 350px;
+    margin-right: 350px;
+    width: 819px;
+    /* border: 1px solid red; */
+}
+.boxluarhistory h2{
+    text-align: center;
+}
+.kotakhistory{
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 5px 0;
+    overflow: hidden;
+    font-size: 19px;
+}
+.iconhistory{
+    display: flex;
+    flex-direction: row;
+}
+.iconhistory p{
+    padding-bottom: 7px;
+}
+.iconhistory p2{
+    color: #3097d1;
+    font-size: 19px;
+    padding-bottom: 10px;
+}
+.iconimage img{
+    width: 120px;
+    height: 120px;
+}
+.tatahistory{
+    display: flex;
+    flex-direction: column;
+    padding-left: 35px;
+    font-size: 19px;
+}
+.keteranganhistory{
+    padding-left: 60px;
+
+}
+
+/*Upload produk*/
+.dropzoneuploadproduk{
+    border-radius: 5px;
+    border: 2px solid #ddd;
+    margin: 10px;
+    margin-top: 0px;
+    margin-left: 0px;
+    width: 40%;
+    height: 200px;
+}
+.tampiluploadproduk{
+
+    padding-left: 30%;
+    padding-top: 2%;
+    width: 35%;
+}
+
+
+/*admin*/
+.haladmin{
+    font-family: sans-serif;
+    margin-top: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+    height: 530px;
+    min-width: 1319px;;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid grey;
+    border-radius: 5px; border-radius: 5px; */
+}
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+    height: 51px;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+/*tolak*/
+.tolak{
+    margin:10px;
+    height:30px;
+    width:70px;
+    color:white;
+    background-color: #f58c5c;
+    border: 1px solid #f58c5c;
+    cursor:pointer;
+}
+.terima{
+    margin:10px;
+    height:30px;
+    width:70px;
+    color:white;
+    background:#3097d1;
+    border: 1px solid #006faa;
+    cursor:pointer;
+}
+/*halamanToko*/
+/*produk*/
+.boxluartoko{
+    font-family: Verdana;
+    margin-top: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+    min-width: 1319px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius:5px;
+}
+.produktoko {
+    width: 1100px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+/*info*/
+.infotoko{
+    margin-top:30px;
+    display:flex;
+    flex-direction: column;
+    font-size:23px;
+}
+.barisinfo{
+    margin-top:20px;
+    margin-left:25px;
+    margin-right:25px;
+    display:flex;
+    flex-direction: row;
+}
