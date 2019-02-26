@@ -93,9 +93,8 @@ if (!event.target.matches('.dropbtnlogin')) {
 
 
 <footer>
-<!-- <p>
-    &copy;Laravel dan TitipCetak 2018
-</p> -->
+
+
 </footer>
 </body>
 </html>

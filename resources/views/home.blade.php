@@ -10,7 +10,7 @@
         <img src="Selesai.png">
         </div>
     </div>
-<div class="tulisanhome">Produk Pilihan Minggu Ini :</div>
+<div class="tulisanhome">Project Pilihan Minggu Ini :</div>
 <div class="list">
     @for($i=0;$i<(count($items) > 10 ? 10 : count($items));$i++) {{--ini fungsi buat manggil project di looping--}}
     <div class="box">

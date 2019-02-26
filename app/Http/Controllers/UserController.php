@@ -50,10 +50,10 @@ class UserController extends Controller
                 Session::put('email', $data->email);
                 Session::put('/', true);
 
-                $dataProfesi = Profesi::where('id_profesi', $data->id)->first();
+                $dataProfesi = Profesi::where('id_user', $data->id)->first();
 
                 if($dataProfesi != null) {
-                    Session::put('nama_profesi', $dataProfesi->nama_percetakan);
+                    Session::put('nama_profesi', $dataProfesi->nama_profesi);
                     Session::put('id_profesi', $dataProfesi->id);
                 }
 
@@ -76,7 +76,7 @@ class UserController extends Controller
         if(Session::has('nama_profesi')) {
             return redirect()->back()->with('alert', 'Anda telah menjadi profesi');
         } else {
-            return view('bukatoko');//
+            return view('daftarProfesi');//
         }
     }
 
@@ -112,6 +112,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'nama_profesi' => 'required|min:3|max:255',
             'address' => 'required',
+            'job_title' => 'required',
             'nohp' => 'required|min:11|max:20',
         ]);
 
@@ -122,13 +123,14 @@ class UserController extends Controller
                 ->withInput();
         } else {
             $data = new Profesi();
-            $data->nama_profesi = $request->namaprofesi;
-            $data->id_profesi = Session::get('id');
+            $data->nama_profesi = $request->nama_profesi;
+            $data->id_user = Session::get('id');
             $data->alamat = $request->address;
+            $data->job_title = $request->job_title;
             $data->nohp = $request->nohp;
             $data->save();
             Session::put('nama_profesi', $data->nama_profesi);
-            Session::put('id_profesi', $data->id);
+            Session::put('id_user', $data->id);
             return redirect('/')->with('alert', 'berhasil mendaftar profesi');
         }
     }

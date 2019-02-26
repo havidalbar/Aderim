@@ -16,10 +16,12 @@ class CreateProfesiTable extends Migration
         Schema::create('profesi', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama_profesi');
-            $table->unsignedInteger('id_profesi');
-            $table->foreign('id_profesi')->references('id')->on('users')->nullable();
+            $table->unsignedInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users')->nullable();
             $table->string('alamat');
             $table->integer('nohp');
+            $table->string('job_title');
+            $table->integer('status');
             $table->timestamps();
         });
     }

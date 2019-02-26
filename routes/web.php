@@ -28,6 +28,14 @@ Route::post('/registerproses', 'UserController@registerproses');
 
 Route::get('/logoutproses', 'UserController@logout');
 
+Route::get('/daftar-profesi', 'UserController@getProfesi');
 Route::get('/tambah-project', 'ProjectController@tambahProject');
 Route::post('/tambah-projectproses', 'ProjectController@uploadProject');
 Route::get('/project/{id}', 'ProjectController@project');
+Route::get('/get-search', 'ProjectController@getSearch');
+Route::post('/daftarprofesiproses', 'UserController@daftarProfesi');
+Route::get('/profesi/{id}', 'ProjectController@projectProfesi');
+Route::get('/profesi/{id}/info', 'ProjectController@informasiProfesi');
+Route::get('/penjualan', 'OrderController@getRiwayatPesanan');
+Route::get('/search', 'ProjectController@search');
+Route::get('/get-search', 'ProjectController@getSearch');

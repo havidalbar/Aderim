@@ -51,16 +51,16 @@ class ProjectController extends Controller
     function projectProfesi($id) {
         $items = Project::where('id_profesi', $id)->get();
         $profesi = Profesi::where('id', $id)->first();
-        return view('halamantoko', ['items' => $items, 'profesi' => $profesi]);//
+        return view('halamanProfesi', ['items' => $items, 'profesi' => $profesi]);//
     }
 
     function informasiProfesi($id) {
         $profesi = Profesi::where('id', $id)->first();
-        return view('halamantokoinfo', ['profesi' => $profesi]);//
+        return view('halamanProfesiInfo', ['profesi' => $profesi]);//
     }
 
     function search(Request $request){
-        $items = Project::where('Project', 'like', '%'.$request->input('q').'%');
+        $items = Project::where('namaProject', 'like', '%'.$request->input('q').'%');
         // if($request->input('max') != null) {
         //     $barangs->where('harga', '<=', $request->input('max'));
         // }
@@ -70,14 +70,14 @@ class ProjectController extends Controller
         $items = $items->get();
         $profesis = array();
         for($i = 0; $i < count($items); $i++) {
-            $profesis[$i] = Profesi::where('id', $items[$i]->id_profesi)->first();
+            $profesis[$i] = Profesi::where('id_user', $items[$i]->id_profesi)->first();
         }
-        return view('category', ['items' => $items, 'profesis' => $profesis]);//
+        return view('cari', ['items' => $items, 'profesis' => $profesis]);//
     }
 
     function project($id) {
         $desProject = Project::where('id', $id)->first();
-        $profesi = Profesi::where('id', $desProject->id_profesi)->first();
+        $profesi = Profesi::where('id_user', $desProject->id_profesi)->first();
         return view('deskripsi-produk', ['desProject'=>$desProject, 'profesi' => $profesi]);//
     }
 

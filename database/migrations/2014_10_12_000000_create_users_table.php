@@ -20,8 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('nohp');
             $table->string('address');
-            $table->integer('role_id')->nullable();;
-            $table->integer('profesi')->nullable();;
+            $table->integer('credit')->nullable();
+            $table->integer('role_id')->nullable();
+            $table->integer('profesi')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
