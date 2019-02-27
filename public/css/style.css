@@ -5,6 +5,8 @@
 body {
     font-size: 16px;
     font-family: Myriad Pro;
+       background: lightblue  no-repeat fixed center;
+
 }
 /* navigasi */
 .boxmenu{
@@ -29,7 +31,7 @@ body {
     width: 155px;
 }
 #menu {
-    background:#ac5330;
+    background:#2dc5f3;
     width: 100%;
     min-width: 1519px;
     height: 50px;
@@ -55,13 +57,13 @@ body {
     display:none;
     list-style:none;
     position:absolute;
-    background-color:#b16749;
+    background-color:#49f0d9;
     float: none;
     top:50px;
     width:154px;
 }
 #menu ul li a:hover {
-    color:#f58c5c;
+    color:#49dcf0;
     display:block;
 }
 #menu ul li:hover ul {
@@ -76,7 +78,7 @@ body {
     line-height: 60px;
 }
 #menu ul ul li a:hover {
-    color:#f58c5c;;
+    color:#47ebf7;;
 }
 #menu ul form{
     padding-bottom: 10px;
@@ -92,7 +94,7 @@ body {
     width: 74px;
     height: 30px;
     border: none;
-    background-color: #f58c5c;
+    background-color: #5ce3f5;
     color: white;
     font-family: sans-serif;
     padding-top: 3px;
@@ -129,7 +131,7 @@ body {
     margin-left: 15px;
     width: 25px;
 }
-.toko{
+.profesi{
     margin-top: 1px;
     margin-left: 5px;
 }
@@ -148,7 +150,7 @@ body {
     flex-direction: column;
 }
 .informasiakun{
-    background-color: #b36633;
+    background-color: #4fcedf;
     width: 750px;
     font-size: 24px;
     margin-left: auto;
@@ -310,7 +312,7 @@ body {
     border: 1px solid #ddd;
     margin-right: 20px;
 }
-.percetakaan2{
+.profesi2{
     width: 200px;
     height: 47px;
     background: rgba(246, 248, 249, 1);
@@ -339,7 +341,7 @@ body {
     padding-left: 2px;
     font-size: 16px;
     font-family: open sans;
-    color: #ff5722;
+    color: #22deff;
 }
 .percetakaan2 ul{
     padding-top: 2px;
@@ -522,7 +524,7 @@ body {
     display: flex;
     flex-direction: column;
 }
-.produk{
+.project{
     width: 240px;
 	height: 359px;
 	background: rgba(248, 248, 248, 0.5);
@@ -531,7 +533,7 @@ body {
     border: 1px solid #ddd;
     margin-right: 20px;
 }
-.percetakaan{
+.profesi{
     width: 240px;
 	height: 47px;
 	background: rgba(248, 248, 248, 0.5);
@@ -545,24 +547,24 @@ body {
     width: 15px;
     height: 15px;
 }
-.produk img{
+.project img{
     padding-top: 10px;
     padding-left: 9px;
     width:220px;
     float: left;
 }
-.produk ul{
+.profesi ul{
     padding-left: 5px;
     font-size: 22px;
     font-family: sans-serif;
 }
-.produk ul ul{
+.profesi ul ul{
     padding-left: 2px;
     font-size: 18px;
     font-family: open sans;
     color: #ff5722;
 }
-.percetakaan ul{
+.profesi ul{
     padding-top: 2px;
     padding-left: 5px;
     font-size: 14px;
@@ -988,7 +990,7 @@ p.errordiv{color:#E80000;}
     font-weight: bold;
     text-align:left;
 }
-.daftarpercetakan{
+.daftarprofesi{
     font-family: sans-serif;
     margin-top: 20px;
     margin-left: 380px;
@@ -1244,7 +1246,7 @@ p.errordiv{color:#E80000;}
     flex-direction: row;
 }
 /*info*/
-.infotoko{
+.infoprofesi{
     margin-top:30px;
     display:flex;
     flex-direction: column;

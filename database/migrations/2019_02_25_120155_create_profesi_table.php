@@ -21,7 +21,8 @@ class CreateProfesiTable extends Migration
             $table->string('alamat');
             $table->integer('nohp');
             $table->string('job_title');
-            $table->integer('status');
+            $table->string('url_image');
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }

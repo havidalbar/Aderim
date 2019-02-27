@@ -29,13 +29,44 @@ Route::post('/registerproses', 'UserController@registerproses');
 Route::get('/logoutproses', 'UserController@logout');
 
 Route::get('/daftar-profesi', 'UserController@getProfesi');
+
 Route::get('/tambah-project', 'ProjectController@tambahProject');
+
 Route::post('/tambah-projectproses', 'ProjectController@uploadProject');
+
 Route::get('/project/{id}', 'ProjectController@project');
+
 Route::get('/get-search', 'ProjectController@getSearch');
+
 Route::post('/daftarprofesiproses', 'UserController@daftarProfesi');
+
 Route::get('/profesi/{id}', 'ProjectController@projectProfesi');
+
 Route::get('/profesi/{id}/info', 'ProjectController@informasiProfesi');
+
 Route::get('/penjualan', 'OrderController@getRiwayatPesanan');
+
 Route::get('/search', 'ProjectController@search');
+
 Route::get('/get-search', 'ProjectController@getSearch');
+
+Route::get('/informasi-akun', 'UserController@informasi');
+
+Route::get('/halaman-admin/profesi', 'OrderController@getHalamanAdminProfesi');
+
+Route::get('/kategori/{category}', 'ProjectController@category');
+
+Route::get('/halaman-admin', 'OrderController@getHalamanAdmin');
+
+Route::post('/tolak-transaksi', 'CartController@tolakTransaksi');
+
+Route::post('/terima-transaksi', 'CartController@terimaTransaksi');
+
+Route::post('/tolak-profesi', 'CartController@tolakPercetakan');
+
+Route::post('/terima-profesi', 'CartController@terimaPercetakan');
+
+Route::post('/uploadFoto', 'UserController@uploadFoto');
+
+
+

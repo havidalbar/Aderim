@@ -1,24 +1,24 @@
 @extends (\Session::has('name') ? 'layouts.navLogin' : 'layouts.nav')
-@section('title', 'Indesign')
+@section('title', 'Aderim')
 
 @section('content')
 <div class="boxluartoko">
     <center><p style="font-size:54px;margin-bottom:30px;color: #006faa;">{{ $profesi->nama_profesi}}</p></center>
     <div class="tab">
-        <button style="font-size:20px;" class="tablinks" onclick="openCity(event, 'semuaproduk')" id="defaultOpen">Produk</button>
-    <button style="font-size:20px;" class="tablinks" onclick="window.location.href='/profesi/{{$profesi->id}}/info'">Informasi Percetakan</button>
+        <button style="font-size:20px;" class="tablinks" onclick="openCity(event, 'semuaproject')" id="defaultOpen">project</button>
+    <button style="font-size:20px;" class="tablinks" onclick="window.location.href='/profesi/{{$profesi->id}}/info'">Informasi profesi</button>
     </div>
 <!-- Tab content -->
-<div id="semuaproduk">
-    <p style="font-size:20px;font-weight:bold;margin-top:20px;color:#4c4c4c">Semua Produk</p>
-    <center><div class="produktoko">
+<div id="semuaproject">
+    <p style="font-size:20px;font-weight:bold;margin-top:20px;color:#4c4c4c">Semua project</p>
+    <center><div class="projecttoko">
         @for($i = 0; $i < count($items); $i++)
         <div class="box" style="text-align:left">
-                <div class="produk">
+                <div class="project">
                   <img src="/{{$items[$i]->namagambar}}">
                   <ul><a style="text-decoration: none; color: black;" href ="/project/{{ $items[$i]->id_profesi}}">{{ $items[$i]->project}}</a></ul>
                 </div>
-                <div class="percetakaan">
+                <div class="profesi">
                   <ul>{{ $profesi->nama_profesi}}</ul>
                   <ul><img src= "/pinblue.png" class="pin">{{ $profesi->alamat}}</ul>
                 </div>

@@ -1,5 +1,5 @@
 @extends (\Session::has('name') ? 'layouts.navLogin' : 'layouts.nav')
-@section('title', 'Indesign')
+@section('title', 'Aderim')
 @section('content')
 <div class="mainContent" style="width: 25%; border: 1px solid grey">
     <h2><center>Masuk</center></h2>

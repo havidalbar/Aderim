@@ -6,13 +6,14 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 use App\Profesi;
 
 class UserController extends Controller
 {
-    //
-    public function info()
+
+    public function informasi()
     {
         if (Session::get('/')) {
             if (Session::has('name')) {
@@ -20,9 +21,9 @@ class UserController extends Controller
             } else {
                 $infos = User::where('email', Session::get('email'))->first();
             }
-            return view('informasiakun', ['infos' => $infos]);
+            return view('informasiAkun', ['infos' => $infos]);
         } else {
-            return redirect('/login')->with('alert', 'Kamu harus login dulu');//
+            return redirect('/login')->with('alert', 'Kamu harus login dulu');
         }
     }
 
@@ -31,7 +32,7 @@ class UserController extends Controller
         if (Session::get('/')) {
             return redirect('/')->with('alert', 'Kamu harus login dulu');
         } else {
-            return view('user');//
+            return view('home');
         }
     }
 
@@ -76,7 +77,7 @@ class UserController extends Controller
         if(Session::has('nama_profesi')) {
             return redirect()->back()->with('alert', 'Anda telah menjadi profesi');
         } else {
-            return view('daftarProfesi');//
+            return view('daftarProfesi');
         }
     }
 
@@ -109,29 +110,35 @@ class UserController extends Controller
     }
 
     public function daftarProfesi(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'nama_profesi' => 'required|min:3|max:255',
-            'address' => 'required',
-            'job_title' => 'required',
-            'nohp' => 'required|min:11|max:20',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()
-                ->back()
-                ->withErrors($validator)
-                ->withInput();
-        } else {
+        if($request->fotoprofesi != null) {
             $data = new Profesi();
+            $data->url_image = $request->fotoprofesi;
             $data->nama_profesi = $request->nama_profesi;
-            $data->id_user = Session::get('id');
             $data->alamat = $request->address;
-            $data->job_title = $request->job_title;
             $data->nohp = $request->nohp;
+            $data->job_title = $request->job_title;
+            $data->id_user = Session::get('id');
             $data->save();
             Session::put('nama_profesi', $data->nama_profesi);
-            Session::put('id_user', $data->id);
-            return redirect('/')->with('alert', 'berhasil mendaftar profesi');
+            Session::put('id', $data->id);
+            return redirect('/')->with('alert', 'Berhasil mendaftar profesi');
+        } else {
+            return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();
+        }
+    }
+    public function uploadFoto(Request $request)
+    {
+        $time = Carbon::now();
+        $image = $request->file('file');
+        $extension = $image->getClientOriginalExtension();
+        $directory = date_format($time, 'Y') . '/' . date_format($time, 'm');
+        $filename = str_random(5).date_format($time,'d').rand(1,9).date_format($time,'h').".".$extension;
+        $upload_success = $image->storeAs($directory, $filename, 'public');
+        if ($upload_success) {
+            return response()->json($upload_success, 200);
+        }
+        else {
+            return response()->json('error', 400);
         }
     }
 }

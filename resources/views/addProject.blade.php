@@ -1,6 +1,6 @@
 @extends (\Session::has('name') ? 'layouts.navLogin' : 'layouts.nav')
 
-@section('title', 'Indesign')
+@section('title', 'Aderim')
 @section('css')
 <link rel="stylesheet" href="{{asset('css/dropzone.css')}}">
 @endsection
@@ -49,9 +49,9 @@
                 this.on("success", function(file, response) {
                     let hasil = 'uploads/' + response;
 
-                    var forms = document.getElementById('tambah-produk');
+                    var forms = document.getElementById('tambah-project');
                     var files = document.createElement("input");
-                    files.setAttribute('name', 'fotoproduk');
+                    files.setAttribute('name', 'fotoproject');
                     files.setAttribute("type", "hidden");
                     files.setAttribute("value", hasil);
                     forms.appendChild(files);

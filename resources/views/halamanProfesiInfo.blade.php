@@ -1,11 +1,11 @@
 @extends (\Session::has('name') ? 'layouts.navLogin' : 'layouts.nav')
-@section('title', 'Indesign')
+@section('title', 'Aderim')
 
 @section('content')
 <div class="boxluartoko">
     <center><p style="font-size:54px;margin-bottom:30px;margin-top:20px;color: #006faa;">{{ $profesi->nama_profesi}}</p></center>
     <div class="tab">
-    <button style="font-size:20px;" class="tablinks" onclick="window.location.href='/profesi/{{$profesi->id}}'">Produk</button>
+    <button style="font-size:20px;" class="tablinks" onclick="window.location.href='/profesi/{{$profesi->id}}'">project</button>
         <button style="font-size:20px;" class="tablinks" onclick="openCity(event, 'informasitoko')" id="defaultOpen">Informasi profesi</button>
     </div>
 <!-- Tab content -->

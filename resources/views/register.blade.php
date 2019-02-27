@@ -1,10 +1,7 @@
 @extends (\Session::has('name') ? 'layouts.navLogin' : 'layouts.nav')
-@section('title', 'Indesign')
+@section('title', 'Aderim')
 @section('content')
-
-<div class="mainContent" style="width: 45%; border: 1px solid grey">
-    <center><h2>Daftar</h2></center>
-    <br>
+<div class="mainContent" style="width: 25%; border: 1px solid grey">
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -34,3 +31,4 @@
                 <center><input type="submit" name="submit" value="Submit" /></center>
         </form>
     </div>
+@endsection
