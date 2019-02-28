@@ -627,8 +627,8 @@ p.errordiv{color:#E80000;}
     /* padding-left: 215px; */
     /* padding-right: 80px; */
 }
-.sizekiriproduk img{
-    width: 390px;
+.sizekiriproject img{
+    width: auto;
     margin-top:10px;
     margin-bottom:5px;
 }
@@ -646,14 +646,16 @@ p.errordiv{color:#E80000;}
     display: inline-block;
     padding: 2px; */
 }
-.detailproduk{
-    padding: 5px;
+.detailproject{
+    padding: auto;
     width: 650px;
+    margin-left:900px;
     border-bottom: 1px solid #ddd;
 }
 .deskripsiproduk{
     padding: 5px;
-    width: 650px;
+    width: 40px;
+
 }
 .submitcash{
     margin-top: 15px;
@@ -674,6 +676,8 @@ p.errordiv{color:#E80000;}
     display:flex;
     flex-direction: column;
     font-size:16px;
+    width: 1020px;
+    margin-left:500px;
     color:#4c4c4c;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -971,6 +975,9 @@ p.errordiv{color:#E80000;}
  fieldset{
         border-radius: 3px;
         padding: 10px;
+        margin-left: 460px;
+        width: 1010px;
+        margin-top:40px;
         border: 1px solid #ddd;
 
     }
@@ -979,6 +986,8 @@ p.errordiv{color:#E80000;}
     border: 1px solid #ddd;
     padding: 10px;
     margin: 5px 0;
+    margin-left:100px;
+    margin-top:10px;
     overflow: hidden;
     padding-bottom: 20px;
 
