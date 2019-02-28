@@ -27,20 +27,21 @@
         </div>
     </li>
         <div id="heading">
-        <a href="/home"><img src="/cropped-WWS-Logo-Icon-512px_512px.png" class="Logo" /></a>
+        <a href="/home"><img src="/#" class="Logo" /></a>
         </div>
+    </li>
+    <li><form class="kotakcari" method="GET" action="/get-search">
+        <input class="search" type="search" name="cari" placeholder="Cari project"\>
+        <input class="button" type="submit" value="Cari" style="cursor:pointer;">
+    </form></li>
     <li><a href="#" class="kategori">Kategori</a>
         <ul>
         <li> <a href="/kategori/rumah">Rumah</a></li>
         <li> <a href="/kategori/hotel">Hotel</a></li>
         <li> <a href="/kategori/apartemen">Apartemen</a></li>
         </ul>
-    </li>
-        <li><form class="kotakcari" method="GET" action="/get-search">
-            <input class="search" type="search" name="cari" placeholder="Cari project"\>
-            <input class="button" type="submit" value="Cari" style="cursor:pointer;">
-        </form></li>
-    <li><a href="/#"><img src="/icon_cart_alt.png" class="beli"></a></li>
+
+    {{-- <li><a href="/#"><img src="/icon_cart_alt.png" class="beli"></a></li> --}}
     <li><a href="/register" class= "daftar">Daftar</a></li>
     <li><a href="/login" class= "daftar">Login</a></li>
 

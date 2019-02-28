@@ -29,7 +29,7 @@ class OrderController extends Controller
 
     function getHalamanAdminProfesi() {
         if (Session::get('name') == "admin") {
-            $profesis = Profesi::where('status', 0)->get();
+            $profesis = Profesi::where('status', null)->get();
             $users = array();
             for($i = 0; $i < count($profesis); $i++) {
                 $users[$i] = User::where('id', $profesis[$i]->id_profesi)->first();

@@ -38,13 +38,13 @@
         <input class="search" type="search" name="cari" placeholder="Cari project">
         <input class="button" type="submit" value="Cari" style="cursor:pointer;">
     </form></li>
-      <li><a href="/#"><img src="/icon_cart_alt.png" class="beli"></a></li>
+      {{-- <li><a href="/#"><img src="/icon_cart_alt.png" class="beli"></a></li> --}}
       @if(Session::has('nama_profesi'))
       <li><a href="#"><img src="/market.png" class="market"></a></li>
 <li><a href="{{url('daftar-profesi')}}" class="profesi">Profesi</a>
       <ul style="left: 1245px; width:157px;">
       <li><a href="/profesi/{{Session::get('id_profesi')}}">Profesi Saya</a></li>
-      <li><a href="/order">Order</a></li>
+      {{-- <li><a href="/order">Order</a></li> --}}
       <li><a href="/tambah-project">Tambah Project</a></li>
       </ul>
       </li>

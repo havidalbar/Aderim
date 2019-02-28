@@ -23,10 +23,10 @@
   <div style="display:flex;flex-direction:row;font-size:20px">
       <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->id}}</center></div>
       <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->nama_profesi}}</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->url_gambar}}</center></div>
+      <div style="border: 1px solid #ddd;width:16.66%"><center><img style="width:100px" src="/{{$profesis[$i]->url_gambar}}"</center></div>
       <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->alamat}}</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center>{{$users[$i]->name}}</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->kontak}}</center></div>
+      <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->nama_profesi}}</center></div>
+      <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->nohp}}</center></div>
       <div style="border: 1px solid #ddd;width:16.66%"><center>
             <form action='/tolak-profesi?id={{$profesis[$i]->id}}' method="post">
                 {{csrf_field()}}
@@ -36,7 +36,6 @@
                 {{csrf_field()}}
                 <button type="submit" class="terima">Terima</button>
             </form>
-          {{--  <button class="tolak">Tolak</button><button class="terima">Terima</button>  --}}
         </center></div>
   </div>
   @endfor
