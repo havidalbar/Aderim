@@ -12,7 +12,7 @@
         <center>
             <h2 style="padding: 3px;">FOTO PROJECT</h2>
             {{ csrf_field() }}
-            <form action="{{ url('/uploadFotoProject') }}" enctype="multipart/form-data" style="width:700px; height: 200px" class="dropzone" id="my-dropzone">
+            <form action="{{ url('/uploadFotoProject') }}" enctype="multipart/form-data" style="width:400px; height: 200px" class="dropzone" id="my-dropzone">
                 {{csrf_field()}}
             </form>
 
