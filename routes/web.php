@@ -32,7 +32,9 @@ Route::get('/daftar-profesi', 'UserController@getProfesi');
 
 Route::get('/tambah-project', 'ProjectController@tambahProject');
 
-Route::post('/tambah-projectproses', 'ProjectController@uploadProject');
+Route::post('/tambah-projectproses', 'ProjectController@addProject');
+
+Route::post('/uploadFotoProject', 'ProjectController@uploadFotoProject');
 
 Route::get('/project/{id}', 'ProjectController@project');
 
