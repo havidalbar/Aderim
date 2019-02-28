@@ -9,26 +9,20 @@
         <button style="font-size:20px;" class="tablinks" onclick="openCity(event, 'informasitoko')" id="defaultOpen">Informasi profesi</button>
     </div>
 <!-- Tab content -->
-<div id="informasitoko">
-    <div class="infotoko">
-        <div class="barisinfo">
-            <p style="width:25%;">Nama profesi</p>
-            <p style="width:75%;">{{$profesi->nama_profesi}}</p>
-        </div>
-        <div class="barisinfo">
-            <p style="width:25%;">Alamat profesi</p>
-        <p style="width:75%;">{{$profesi->alamat}}</p>
-            <div class="barisinfo">
-            <p style="width:25%;">Nomor Telepon</p>
-            <p style="width:75%;">{{$profesi->nohp}}</p>
-        </div>
-        <div class="barisinfo">
-            <p style="width:25%;margin-bottom:20px;">Terdaftar Sejak</p>
-            <p style="width:75%;">{{date_format($profesi->created_at,"d-m-Y")}}</p>
-        </div>
-    </div>
 </div>
-
+<div class="infoprofesional">
+    <div style="margin-left:20px;">
+        <p>Nama Profesi</p>
+        <p>Alamat</p>
+        <p>No HP</p>
+        <p>Bergabung pada Tahun</p>
+    </div>
+    <div style="margin-left:70px;">
+        <p>{{$profesi->nama_profesi}}</p>
+        <p>{{$profesi->alamat}}</p>
+        <p>{{$profesi->nohp}}</p>
+        <p>{{$profesi->created_at}}</p>
+    </div>
 </div>
 
 <script>

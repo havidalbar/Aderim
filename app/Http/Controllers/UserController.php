@@ -120,7 +120,7 @@ class UserController extends Controller
             $data->id_user = Session::get('id');
             $data->save();
             Session::put('nama_profesi', $data->nama_profesi);
-            Session::put('id', $data->id);
+            Session::put('id_profesi', $data->id);
             return redirect('/')->with('alert', 'Berhasil mendaftar profesi');
         } else {
             return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();

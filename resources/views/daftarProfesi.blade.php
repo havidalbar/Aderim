@@ -5,12 +5,14 @@
 <link rel="stylesheet" href="/css/dropzone.css">
 @endsection
 @section('content')
+<div class="infoprofesi">
+    <div style="margin-left:20px;">
 <div style="display: flex;flex-direction">
 
     <div class="tampiluploadproject">
         <center>
             <h2 style="padding: 3px;">FOTO PORTOFOLIO</h2>
-            <form action="{{ url('/uploadFoto') }}" enctype="multipart/form-data" style="width:200px; height: 200px" class="dropzone" id="my-dropzone">
+            <form action="{{ url('/uploadFoto') }}" enctype="multipart/form-data" style="width:360px; height: 200px" class="dropzone" id="my-dropzone">
                 {{csrf_field()}}
             </form>
 
@@ -37,6 +39,8 @@
     </div>
     </div>
     </div>
+</div>
+</div>
     @section('js')
     <script src="/js/dropzone.js"></script>
     <script type="text/javascript">

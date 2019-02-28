@@ -6,12 +6,13 @@
 @endsection
 @section('content')
 <div style="display: flex;flex-direction">
-
+    <div class="infoprofesi">
+        <div style="margin-left:20px;">
     <div class="tampiluploadproject">
         <center>
             <h2 style="padding: 3px;">FOTO PROJECT</h2>
             {{ csrf_field() }}
-            <form action="{{ url('/uploadFotoProject') }}" enctype="multipart/form-data" style="width:200px; height: 200px" class="dropzone" id="my-dropzone">
+            <form action="{{ url('/uploadFotoProject') }}" enctype="multipart/form-data" style="width:700px; height: 200px" class="dropzone" id="my-dropzone">
                 {{csrf_field()}}
             </form>
 
@@ -23,8 +24,9 @@
                 <label for="category">Jenis Project:</label>
                 <select name="category" required>
                         <option value="">(Pilih kategori)</option>
-                        <option value="arsitektur">Arsitektur</option>
-                        <option value="desaininterior">Desain Interior</option>
+                        <option value="rumah">Rumah</option>
+                        <option value="apartemen">Apartemen</option>
+                        <option value="hotel">Hotel</option>
                     </select>
                     <br>
                 <label for="deskripsi">Deskripsi:</label>
@@ -35,6 +37,8 @@
     </div>
     </div>
     </div>
+</div>
+</div>
     @section('js')
     <script src="/js/dropzone.js"></script>
     <script type="text/javascript">
@@ -42,7 +46,7 @@
                 addRemoveLinks: true,
                 paramName: 'file',
                 maxFilesize: 20, // MB
-                maxFiles: 1,
+                maxFiles: 4,
                 acceptedFiles: "image/*",
                 init: function() {
                     this.on("success", function(file, response) {
