@@ -5,7 +5,7 @@
 <div class="haladmin">
     <center><p style="font-size:34px;margin-bottom:30px;">Halaman Admin</p></center>
     <div class="tab">
-        <button style="font-size:24px;" class="tablinks" onclick="window.location.href='/halaman-admin'">Konfirmasi Order</button>
+        {{-- <button style="font-size:24px;" class="tablinks" onclick="window.location.href='/halaman-admin'">Konfirmasi Order</button> --}}
         <button style="font-size:24px;" class="tablinks" onclick="openCity(event, 'pendaftaran')" id="defaultOpen">Pendaftaran Profesi</button>
     </div>
 <!-- Pendaftaran profesi -->
@@ -23,18 +23,18 @@
   <div style="display:flex;flex-direction:row;font-size:20px">
       <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->id}}</center></div>
       <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->nama_profesi}}</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center><img style="width:100px" src="/{{$profesis[$i]->url_gambar}}"</center></div>
+      <div style="border: 1px solid #ddd;width:16.66%"><center><img style="width:100px" src="/{{$profesis[$i]->url_image}}"</center></div>
       <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->alamat}}</center></div>
       <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->nama_profesi}}</center></div>
       <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->nohp}}</center></div>
       <div style="border: 1px solid #ddd;width:16.66%"><center>
-            <form action='/tolak-profesi?id={{$profesis[$i]->id}}' method="post">
+        <form action='/terima-profesi?id={{$profesis[$i]->id}}' method="post">
+            {{csrf_field()}}
+            <button type="submit" class="terima">Terima</button>
+        </form>
+        <form action='/tolak-profesi?id={{$profesis[$i]->id}}' method="post">
                 {{csrf_field()}}
                 <button type="submit" class="tolak">Tolak</button>
-            </form>
-            <form action='/terima-profesi?id={{$profesis[$i]->id}}' method="post">
-                {{csrf_field()}}
-                <button type="submit" class="terima">Terima</button>
             </form>
         </center></div>
   </div>

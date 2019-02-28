@@ -48,7 +48,7 @@
                 acceptedFiles: "image/*",
                 init: function() {
                     this.on("success", function(file, response) {
-                        let hasil = 'uploads/' + response;
+                        let hasil = 'image/' + response;
                         var forms = document.getElementById('tambah-profesi');
                         var files = document.createElement("input");
                         files.setAttribute('name', 'fotoprofesi');

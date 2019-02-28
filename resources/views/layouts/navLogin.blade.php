@@ -27,17 +27,18 @@
         <div id="heading">
           <a href="/home"><img src="/cropped-WWS-Logo-Icon-512px_512px.png" class="Logo"/></a>
         </div>
-      <li><a href="#" class="kategori">Kategori</a>
-      <ul>
-            <li> <a href="/kategori/rumah">Rumah</a></li>
-            <li> <a href="/kategori/hotel">Hotel</a></li>
-            <li> <a href="/kategori/apartemen">Apartemen</a></li>
-        </ul>
-      </li>
+
       <li><form method="GET" action="/get-search">
         <input class="search" type="search" name="cari" placeholder="Cari project">
         <input class="button" type="submit" value="Cari" style="cursor:pointer;">
     </form></li>
+    <li><a href="#" class="kategori">Kategori</a>
+        <ul>
+              <li> <a href="/kategori/rumah">Rumah</a></li>
+              <li> <a href="/kategori/hotel">Hotel</a></li>
+              <li> <a href="/kategori/apartemen">Apartemen</a></li>
+          </ul>
+        </li>
       {{-- <li><a href="/#"><img src="/icon_cart_alt.png" class="beli"></a></li> --}}
       @if(Session::has('nama_profesi'))
       <li><a href="#"><img src="/market.png" class="market"></a></li>
@@ -64,7 +65,7 @@
         <li><a href="/halaman-admin">Halaman Admin</a></li>
         @endif
         <li><a href="/informasi-akun">Informasi Akun</a></li>
-        <li><a href="/riwayat-order">History Order</a></li>
+        {{-- <li><a href="/riwayat-order">History Order</a></li> --}}
         <li><a href="/logoutproses">Log Out</a></li>
       </ul>
       </li>

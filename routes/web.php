@@ -62,9 +62,9 @@ Route::post('/tolak-transaksi', 'CartController@tolakTransaksi');
 
 Route::post('/terima-transaksi', 'CartController@terimaTransaksi');
 
-Route::post('/tolak-profesi', 'CartController@tolakPercetakan');
+Route::post('/tolak-profesi', 'OrderController@tolakProfesi');
 
-Route::post('/terima-profesi', 'CartController@terimaPercetakan');
+Route::post('/terima-profesi', 'OrderController@terimaProfesi');
 
 Route::post('/uploadFoto', 'UserController@uploadFoto');
 
