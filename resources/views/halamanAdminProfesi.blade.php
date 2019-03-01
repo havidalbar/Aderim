@@ -20,10 +20,16 @@
       <div style="border: 1px solid #ddd;width:16.66%"><center>Konfirmasi</center></div>
   </div>
   @for($i = 0; $i < count($profesis); $i++)
+  <?php
+  $fotos= explode(" ", $profesis[$i]->url_image);
+  ?>
   <div style="display:flex;flex-direction:row;font-size:20px">
       <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->id}}</center></div>
       <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->nama_profesi}}</center></div>
       <div style="border: 1px solid #ddd;width:16.66%"><center><img style="width:100px" src="/{{$profesis[$i]->url_image}}"</center></div>
+      @for($j=0; $j<count($fotos); $j++)
+      <a href="/{{$fotos[$j]}}" download="namafile"><button class="terima">Download</button></a>
+      @endfor
       <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->alamat}}</center></div>
       <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->nama_profesi}}</center></div>
       <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->nohp}}</center></div>
