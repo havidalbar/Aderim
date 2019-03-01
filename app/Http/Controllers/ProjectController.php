@@ -34,6 +34,7 @@ class ProjectController extends Controller
             $data->namaProject = $request->namaProject;
             $data->deskripsi = $request->deskripsi;
             $data->category = $request->category;
+            $data->estimasi = $request->estimasi;
             $data->id_profesi = Session::get('id_profesi');
             $data->save();
             return redirect('/')->with('alert', 'Berhasil upload project');

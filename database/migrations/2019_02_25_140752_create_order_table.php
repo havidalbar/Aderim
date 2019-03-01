@@ -19,12 +19,10 @@ class CreateOrderTable extends Migration
             $table->foreign('id_project')->references('id')->on('project')->nullable();
             $table->unsignedInteger('id_profesi');
             $table->foreign('id_profesi')->references('id')->on('profesi')->nullable();
-            $table->unsignedInteger('id_order');
-            $table->foreign('id_order')->references('id')->on('users')->nullable();
+            $table->unsignedInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users')->nullable();
             $table->text('url_gambar');
             $table->text('pesan');
-            $table->unsignedInteger('id_transaksi');
-            $table->foreign('id_transaksi')->references('id')->on('transaksi')->nullable();
             $table->timestamps();
         });
     }

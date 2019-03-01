@@ -9,6 +9,7 @@
             <div class="sizekiriproject">
                 <center><img src='/{!! $desProject->namagambar !!}' /></center>
                  <h1 style='margin-left:500px;'>{!! $desProject->namaProject !!}</h1>
+                 <h1 style='margin-left:500px;'>Estimasi Harga: {!! $desProject->estimasi !!}</h1>
             </div>
             <div class="infotokodeskripsi">
                 <div style="background:#3097d1;color:white;border-top-right-radius:5px;border-top-left-radius:5px;">
@@ -39,7 +40,7 @@
 
                 </div>
                 <div class="buttonpembayaran" style="float:right;margin-right:20px;">
-                <center><button onclick="window.location.href='/project/{{$desProject->id}}/upload'" id="menu-pembayaran" class="submitcash" style="cursor:pointer;">Kontrak</button></center>
+                <center><button onclick="window.location.href='/project/{{$desProject->id}}/order'" id="menu-pembayaran" class="submitcash" style="cursor:pointer;">Kontrak</button></center>
             </div>
             </div>
 

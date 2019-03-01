@@ -9,13 +9,18 @@ use App\Project;
 use App\Transaksi;
 use App\Profesi;
 use App\User;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
 
-    public function index() {
-
-
+    public function index($id) {
+        if (Session::has('name')) {
+            $desProject = Project::where('id', $id)->first();
+            return view('order', ['desProject' => $desProject]);
+        } else {
+            return redirect("/login")->with('alert', 'Kamu harus login dulu');
+        }
     }
 
     function getHalamanAdmin() {
@@ -63,6 +68,59 @@ class OrderController extends Controller
         return redirect()->back()->with('alert', 'Operasi berhasil');
     }
 
+    public function order(Request $request) {
+        if($request->fotoorder != null) {
+            $data = new Order();
+            $data->id_project = $request->id_project;
+            $data->id_profesi = $request->id_profesi;
+            $data->id_user = $request->id_user;
+            $data->url_gambar = $request->fotoorder;
+            $data->pesan = $request->pesan;
+            $data->save();
+            return redirect('/order-check')->with('alert', 'Permintaan anda telah di data, silahkan melanjutkan ke pembayaran');
+        } else {
+            return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();
+        }
+    }
+
+    public function uploadFotoOrder(Request $request)
+    {
+        $time = Carbon::now();
+        $image = $request->file('file');
+        $extension = $image->getClientOriginalExtension();
+        $directory = date_format($time, 'Y') . '/' . date_format($time, 'm');
+        $filename = str_random(5).date_format($time,'d').rand(1,9).date_format($time,'h').".".$extension;
+        $upload_success = $image->storeAs($directory, $filename, 'public');
+        if ($upload_success) {
+            return response()->json($upload_success, 200);
+        }
+        else {
+            return response()->json('error', 400);
+        }
+    }
+
+    public function transfer($id_transaksi) {
+        $dataTransaksi = Transaksi::where('id', $id_transaksi)->first();
+        $dataOrder = Order::where('id_user', Session::get('id'))->where('id_transaksi', $id_transaksi)->get();
+        if (Session::has('name')) {
+            if($dataOrder[0]->id_user == Session::get('id')) {
+                if($dataOrder[0]->status == "Menunggu pembayaran") {
+                    return view('pembayaran', ['dataTransaksi' => $dataTransaksi, 'dataOrder' => $dataOrder]);
+                } else {
+                    return redirect("/history-transaksi")->with('alert', 'Transaksi telah disetujui');
+                }
+            } else {
+                return redirect("/")->with('alert', 'Anda tidak memiliki hak untuk melihat transaksi user lain');
+            }
+        } else {
+            return redirect("/login")->with('alert', 'Kamu harus login dulu');
+        }
+    }
+    public function delete(Request $request) {
+        $data = Order::where('id', $request->input('id'))->delete();
+        return $this->index();
+    }
+
     function tolakTransaksi(Request $request) {
 
     }
@@ -75,13 +133,6 @@ class OrderController extends Controller
 
     }
 
-    public function delete(Request $request) {
-
-    }
-
-    public function transfer($id_transaksi) {
-
-    }
 
     function getTerimaOrder() {
 

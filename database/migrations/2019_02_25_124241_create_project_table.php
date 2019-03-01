@@ -19,6 +19,7 @@ class CreateProjectTable extends Migration
             $table->string('namaProject');
             $table->text('deskripsi');
             $table->string('category');
+            $table->unsignedInteger('estimasi');
             $table->unsignedInteger('id_profesi');
             $table->foreign('id_profesi')->references('id')->on('profesi')->nullable();
             $table->timestamps();

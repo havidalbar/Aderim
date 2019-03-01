@@ -70,5 +70,16 @@ Route::post('/terima-profesi', 'OrderController@terimaProfesi');
 
 Route::post('/uploadFoto', 'UserController@uploadFoto');
 
+Route::get('/project/{id}/order', 'OrderController@index');
 
+Route::post('/tambah-orderproses', 'OrderController@order');
 
+Route::post('/uploadFotoOrder', 'OrderController@uploadFotoOrder');
+
+Route::get('/transaksi/{id_transaksi}/transfer', 'OrderController@transfer');
+
+Route::get('/order-check', function () {
+    return view('ordercheck');
+});
+
+Route::post('/hapusorder', 'OrderController@delete');
