@@ -119,7 +119,7 @@ class OrderController extends Controller
         if (Session::has('name')) {
             if($dataOrder[0]->id_user == Session::get('id')) {
                 if($dataOrder[0]->status == "Menunggu pembayaran") {
-                    return view('pembayaran', ['dataTransaksi' => $dataTransaksi, 'dataOrder' => $dataOrder]);
+                    return view('transfer', ['dataTransaksi' => $dataTransaksi, 'dataOrder' => $dataOrder]);
                 } else {
                     return redirect("/history-transaksi")->with('alert', 'Transaksi telah disetujui');
                 }
@@ -133,6 +133,20 @@ class OrderController extends Controller
     public function delete(Request $request) {
         $data = Order::where('id', $request->input('id'))->delete();
         return $this->indexcheck();
+    }
+    public function transaksiOrder(Request $request) {
+        $dataTransaksi = new Transaksi;
+        $dataTransaksi->jumlah = $request->jumlah;
+        $dataTransaksi->sisaharga = $request->sisaharga;
+        $dataTransaksi->kode_token = rand(100, 999);
+        $dataTransaksi->save();
+        $orders = Order::where(['id_user' => Session::get('id'), 'status' => 'order'])->get();
+        foreach($orders as $order) {
+            $order->status = "Menunggu pembayaran";
+            $order->id_transaksi = $dataTransaksi->id;
+            $order->save();
+        }
+        return redirect("/transaksi/$dataTransaksi->id/transfer");
     }
 
     function tolakTransaksi(Request $request) {

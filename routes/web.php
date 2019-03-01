@@ -81,3 +81,7 @@ Route::get('/transaksi/{id_transaksi}/transfer', 'OrderController@transfer');
 Route::get('/order-check', 'OrderController@indexcheck');
 
 Route::post('/hapusorder', 'OrderController@delete');
+
+Route::post('/transaksiorder', 'OrderController@transaksiorder');
+
+Route::get('/transaksi/{id_transaksi}/transfer', 'OrderController@transfer');

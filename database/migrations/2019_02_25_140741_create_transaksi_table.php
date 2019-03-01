@@ -20,7 +20,8 @@ class CreateTransaksiTable extends Migration
             $table->string('bank_pengirim')->nullable();
             $table->string('bank_tujuan')->nullable();
             $table->bigInteger('jumlah');
-            $table->integer('kode_unik');
+            $table->bigInteger('sisaharga');
+            $table->integer('kode_token');
             $table->string('gambar_konfirmasi')->nullable();
             $table->integer('status')->default('0');
             $table->timestamps();

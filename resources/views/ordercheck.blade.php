@@ -35,11 +35,11 @@
                         <p style="margin:7px;font-size:19px;float:right;">Total Harga Project :</p>
                         </div>
                         <div style="border: 1px solid #ddd;background-color:#f8f8f8;width:25%">
-                            <p style="margin:7px;font-size:19px;">Rp {{ number_format(($items[$i]->estimasi * 0.3),0,",",".")}}</p>
+                            <p style="margin:7px;font-size:19px;">Rp {{ number_format(($items[$i]->estimasi),0,",",".")}}</p>
                         </div>
                     </div>
                     <?php
-        $total += 0.3* $items[$i]->estimasi;
+        $total += $items[$i]->estimasi;
                     ?>
             @endfor
             <div style="display:flex;flex-direction:row;margin-top:30px">
@@ -59,7 +59,7 @@
                     <div style="display:flex;flex-direction:row;">
 
                         <div><button onclick="window.location.href='/home'" class="submitcash" style="cursor:pointer;">Lanjutkan Belanja</button></div>
-                        <div style="margin-left:450px"><form action = "{{url('/checkoutprocess')}}" method = "post" id="langsungbayar">
+                        <div style="margin-left:450px"><form action = "{{url('/transaksiorder')}}" method = "post" id="langsungbayar">
                         <input type="hidden" name="jumlah" value="{{$total}}" />
                         {{csrf_field()}}
                         <input type="submit" class="submitcash" value="Bayar" style="cursor:pointer;"/>
