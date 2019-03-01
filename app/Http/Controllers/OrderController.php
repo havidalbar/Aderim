@@ -23,6 +23,20 @@ class OrderController extends Controller
         }
     }
 
+    public function indexcheck() {
+        if (Session::has('name')) {
+            $orders = Order::where(['id_user' => Session::get('id'), 'status' => 'order'])->get();
+            $items = array();
+            for($i = 0; $i < count($orders); $i++) {
+                $items[$i] = Project::where('id', $orders[$i]->id_project)->first();
+            }
+            return view('ordercheck', ['orders' => $orders, 'items' => $items]);
+        } else {
+            return redirect("/login")->with('alert', 'Kamu harus login dulu');
+        }
+
+    }
+
     function getHalamanAdmin() {
         if (Session::get('name') == "admin") {
             $profesis = Profesi::where('status', null)->get();
@@ -118,7 +132,7 @@ class OrderController extends Controller
     }
     public function delete(Request $request) {
         $data = Order::where('id', $request->input('id'))->delete();
-        return $this->index();
+        return $this->indexcheck();
     }
 
     function tolakTransaksi(Request $request) {

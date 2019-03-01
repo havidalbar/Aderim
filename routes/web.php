@@ -78,8 +78,6 @@ Route::post('/uploadFotoOrder', 'OrderController@uploadFotoOrder');
 
 Route::get('/transaksi/{id_transaksi}/transfer', 'OrderController@transfer');
 
-Route::get('/order-check', function () {
-    return view('ordercheck');
-});
+Route::get('/order-check', 'OrderController@indexcheck');
 
 Route::post('/hapusorder', 'OrderController@delete');

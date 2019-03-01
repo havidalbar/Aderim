@@ -15,14 +15,14 @@ class CreateTransaksiTable extends Migration
     {
         Schema::create('transaksi', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama');
-            $table->string('norek');
-            $table->string('bank_pengirim');
-            $table->string('bank_tujuan');
+            $table->string('nama')->nullable();
+            $table->string('norek')->nullable();
+            $table->string('bank_pengirim')->nullable();
+            $table->string('bank_tujuan')->nullable();
             $table->bigInteger('jumlah');
             $table->integer('kode_unik');
-            $table->string('gambar_konfirmasi');
-            $table->string('status');
+            $table->string('gambar_konfirmasi')->nullable();
+            $table->integer('status')->default('0');
             $table->timestamps();
         });
     }
