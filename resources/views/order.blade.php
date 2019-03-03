@@ -18,6 +18,7 @@
 
         </center>
         <div class="contactFrm">
+                <center><button id="submit-all" type="submit" class="submitDropzone">Kirim</button></center>
         <form id="tambah-order" method='post' action='{{url('/tambah-orderproses')}}'>
                 <label for="pesan">Deskripsi:</label>
                 <textarea name="pesan" style="border-radius: 5px;" placeholder="Tulis deskripsi project Anda di sini" required>{{ old('pesan') }}</textarea>
@@ -35,30 +36,42 @@
     @section('js')
     <script src="/js/dropzone.js"></script>
     <script type="text/javascript">
-            Dropzone.options.myDropzone = {
-                addRemoveLinks: true,
-                paramName: 'file',
-                maxFilesize: 20, // MB
-                maxFiles: 4,
-                acceptedFiles: "image/*",
-                init: function() {
-                    this.on("success", function(file, response) {
-                        let hasil = 'image/' + response;
-                        var forms = document.getElementById('tambah-order');
-                        var files = document.createElement("input");
-                        files.setAttribute('name', 'fotoorder');
-                        files.setAttribute("type", "hidden");
-                        files.setAttribute("value", hasil);
-                        forms.appendChild(files);
-                        });
-            this.on("addedfile", function() {
-            });
-          },
-                removedfile: function(file) {
-                    var _ref;
-                    return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
-                }
-            };
-        </script>
+
+        Dropzone.options.myDropzone = {
+            autoProcessQueue : false,
+            addRemoveLinks: true,
+            paramName: 'file',
+            maxFilesize: 20, // MB
+            maxFiles: 10,
+            parallelUploads: 10,
+            // acceptedFiles: ".jpeg,.jpg,.png,",
+            acceptedFiles: "image/*",
+
+            init: function() {
+                this.on("success", function(file, response) {
+                    let hasil = 'image/' + response;
+
+                    var forms = document.getElementById('tambah-order');
+                    var files = document.createElement("input");
+                    files.setAttribute('name', 'files[]');
+                    files.setAttribute("type", "hidden");
+                    files.setAttribute("value", hasil);
+                    forms.appendChild(files);
+                    });
+
+        var submitButton = document.querySelector("#submit-all");
+            myDropzone = this; // closure
+        submitButton.addEventListener("click", function() {
+          myDropzone.processQueue();
+        });
+        this.on("addedfile", function() {
+        });
+      },
+            removedfile: function(file) {
+                var _ref;
+                return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+            }
+        };
+    </script>
     @endsection
 @endsection

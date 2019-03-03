@@ -13,11 +13,13 @@
         <center>
             <h2 style="padding: 3px;">FOTO PORTOFOLIO</h2>
             <form action="{{ url('/uploadFoto') }}" enctype="multipart/form-data" style="width:360px; height: 200px" class="dropzone" id="my-dropzone">
+
                 {{csrf_field()}}
             </form>
 
         </center>
         <div class="contactFrm">
+                <center><button id="submit-all" type="submit" class="submitDropzone">Kirim</button></center>
         <form id="tambah-profesi" method='post' action='{{url('/daftarprofesiproses')}}'>
                 <label for="nama_profesi">Nama Profesi:</label>
                 <input type="text" style="border-radius: 5px;" name="nama_profesi" value="{{ old('nama_profesi') }}" required="" />
@@ -44,31 +46,43 @@
     @section('js')
     <script src="/js/dropzone.js"></script>
     <script type="text/javascript">
-            Dropzone.options.myDropzone = {
-                addRemoveLinks: true,
-                paramName: 'file',
-                maxFilesize: 20, // MB
-                maxFiles: 1,
-                acceptedFiles: "image/*",
-                init: function() {
-                    this.on("success", function(file, response) {
-                        let hasil = 'image/' + response;
-                        var forms = document.getElementById('tambah-profesi');
-                        var files = document.createElement("input");
-                        files.setAttribute('name', 'fotoprofesi');
-                        files.setAttribute("type", "hidden");
-                        files.setAttribute("value", hasil);
-                        forms.appendChild(files);
-                        });
-            this.on("addedfile", function() {
-            });
-          },
-                removedfile: function(file) {
-                    var _ref;
-                    return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
-                }
-            };
-        </script>
+
+        Dropzone.options.myDropzone = {
+            autoProcessQueue : false,
+            addRemoveLinks: true,
+            paramName: 'file',
+            maxFilesize: 20, // MB
+            maxFiles: 10,
+            parallelUploads: 10,
+            // acceptedFiles: ".jpeg,.jpg,.png,",
+            acceptedFiles: "image/*",
+
+            init: function() {
+                this.on("success", function(file, response) {
+                    let hasil = 'image/' + response;
+
+                    var forms = document.getElementById('tambah-profesi');
+                    var files = document.createElement("input");
+                    files.setAttribute('name', 'files[]');
+                    files.setAttribute("type", "hidden");
+                    files.setAttribute("value", hasil);
+                    forms.appendChild(files);
+                    });
+
+        var submitButton = document.querySelector("#submit-all");
+            myDropzone = this; // closure
+        submitButton.addEventListener("click", function() {
+          myDropzone.processQueue();
+        });
+        this.on("addedfile", function() {
+        });
+      },
+            removedfile: function(file) {
+                var _ref;
+                return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+            }
+        };
+    </script>
 
 @endsection
 @endsection

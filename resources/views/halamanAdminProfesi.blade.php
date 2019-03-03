@@ -26,8 +26,9 @@
   <div style="display:flex;flex-direction:row;font-size:20px">
       <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->id}}</center></div>
       <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->nama_profesi}}</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center><img style="width:100px" src="/{{$profesis[$i]->url_image}}"</center></div>
+
       @for($j=0; $j<count($fotos); $j++)
+      <div style="border: 1px solid #ddd;width:16.66%"><center><img style="width:100px" src="/{{$fotos[$j]}}"</center></div>
       <a href="/{{$fotos[$j]}}" download="namafile"><button class="terima">Download</button></a>
       @endfor
       <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->alamat}}</center></div>

@@ -83,12 +83,12 @@ class OrderController extends Controller
     }
 
     public function order(Request $request) {
-        if($request->fotoorder != null) {
+        if($request['files'] != null) {
             $data = new Order();
             $data->id_project = $request->id_project;
             $data->id_profesi = $request->id_profesi;
             $data->id_user = $request->id_user;
-            $data->url_gambar = $request->fotoorder;
+            $data->url_gambar = implode(" ", $request['files']);
             $data->pesan = $request->pesan;
             $data->save();
             return redirect('/order-check')->with('alert', 'Permintaan anda telah di data, silahkan melanjutkan ke pembayaran');

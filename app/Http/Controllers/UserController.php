@@ -105,14 +105,29 @@ class UserController extends Controller
             $data->address = $request->address;
             $data->nohp = $request->nohp;
             $data->save();
-            return redirect('/login')->with('alert', 'Kamu berhasil Register');//
+            $data = User::where('email', $data->email)->first();
+            Session::put('id', $data->id);
+            Session::put('name', $data->name);
+            Session::put('email', $data->email);
+            Session::put('/', true);
+
+                $dataProfesi = Profesi::where('id_user', $data->id)->first();
+
+                if($dataProfesi != null) {
+                    Session::put('nama_profesi', $dataProfesi->nama_profesi);
+                    Session::put('id_profesi', $dataProfesi->id);
+                }
+
+                return redirect('/home')->with('alert', 'Anda telah login');//
+
+
         }
     }
 
     public function daftarProfesi(Request $request) {
-        if($request->fotoprofesi != null) {
+        if($request['files'] != null) {
             $data = new Profesi();
-            $data->url_image = $request->fotoprofesi;
+            $data->url_image = implode(" ", $request['files']);
             $data->nama_profesi = $request->nama_profesi;
             $data->alamat = $request->address;
             $data->nohp = $request->nohp;
