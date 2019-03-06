@@ -5,7 +5,7 @@
 <div class="haladmin">
     <center><p style="font-size:34px;margin-bottom:30px;">Halaman Admin</p></center>
     <div class="tab">
-        {{-- <button style="font-size:24px;" class="tablinks" onclick="window.location.href='/halaman-admin'">Konfirmasi Order</button> --}}
+        <button style="font-size:24px;" class="tablinks" onclick="window.location.href='/halaman-admin'">Konfirmasi Transfer</button>
         <button style="font-size:24px;" class="tablinks" onclick="openCity(event, 'pendaftaran')" id="defaultOpen">Pendaftaran Profesi</button>
     </div>
 <!-- Pendaftaran profesi -->

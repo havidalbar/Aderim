@@ -39,21 +39,11 @@ class OrderController extends Controller
 
     function getHalamanAdmin() {
         if (Session::get('name') == "admin") {
-            $profesis = Profesi::where('status', null)->get();
-            $users = array();
-            for($i = 0; $i < count($profesis); $i++) {
-                $users[$i] = User::where('id', $profesis[$i]->id_profesi)->first();
-            }
-            return view('halamanAdminProfesi', ['profesis' => $profesis, 'users' => $users]);//
+            $transaksis = Transaksi::where('status', 0)->get();
+            return view('halamanAdmin', ['transaksis' => $transaksis]);
         } else {
-            return redirect("/home")->with('alert', 'Anda tidak memiliki akses sebagai admin');//
+            return redirect("/home")->with('alert', 'Anda tidak memiliki akses sebagai admin');
         }
-        // if (Session::get('name') == "admin") {
-        //     $transaksis = Transaksi::where('status', 0)->get();
-        //     return view('halamanAdmin', ['transaksis' => $transaksis]);
-        // } else {
-        //     return redirect("/home")->with('alert', 'Anda tidak memiliki akses sebagai admin');
-        // }
     }
 
     function getHalamanAdminProfesi() {
@@ -193,17 +183,49 @@ class OrderController extends Controller
         }
     }
 
-    function tolakTransaksi(Request $request) {
-
-    }
-
-    function terimaTransaksi(Request $request) {
-
-    }
-
     public function getHistory() {
-
+        if (Session::has('name')) {
+            $orders = Order::where('id_user', Session::get('id'));
+            $orders = $orders->where('status', "!=", "order")->get();
+            $items = array();
+            for($i = 0; $i < count($orders); $i++) {
+                $items[$i] = Project::where('id', $orders[$i]->id_project)->first();
+            }
+            $profesis = array();
+            for($i = 0; $i < count($orders); $i++) {
+                $profesis[$i] = Profesi::where('id', $items[$i]->id_profesi)->first();
+            }
+            return view('historyOrder', ['histories' => $orders, 'items' => $items, 'profesis' => $profesis]);
+        } else {
+            return redirect("/login")->with('alert', 'Kamu harus login dulu');
+        }
     }
+
+    function terimaTransfer(Request $request) {
+        $dataTransaksi = Transaksi::where('id', $request->input('id'))->first();
+        $dataTransaksi->status = 1;
+        $dataTransaksi->save();
+        $dataOrder = Order::where('id_transaksi', $dataTransaksi->id)->get();
+        for($i = 0; $i < count($dataOrder); $i++) {
+            $dataOrder[$i]->status = "Pembayaran terkonfirmasi";
+            $dataOrder[$i]->save();
+        }
+        return redirect()->back()->with('alert', 'Operasi berhasil');
+    }
+
+    function tolakTransfer(Request $request) {
+        $dataTransaksi = Transaksi::where('id', $request->input('id'))->first();
+        $dataTransaksi->status = -1;
+        $dataTransaksi->save();
+        $dataOrder = Order::where('id_transaksi', $dataTransaksi->id)->get();
+        for($i = 0; $i < count($dataOrder); $i++) {
+            $dataOrder[$i]->status = "Pembayaran tidak terkonfirmasi";
+            $dataOrder[$i]->save();
+        }
+        return redirect()->back()->with('alert', 'Operasi berhasil');
+    }
+
+
 
 
     function getTerimaOrder() {

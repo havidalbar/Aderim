@@ -65,7 +65,7 @@
         <li><a href="/halaman-admin">Halaman Admin</a></li>
         @endif
         <li><a href="/informasi-akun">Informasi Akun</a></li>
-        {{-- <li><a href="/riwayat-order">History Order</a></li> --}}
+        <li><a href="/riwayat-order">History Order</a></li>
         <li><a href="/logoutproses">Log Out</a></li>
       </ul>
       </li>

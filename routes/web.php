@@ -60,9 +60,9 @@ Route::get('/kategori/{category}', 'ProjectController@category');
 
 Route::get('/halaman-admin', 'OrderController@getHalamanAdmin');
 
-Route::post('/tolak-transaksi', 'CartController@tolakTransaksi');
+Route::post('/tolak-transfer', 'OrderController@tolakTransfer');
 
-Route::post('/terima-transaksi', 'CartController@terimaTransaksi');
+Route::post('/terima-transfer', 'OrderController@terimaTransfer');
 
 Route::post('/tolak-profesi', 'OrderController@tolakProfesi');
 
@@ -84,12 +84,10 @@ Route::post('/hapusorder', 'OrderController@delete');
 
 Route::post('/transaksiorder', 'OrderController@transaksiorder');
 
-// Route::get('/konfirmasiPembayaran', function () {
-//     return view('konfirmasitransfer');
-// });
-
 Route::post('/uploadBukti', 'OrderController@uploadBukti');
 
 Route::get('/konfirmasiPembayaran/{id_transaksi}', 'OrderController@showKonfirmasiTransfer');
 
 Route::post('/buktiproses/{id_transaksi}', 'OrderController@inputBukti');
+
+Route::get('/riwayat-order', 'OrderController@getHistory');

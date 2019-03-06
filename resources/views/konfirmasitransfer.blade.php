@@ -29,7 +29,7 @@
             <br>
             <label for="name">ID Pemesanan :</label>
             <br>
-            <input style="width:716px;margin-bottom:10px" type="number" name="idOrder" value={{$id_transaksi}} required="" min="1" placeholder=" Nomor ID Pesanan Anda"/>
+            <input style="width:716px;margin-bottom:10px" type="number" name="idOrder" value={{$id_transaksi}} placeholder=" Nomor ID Transaksi Anda"/ readonly>
             <br>
     <label for="bank">Bank Anda :</label>
     <select style="width:716px;height: 30px;margin-bottom:10px" name="bank">
