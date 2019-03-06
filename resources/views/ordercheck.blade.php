@@ -5,10 +5,11 @@
 <div class="order">
     @if(count($orders) > 0)
     <div class="order1">
-            <p style="margin:10px;">Periksa kembali order belanja Anda sebelum melakukan checkout.</p>
+            <p style="margin:10px;">Periksa kembali order belanja Anda sebelum melakukan transfer.</p>
             </div>
             <?php
             $total = 0;
+            $sisa = 0;
             ?>
             @for($i = 0; $i < 1; $i++)
                     <div style="margin-top:25px;border: 1px solid #ddd;background-color:#f8f8f8;display: flex; flex-direction: row;">
@@ -39,17 +40,23 @@
                         </div>
                     </div>
                     <?php
-        $total += $items[$i]->estimasi;
-                    ?>
+        $total += ($items[$i]->estimasi);
+        $sisa += $total - ($total*0.25);
+        ?>
             @endfor
             <div style="display:flex;flex-direction:row;margin-top:30px">
                 <div style="border: 1px solid #ddd;background-color:#f8f8f8;width:75%">
-                    <p style="margin:7px;font-size:19px;float:right;">Total Belanja :</p>
+                    <p style="margin:7px;font-size:19px;float:right;">Total Dibayarkan :</p>
+                    <br>
+                    <p style="margin:7px;font-size:19px;float:right;">Sisa Harga :</p>
                 </div>
                 <div style="border: 1px solid #ddd;background-color:#f8f8f8;width:25%">
                         <?php
-                        $totalFormatted = number_format($total, 0, ',', '.');
-                        echo "<p style='margin:7px;font-size:19px;'>Rp $totalFormatted</p>";
+                        $bayarFormatted = number_format($total*0.25, 0, ',', '.');
+                        echo "<p style='margin:7px;font-size:19px;'>Rp $bayarFormatted</p>";
+                        $sisaFormatted = number_format($sisa, 0, ',', '.');
+                        echo "<p style='margin:7px;font-size:19px;'>Rp $sisaFormatted</p>";
+
                         ?>
                 </div>
             </div>
@@ -61,7 +68,9 @@
                         <div><button onclick="window.location.href='/home'" class="submitcash" style="cursor:pointer;">Lanjutkan Belanja</button></div>
                         <div style="margin-left:450px"><form action = "{{url('/transaksiorder')}}" method = "post" id="langsungbayar">
                         <input type="hidden" name="jumlah" value="{{$total}}" />
+                        <input type="hidden" name="sisaharga" value="{{$total-($total*0.25)}}" />
                         {{csrf_field()}}
+
                         <input type="submit" class="submitcash" value="Bayar" style="cursor:pointer;"/>
                         </form>
                         </div>

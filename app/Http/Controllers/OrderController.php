@@ -134,6 +134,8 @@ class OrderController extends Controller
         $data = Order::where('id', $request->input('id'))->delete();
         return $this->indexcheck();
     }
+
+
     public function transaksiOrder(Request $request) {
         $dataTransaksi = new Transaksi;
         $dataTransaksi->jumlah = $request->jumlah;
@@ -147,6 +149,48 @@ class OrderController extends Controller
             $order->save();
         }
         return redirect("/transaksi/$dataTransaksi->id/transfer");
+    }
+    public function uploadBukti(Request $request)
+    {
+        $time = Carbon::now();
+        $image = $request->file('file');
+        $extension = $image->getClientOriginalExtension();
+        $directory = date_format($time, 'Y') . '/' . date_format($time, 'm');
+        $filename = str_random(5).date_format($time,'d').rand(1,9).date_format($time,'h').".".$extension;
+        $upload_success = $image->storeAs($directory, $filename, 'public');
+        if ($upload_success) {
+            return response()->json($upload_success, 200);
+        }
+        else {
+            return response()->json('error', 400);
+        }
+    }
+
+    public function showKonfirmasiTransfer($id_transaksi){
+        return view('konfirmasitransfer', ['id_transaksi' => $id_transaksi]);
+    }
+
+    public function inputBukti(Request $request,$id_transaksi) {
+        if($request->gambarbukti != null) {
+            if($request->bank != "Default") {
+                if($request->bank_penerima != "Default") {
+                    $data = Transaksi::where('id', $id_transaksi)->first();
+                    $data->nama = $request->namaRek;
+                    $data->norek = $request->noRek;
+                    $data->bank_pengirim = $request->bank;
+                    $data->bank_tujuan = $request->bank_penerima;
+                    $data->gambar_konfirmasi = $request->gambarbukti;
+                    $data->save();
+                    return redirect('/home')->with('alert', 'Permohonan konfirmasi telah dikirim');
+                } else {
+                    return redirect()->back()->with('alert', 'Masukkan bank tujuan')->withInput();
+                }
+            } else {
+                return redirect()->back()->with('alert', 'Masukkan bank Anda')->withInput();
+            }
+        } else {
+            return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();
+        }
     }
 
     function tolakTransaksi(Request $request) {

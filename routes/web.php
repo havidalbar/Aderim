@@ -84,4 +84,12 @@ Route::post('/hapusorder', 'OrderController@delete');
 
 Route::post('/transaksiorder', 'OrderController@transaksiorder');
 
-Route::get('/transaksi/{id_transaksi}/transfer', 'OrderController@transfer');
+// Route::get('/konfirmasiPembayaran', function () {
+//     return view('konfirmasitransfer');
+// });
+
+Route::post('/uploadBukti', 'OrderController@uploadBukti');
+
+Route::get('/konfirmasiPembayaran/{id_transaksi}', 'OrderController@showKonfirmasiTransfer');
+
+Route::post('/buktiproses/{id_transaksi}', 'OrderController@inputBukti');
