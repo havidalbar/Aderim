@@ -50,7 +50,7 @@
         <label for="bank_penerima">Bank Tujuan :</label>
     <br>
         <select style="width:716px;height: 30px;margin-bottom:10px" name="bank_penerima">
-        <option selected="" value="Default">(Pilih Bank TitipCetak)</option>
+        <option selected="" value="Default">(Pilih Bank Aderim)</option>
         <option value="BCA">BCA</option>
         <option value="MANDIRI">MANDIRI</option>
         <option value="BRI">BRI</option>

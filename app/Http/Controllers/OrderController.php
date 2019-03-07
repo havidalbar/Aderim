@@ -210,7 +210,7 @@ class OrderController extends Controller
             $dataOrder[$i]->status = "Pembayaran terkonfirmasi";
             $dataOrder[$i]->save();
         }
-        return redirect()->back()->with('alert', 'Operasi berhasil');
+        return redirect()->back()->with('alert', 'berhasil mensetujui transfer');
     }
 
     function tolakTransfer(Request $request) {
@@ -222,30 +222,79 @@ class OrderController extends Controller
             $dataOrder[$i]->status = "Pembayaran tidak terkonfirmasi";
             $dataOrder[$i]->save();
         }
-        return redirect()->back()->with('alert', 'Operasi berhasil');
-    }
-
-
-
-
-    function getTerimaOrder() {
-
+        return redirect()->back()->with('alert', 'berhasil menolak transfer');
     }
 
     function terimaOrder(Request $request) {
-
+        $order = Order::where('id', $request->input('id'))->first();
+        $order->status = "Order sedang diproses";
+        $order->save();
+        return redirect()->back()->with('alert', 'berhasil mensetujui order');
     }
 
-    function konfirmasiOrder(Request $request) {
+    function tolakOrder(Request $request) {
+        $order = Order::where('id', $request->input('id'))->first();
+        $order->status = "Order ditolak";
+        $order->save();
+        return redirect()->back()->with('alert', 'berhasil menolak order');
+    }
 
+    function getTerimaOrder() {
+        if(Session::has('id_profesi')) {
+            $dataOrder = Order::where('id_user', Session::get('id_profesi'))->where('status', 'Pembayaran terkonfirmasi')->get();
+            $items = array();
+            for($i=0; $i<count($dataOrder); $i++) {
+                $items[$i] = Project::where('id', $dataOrder[$i]->id_project)->first();
+            }
+            $users = array();
+            for($i=0; $i<count($dataOrder); $i++) {
+                $users[$i] = User::where('id', $dataOrder[$i]->id_user)->first();
+            }
+            return view('terimaOrder', ['dataOrder' => $dataOrder, 'users' => $users, 'items' => $items]);
+        } else {
+            return redirect()->back()->with('alert', 'Anda belum menjadi profesi');
+        }
     }
 
     function getKonfirmasiOrder() {
+        if(Session::has('id_profesi')) {
+            $dataOrder = Order::where('status', 'Order sedang diproses')->where('id_user', Session::get('id_profesi'))->get();
+            $items = array();
+            for($i=0; $i<count($dataOrder); $i++) {
+                $items[$i] = Project::where('id', $dataOrder[$i]->id_project)->first();
+            }
+            $users = array();
+            for($i=0; $i<count($dataOrder); $i++) {
+                $users[$i] = User::where('id', $dataOrder[$i]->id_user)->first();
+            }
+            return view('konfirmasiOrder', ['dataOrder' => $dataOrder, 'users' => $users, 'items' => $items]);
+        } else {
+            return redirect()->back()->with('alert', 'Anda belum menjadi profesi');
+        }
+    }
 
+    function konfirmasiOrder(Request $request) {
+        $order = Order::where('id', $request->input('id'))->first();
+        $order->status = "Selesai";
+        $order->save();
+        return redirect()->back()->with('alert', 'Project telah selesai');
     }
 
     function getRiwayatOrder() {
-
+        if(Session::has('id_profesi')) {
+            $dataOrder = Order::where('status', 'Selesai')->where('id_user', Session::get('id_profesi'))->get();
+            $items = array();
+            for($i=0; $i<count($dataOrder); $i++) {
+                $items[$i] = Project::where('id', $dataOrder[$i]->id_project)->first();
+            }
+            $users = array();
+            for($i=0; $i<count($dataOrder); $i++) {
+                $users[$i] = User::where('id', $dataOrder[$i]->id_user)->first();
+            }
+            return view('riwayatOrder', ['dataOrder' => $dataOrder, 'users' => $users, 'items' => $items]);
+        } else {
+            return redirect()->back()->with('alert', 'Anda belum menjadi profesi');
+        }
 
     }
 

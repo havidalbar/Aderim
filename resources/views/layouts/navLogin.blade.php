@@ -45,7 +45,7 @@
 <li><a href="{{url('daftar-profesi')}}" class="profesi">Profesi</a>
       <ul style="left: 1245px; width:157px;">
       <li><a href="/profesi/{{Session::get('id_profesi')}}">Profesi Saya</a></li>
-      {{-- <li><a href="/order">Order</a></li> --}}
+      <li><a href="/order">Order</a></li>
       <li><a href="/tambah-project">Tambah Project</a></li>
       </ul>
       </li>

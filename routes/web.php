@@ -91,3 +91,15 @@ Route::get('/konfirmasiPembayaran/{id_transaksi}', 'OrderController@showKonfirma
 Route::post('/buktiproses/{id_transaksi}', 'OrderController@inputBukti');
 
 Route::get('/riwayat-order', 'OrderController@getHistory');
+
+Route::get('/order/terima-order', 'OrderController@getTerimaOrder');
+
+Route::get('/order/konfirmasi-order', 'OrderController@getKonfirmasiOrder');
+
+Route::get('/order', 'OrderController@getRiwayatOrder');
+
+Route::post('/konfirmasi-order', 'OrderController@konfirmasiOrder');
+
+Route::post('/terima-order', 'OrderController@terimaOrder');
+
+Route::post('/tolak-order', 'OrderController@tolakOrder');
