@@ -21,7 +21,7 @@
   <div style="display:flex;flex-direction:row;font-size:20px">
       <div style="border: 1px solid #ddd;width:20%"><center>{{$dataOrder[$i]->id}}</center></div>
       <div style="border: 1px solid #ddd;width:20%"><center>{{$users[$i]->name}}</center></div>
-      <div style="border: 1px solid #ddd;width:20%"><center>{{$items[$i]->produk}}</center></div>
+      <div style="border: 1px solid #ddd;width:20%"><center>{{$items[$i]->namaProject}}</center></div>
       <div style="border: 1px solid #ddd;width:20%"><center>{{$items[$i]->estimasi}}</center></div>
   </div>
     @endfor

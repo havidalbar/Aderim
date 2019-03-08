@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Order;
 use App\Project;
+use App\Progres;
 use App\Transaksi;
 use App\Profesi;
 use App\User;
@@ -295,7 +296,91 @@ class OrderController extends Controller
         } else {
             return redirect()->back()->with('alert', 'Anda belum menjadi profesi');
         }
-
     }
 
+    function getProgresOrder(){
+        if (Session::has('name')) {
+            $orders = Order::where('id_user', Session::get('id'));
+            $orders = $orders->where('status', "!=", "order")->get();
+            $items = array();
+            for($i = 0; $i < count($orders); $i++) {
+                $items[$i] = Project::where('id', $orders[$i]->id_project)->first();
+            }
+            $profesis = array();
+            for($i = 0; $i < count($orders); $i++) {
+                $profesis[$i] = Profesi::where('id', $items[$i]->id_profesi)->first();
+            }
+            return view('progresOrder', ['orders' => $orders, 'items' => $items, 'profesis' => $profesis]);
+        } else {
+            return redirect("/login")->with('alert', 'Kamu harus login dulu');
+        }
+    }
+
+    function progres($id_order){
+        $orderProgres = Progres::where('id_order', $id_order)->get();
+        $orders = array();
+        for($i = 0; $i < count($orderProgres); $i++) {
+        $orders[$i] = Order::where('id', $orderProgres[$i]->id_order)->first();
+        }
+        $profesis = array();
+        for($i = 0; $i < count($orderProgres); $i++) {
+        $profesis[$i] = Profesi::where('id', $orderProgres[$i]->id_profesi)->first();
+        }
+        return view('progresOrderView', ['orderProgres'=>$orderProgres, 'profesis' => $profesis,'orders' =>$orders]);
+    }
+
+    function getOrderProgres(){
+        if(Session::has('id_profesi')) {
+            $dataOrder = Order::where('status', 'Order sedang diproses')->where('id_user', Session::get('id_profesi'))->get();
+            $items = array();
+            for($i=0; $i<count($dataOrder); $i++) {
+                $items[$i] = Project::where('id', $dataOrder[$i]->id_project)->first();
+            }
+            $users = array();
+            for($i=0; $i<count($dataOrder); $i++) {
+                $users[$i] = User::where('id', $dataOrder[$i]->id_user)->first();
+            }
+            return view('orderProgresView', ['dataOrder' => $dataOrder, 'users' => $users, 'items' => $items]);
+        } else {
+            return redirect()->back()->with('alert', 'Anda belum menjadi profesi');
+        }
+    }
+
+    public function showOrderProgres($id_order){
+        $dataOrder = Order::where('id', $id_order)->first();
+        return view('orderProgresInput', ['id_order' => $id_order,'dataOrder' => $dataOrder]);
+    }
+
+    function orderProgres(Request $request,$id_order){
+        if($request['files'] != null) {
+            $data = new Progres();
+            $data->id_order = $id_order;
+            $data->id_profesi = $request->id_profesi;
+            $data->id_project = $request->id_project;
+            $data->status = $request->status;
+            $data->id_user = $request->id_user;
+            $data->url_gambar = implode(" ", $request['files']);
+            $data->pesan = $request->pesan;
+            $data->save();
+            return redirect()->back()->with('alert', 'Order Progres Telah Diupdate');
+        } else {
+            return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();
+        }
+    }
+
+    public function uploadProgres(Request $request)
+    {
+        $time = Carbon::now();
+        $image = $request->file('file');
+        $extension = $image->getClientOriginalExtension();
+        $directory = date_format($time, 'Y') . '/' . date_format($time, 'm');
+        $filename = str_random(5).date_format($time,'d').rand(1,9).date_format($time,'h').".".$extension;
+        $upload_success = $image->storeAs($directory, $filename, 'public');
+        if ($upload_success) {
+            return response()->json($upload_success, 200);
+        }
+        else {
+            return response()->json('error', 400);
+        }
+    }
 }

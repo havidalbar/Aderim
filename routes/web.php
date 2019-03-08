@@ -103,3 +103,15 @@ Route::post('/konfirmasi-order', 'OrderController@konfirmasiOrder');
 Route::post('/terima-order', 'OrderController@terimaOrder');
 
 Route::post('/tolak-order', 'OrderController@tolakOrder');
+
+Route::get('/progres-order','OrderController@getProgresOrder');
+
+Route::get('/progresorder/{id_order}', 'OrderController@progres');
+
+Route::get('/order-progres','OrderController@getOrderProgres');
+
+Route::get('/order-progres/{id_order}', 'OrderController@showOrderProgres');
+
+Route::post('/orderprogresproses/{id_order}', 'OrderController@orderProgres');
+
+Route::post('/uploadProgres', 'OrderController@uploadProgres');

@@ -45,6 +45,7 @@
 <li><a href="{{url('daftar-profesi')}}" class="profesi">Profesi</a>
       <ul style="left: 1245px; width:157px;">
       <li><a href="/profesi/{{Session::get('id_profesi')}}">Profesi Saya</a></li>
+      <li><a href="/order-progres">Order Progres</a></li>
       <li><a href="/order">Order</a></li>
       <li><a href="/tambah-project">Tambah Project</a></li>
       </ul>
@@ -65,6 +66,7 @@
         <li><a href="/halaman-admin">Halaman Admin</a></li>
         @endif
         <li><a href="/informasi-akun">Informasi Akun</a></li>
+        <li><a href="/progres-order">Progres Order</a></li>
         <li><a href="/riwayat-order">History Order</a></li>
         <li><a href="/logoutproses">Log Out</a></li>
       </ul>

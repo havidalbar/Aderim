@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrderTable extends Migration
+class CreateProgresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateOrderTable extends Migration
      */
     public function up()
     {
-        Schema::create('order', function (Blueprint $table) {
+        Schema::create('progres', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('id_project')->nullable();
             $table->foreign('id_project')->references('id')->on('project');
@@ -21,8 +21,8 @@ class CreateOrderTable extends Migration
             $table->foreign('id_profesi')->references('id')->on('profesi');
             $table->unsignedInteger('id_user')->nullable();
             $table->foreign('id_user')->references('id')->on('users');
-            $table->unsignedInteger('id_transaksi')->nullable();
-            $table->foreign('id_transaksi')->references('id')->on('transaksi');
+            $table->unsignedInteger('id_order')->nullable();
+            $table->foreign('id_order')->references('id')->on('order');
             $table->string('status')->default('order');
             $table->text('url_gambar');
             $table->text('pesan');
@@ -37,6 +37,6 @@ class CreateOrderTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order');
+        Schema::dropIfExists('progres');
     }
 }
