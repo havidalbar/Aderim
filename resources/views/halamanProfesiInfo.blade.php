@@ -2,26 +2,60 @@
 @section('title', 'Aderim')
 
 @section('content')
-<div class="boxluartoko">
-    <center><p style="font-size:54px;margin-bottom:30px;margin-top:20px;color: #006faa;">{{ $profesi->nama_profesi}}</p></center>
-    <div class="tab">
-    <button style="font-size:20px;" class="tablinks" onclick="window.location.href='/profesi/{{$profesi->id}}'">project</button>
-        <button style="font-size:20px;" class="tablinks" onclick="openCity(event, 'informasitoko')" id="defaultOpen">Informasi profesi</button>
-    </div>
-<!-- Tab content -->
-</div>
-<div class="infoprofesional">
-    <div style="margin-left:20px;">
-        <p>Nama Profesi</p>
-        <p>Alamat</p>
-        <p>No HP</p>
-        <p>Bergabung pada Tahun</p>
-    </div>
-    <div style="margin-left:70px;">
-        <p>{{$profesi->nama_profesi}}</p>
-        <p>{{$profesi->alamat}}</p>
-        <p>{{$profesi->nohp}}</p>
-        <p>{{$profesi->created_at}}</p>
+<div class="container untuk-daftar-profesi halaman-profile">
+    <div class="row">
+        <center>
+            <h2 style="margin-bottom: 30px;">{{ $profesi->nama_profesi}}</h2>
+        </center>
+        <div class="tab">
+            <center>
+                <button style="font-size:20px;" class="tablinks btn btn-primary" onclick="window.location.href='/profesi/{{$profesi->id}}'">project</button>
+                <button style="font-size:20px;" class="tablinks btn btn-primary disabled" onclick="openCity(event, 'informasitoko')" id="defaultOpen">Informasi profesi</button>
+            </center>
+        </div>
+        <!-- Tab content -->
+        <div class="col-md-8 untuk-isi-daftar-profesi" style="font-size: 20px; margin-top: 30px;">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>Nama Profesi</b></label>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>: {{$profesi->nama_profesi}}</b></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>Alamat</b></label>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>: {{$profesi->alamat}}</b></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>No HP</b></label>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>: {{$profesi->nohp}}</b></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>Bergabung sejak</b></label>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>: {{$profesi->created_at}}</b></label>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

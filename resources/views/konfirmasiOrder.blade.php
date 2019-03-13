@@ -1,59 +1,54 @@
 @extends (\Session::has('name') ? 'layouts.navLogin' : 'layouts.nav')
-@section('title', 'Order')
+@section('title', 'Aderim')
 
 @section('content')
-<div class="haladmin">
-    <center><p style="font-size:34px;margin-bottom:30px;">Order</p></center>
-    <div class="tab">
-        <button style="font-size:24px;" class="tablinks" onclick="window.location.href='/order'">Riwayat Order</button>
-        <button style="font-size:24px;" class="tablinks" onclick="window.location.href='/order/terima-order'">Terima Pesanan</button>
-        <button style="font-size:24px;" class="tablinks" onclick="openCity(event, 'transaksi')" id="defaultOpen">Konfirmasi Order</button>
-    </div>
-<!-- Tab content -->
-<div id="transaksi" class="tabcontent">
-  <div style="display:flex;flex-direction:row;font-size:20px">
-      <div style="border: 1px solid #ddd;width:16.66%"><center>ID Order</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center>Nama Pembeli</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center>Nama Project</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center>Jumlah Transaksi</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center>Status</center></div>
-  </div>
+<center><h2>ORDER</h2></center>
+<br>
+<div class="tab"><center>
+  <button style="font-size:24px;" class="tablinks btn btn-primary" onclick="window.location.href='/order/terima-order'">Terima Order</button>
+  <button style="font-size:24px;" class="tablinks btn btn-primary" onclick="window.location.href='/order'">Riwayat Order</button>
+  <button style="font-size:24px;" class="tablinks btn btn-primary disabled"  onclick="openCity(event, 'transaksi')" id="defaultOpen">Konfirmasi Order</button>
+</center></div>
+<br><br><br><br>
+
+<!-- Konfirmasi Order -->
+<div id="pendaftaran">
+<table>
+  <thead>
+    <tr>
+      <th><center>ID Order</center></th>
+      <th><center>Nama Pembeli</center></th>
+      <th><center>Nama Project</center></th>
+      <th><center>Jumlah Transaksi</center></th>
+      <th><center>Status</center></th>
+    </tr>
+  </thead>
   @for($i=0;$i<count($dataOrder);$i++)
-  <div style="display:flex;flex-direction:row;font-size:20px">
-  <div style="border: 1px solid #ddd;width:16.66%"><center>{{$dataOrder[$i]->id}}</center></div>
-  <div style="border: 1px solid #ddd;width:16.66%"><center>{{$users[$i]->name}}</center></div>
-  <div style="border: 1px solid #ddd;width:16.66%"><center>{{$items[$i]->namaProject}}</center></div>
-  <div style="border: 1px solid #ddd;width:16.66%"><center>{{$items[$i]->estimasi}}</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center>
-            <form action='/konfirmasi-order?id={{$dataOrder[$i]->id}}' method="post">
-                {{csrf_field()}}
-                <button type='submit' class="terima">Selesai</button>
-            </form>
-        </center></div>
-  </div>
+  <tbody id="myTable">
+    <tr>
+      <td><center>{{$dataOrder[$i]->id}}</center></td>
+      <td><center>{{$users[$i]->name}}</center></td>
+      <td><center>{{$items[$i]->namaProject}}</center></td>
+      <td><center>{{$items[$i]->estimasi}}</center></td>
+      <td style="padding: 1px;">
+        <center><form action='/konfirmasi-order?id={{$dataOrder[$i]->id}}' method="post">
+          {{csrf_field()}}
+          <button type="submit" class="btn btn-success">Selesai</button>
+        </form></center>
+      </td>
+    </tr>
+  </tbody>
   @endfor
-
-</div>
-
+</table>
 </div>
 
 <script>
-    function openCity(evt, cityName) {
+function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
-
     tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    document.getElementById(cityName).style.display = "block";
+    for (i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display = "none"; } tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) { tablinks[i].className = tablinks[i].className.replace(" active", ""); } document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
 }
-document.getElementById("defaultOpen").click();
 </script>
 @endsection

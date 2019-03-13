@@ -2,86 +2,110 @@
 @section('title', 'Aderim')
 
 @section('content')
-<div class="order">
-    @if(count($orders) > 0)
-    <div class="order1">
-            <p style="margin:10px;">Periksa kembali order belanja Anda sebelum melakukan transfer.</p>
+<div class="container untuk-daftar-profesi halaman-profile">
+    <div class="row">
+        @if(count($orders) > 0)
+        <center>
+            <h2>Periksa kembali order belanja Anda sebelum melakukan transfer.</h2>
+        </center>
+        <?php $total = 0; $sisa = 0; ?>
+        @for($i = 0; $i < 1; $i++)
+        <form action='/hapusorder?id={{$orders[$i]->id}}' method="post" style="margin-left: 20px;">
+            {{csrf_field()}}
+            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Batalkan</button>
+        </form>
+        <div class="col-md-8 untuk-isi-daftar-profesi" style="font-size: 20px; margin-top: 30px;">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>Nama Projek</b></label>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>: {{$items[$i]->namaProject}}</b></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>Harga Project</b></label>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>: Rp.{{ number_format($items[$i]->estimasi,0,",",".")}}</b></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>Catatan untuk percetakan</b></label>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>: {{$orders[$i]->deskripsi}}</b></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>Total Harga Project</b></label>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>: Rp.{{ number_format(($items[$i]->estimasi),0,",",".")}}</b></label>
+                    </div>
+                </div>
             </div>
             <?php
-            $total = 0;
-            $sisa = 0;
+            $total += ($items[$i]->estimasi);
+            $sisa += $total - ($total*0.25);
             ?>
-            @for($i = 0; $i < 1; $i++)
-                    <div style="margin-top:25px;border: 1px solid #ddd;background-color:#f8f8f8;display: flex; flex-direction: row;">
-                        <form action='/hapusorder?id={{$orders[$i]->id}}' method="post">
-                        {{csrf_field()}}
-                        <button type="submit" style="background-color:#00000000; border:none; cursor:pointer"><img style="width: 30px;" src="/trash29black.png"></button></form>
-
-                    </div>
-                    <div class="baris1">
-                    <div style="border: 1px solid #ddd;width:50%">
-                        <p style="margin:7px;font-size:17px;color:#3097d1">{{$items[$i]->namaProject}}</p>
-                    </div>
-                    <div style="border: 1px solid #ddd;width:25%">
-                        <p style="margin:7px;font-size:17px;color:#4c4c4c">Harga Project</p>
-                        <p style="margin:7px;font-family:segoe ui;font-size:14px;color:#ff5722">Rp {{ number_format($items[$i]->estimasi,0,",",".")}}</p>
-                    </div>
-                    </div>
-                    <div style="border: 1px solid #ddd;">
-                       <p style="margin:7px;font-size:19px;">Catatan untuk percetakan:</p>
-                       <p style="margin:7px;font-size:16px;font-family:segoe ui;">{{$orders[$i]->deskripsi}}</p>
-                    </div>
-                    <div class="totalbelanja">
-                        <div style="border: 1px solid #ddd;background-color:#f8f8f8;width:75%">
-                        <p style="margin:7px;font-size:19px;float:right;">Total Harga Project :</p>
-                        </div>
-                        <div style="border: 1px solid #ddd;background-color:#f8f8f8;width:25%">
-                            <p style="margin:7px;font-size:19px;">Rp {{ number_format(($items[$i]->estimasi),0,",",".")}}</p>
-                        </div>
-                    </div>
-                    <?php
-        $total += ($items[$i]->estimasi);
-        $sisa += $total - ($total*0.25);
-        ?>
             @endfor
-            <div style="display:flex;flex-direction:row;margin-top:30px">
-                <div style="border: 1px solid #ddd;background-color:#f8f8f8;width:75%">
-                    <p style="margin:7px;font-size:19px;float:right;">Total Dibayarkan :</p>
-                    <br>
-                    <p style="margin:7px;font-size:19px;float:right;">Sisa Harga :</p>
-                </div>
-                <div style="border: 1px solid #ddd;background-color:#f8f8f8;width:25%">
-                        <?php
-                        $bayarFormatted = number_format($total*0.25, 0, ',', '.');
-                        echo "<p style='margin:7px;font-size:19px;'>Rp $bayarFormatted</p>";
-                        $sisaFormatted = number_format($sisa, 0, ',', '.');
-                        echo "<p style='margin:7px;font-size:19px;'>Rp $sisaFormatted</p>";
-
-                        ?>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>Total Dibayarkan</b></label>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>: <?php $bayarFormatted = number_format($total*0.25, 0, ',', '.'); echo "Rp.$bayarFormatted";?></b></label>
+                    </div>
                 </div>
             </div>
-        <br>
-        <br>
-
-                    <div style="display:flex;flex-direction:row;">
-
-                        <div><button onclick="window.location.href='/home'" class="submitcash" style="cursor:pointer;">Lanjutkan Belanja</button></div>
-                        <div style="margin-left:450px"><form action = "{{url('/transaksiorder')}}" method = "post" id="langsungbayar">
-                        <input type="hidden" name="jumlah" value="{{$total}}" />
-                        <input type="hidden" name="sisaharga" value="{{$total-($total*0.25)}}" />
-                        {{csrf_field()}}
-
-                        <input type="submit" class="submitcash" value="Bayar" style="cursor:pointer;"/>
-                        </form>
-                        </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>Total Dibayarkan</b></label>
                     </div>
-    @else
-    <center>
-    <div style="background-color:#f7f8f7;border: 1px solid #3097d1;font-size:16px;border-radius: 5px;width: 81%;margin-left:20px;margin-top: 40px;height: 40px;">
-    <center><p style="padding-top: 10px;">Anda belum memiliki item di order.</p></center>
+                    <div class="col-md-6">
+                        <label for="namaProject"><b>: <?php $sisaFormatted = number_format($sisa, 0, ',', '.'); echo "Rp.$sisaFormatted";?></b></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                            <form action = "{{url('/transaksiorder')}}" method = "post" id="langsungbayar">
+                                <input type="hidden" name="jumlah" value="{{$total}}" />
+                                <input type="hidden" name="sisaharga" value="{{$total-($total*0.25)}}" />
+                                {{csrf_field()}}
+                                <button type="submit" style="font-size:20px;" class="btn btn-success" value="Bayar" /><i class="far fa-credit-card"></i> Bayar</button>
+                            </form>
+                        </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+        @else
+        <center>
+            <h2><i class="fas fa-exclamation-triangle"></i></h2>
+            <h2>Anda belum memiliki item di order.</h2>
+        </center>
     </div>
-</center>
-
     @endif
 </div>
 @endsection

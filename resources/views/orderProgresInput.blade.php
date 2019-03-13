@@ -6,32 +6,39 @@
 @endsection
 
 @section('content')
-<div class="luarbukti">
-<br>
-<center><p style:"font-weight: bold;">Update Progres</p></center>
-    <div style="margin-top:15px;font-size:16px;margin-left:20px;">
-        @if(old('gambarprogres') == null)
-            <div class="boxuploadbukti">
-                    <form action="{{ url('/uploadProgres') }}" id="my-dropzone" enctype="multipart/form-data" class="dropzone" style="width: 97%; height: 200px">
-                        {{ csrf_field() }}
-                    </form>
-                    <div style="float: right; padding: 3%">
-                    <button id="submitbukti" class="submitbukti" style="cursor:pointer;" >Unggah</button>
+<a href="/home#branda"><button class="btn btn-primary pull-left"><i class="fas fa-arrow-left"></i> KEMBALI</button></a><br>
+<p><br></p>
+<div class="container untuk-daftar-profesi halaman-profile">
+    <div class="row">
+        <center><h2 style="margin-bottom: 30px;">UPDATE PROGRES</h2></center>
+        <div class="col-md-4">
+            @if(old('gambarprogres') == null)
+            <form action="{{ url('/uploadProgres') }}" id="my-dropzone" enctype="multipart/form-data" class="dropzone">
+                {{csrf_field()}}
+            </form>
+            <center><button id="submitbukti" class="submitbukti btn-block">Unggah</button></center>
+            @endif
+        </div>
+        <div class="col-md-8 untuk-isi-daftar-profesi">
+            <form id="formprogres" method="POST" action='{{url('/orderprogresproses/'.$id_order)}}'>
+                <input type="hidden" name="id_project" value="{{$dataOrder->id_project}}" />
+                <input type="hidden" name="id_profesi" value="{{$dataOrder->id_profesi}}" />
+                <input type="hidden" name="id_user" value="{{$dataOrder->id_user}}" />
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="pesan"><b>Deskripsi</b></label>
+                        </div>
+                        <div class="col-md-6">
+                            <textarea type="text" class="form-control" name="pesan" placeholder="Tulis deskripsi project Anda di sini" style="height: 150px;" required>{{ old('pesan') }}</textarea>
+                        </div>
                     </div>
                 </div>
-
-
-                @endif
-
-
-                <div style="padding-top: 38px">
-                    <form id="formprogres" method="POST" action='{{url('/orderprogresproses/'.$id_order)}}'>
-                        <label for="pesan">Deskripsi:</label>
-                        <textarea name="pesan" style="border-radius: 5px;" placeholder="Tulis deskripsi project Anda di sini" required>{{ old('pesan') }}</textarea>
-                        <input type="hidden" name="id_project" value="{{$dataOrder->id_project}}" />
-                        <input type="hidden" name="id_profesi" value="{{$dataOrder->id_profesi}}" />
-                        <input type="hidden" name="id_user" value="{{$dataOrder->id_user}}" />
-                        <select name="status" required>
+                <div class="form-check">
+                    <div class="row">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                        <select name="status" class="form-control" required>
                             <option value="">(Pilih Waktu)</option>
                             <option value="1">1 bulan</option>
                             <option value="2">2 bulan</option>
@@ -46,23 +53,27 @@
                             <option value="11">11 bulan</option>
                             <option value="12">12 bulan</option>
                         </select>
-                        {{csrf_field()}}
-                        <center><input type="submit" name="submit" value="Lanjutkan ke pembayaran" /></center>
-                </form>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                {{csrf_field()}}
+                <center><input type="submit" name="submit" value="Update Progres" class="btn" /></center>
+            </form>
+        </div>
 
-    </div>
     </div>
 </div>
-@section('js')
-<script src="/js/dropzone.js"></script>
-<script type="text/javascript">
-
-    Dropzone.options.myDropzone = {
+    @section('js')
+    <script src="/js/dropzone.js"></script>
+    <script type="text/javascript">
+Dropzone.options.myDropzone = {
         autoProcessQueue : false,
         addRemoveLinks: true,
         paramName: 'file',
         maxFilesize: 5,
         maxFiles: 4,
+        parallelUploads: 10,
         acceptedFiles: "image/*",
 
         init: function() {
@@ -90,6 +101,6 @@
             return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
         }
     };
-</script>
-@endsection
+    </script>
+    @endsection
 @endsection

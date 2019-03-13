@@ -1,46 +1,36 @@
 @extends (\Session::has('name') ? 'layouts.navLogin' : 'layouts.nav')
 @section('title', 'Aderim')
 @section('content')
-    <div id="index">
-    {{-- <a href="/home"><img src="home2.jpg" class="homelogo" /></a> --}}
-        <div class="cara">
-        {{-- <img src="#">
-        <img src="#">
-        <img src="#">
-        <img src="#"> --}}
+<div class="container">
+    <div class="row">
+        <h2 class="text-center light bold">DAPATKAN DESAIN ARSITEK TERBAIK PILIHAN ANDA</h2>
+        @for($i=0;$i<(count($items) > 10 ? 10 : count($items));$i++)
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="card">
+                <img class="card-img-top" src="{{ $items[$i]->namagambar}}" style="cursor: zoom-in;">
+                <div class="card-block">
+                    <figure class="profile-uploaderz">
+                        <img src="/logo2.png" class="profile-avatar" alt="">
+                    </figure>
+                    <h4 class="uploader mt-3"><a href="/project/{{ $items[$i]->id}}" style="text-decoration: none; color: black;">{{ $items[$i]->namaProject}}</a></h4>
+                    <div class="kategori">
+                        <h5>{{ $profesis[$i]->nama_profesi}}</h5>
+                    </div>
+                    <div class="deskripsi">
+                        Estimasi Harga: Rp.{{ $items[$i]->estimasi}}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small><i class="fas fa-map-marker-alt"></i> {{ $profesis[$i]->alamat}}</small>
+                    <a href="/project/{{ $items[$i]->id}}#branda"><button type="button" class="btn btn-success" >TAMPILKAN</button></a>
+                </div>
+            </div>
         </div>
+        @endfor
     </div>
-<div class="tulisanhome">Project Pilihan :</div>
-<div class="list">
-
-    @for($i=0;$i<(count($items) > 10 ? 10 : count($items));$i++) {{--ini fungsi buat manggil project di looping--}}
-
-    <div class="box">
-    <div class="project">
-        <img src= {{ $items[$i]->namagambar}}> {{--ini fungsi buat manggil gambar project di looping--}}
-        <ul><a style="text-decoration: none; color: black;" href ="/project/{{ $items[$i]->id}}">{{ $items[$i]->namaProject}}</a></ul>  {{--ini fungsi buat manggil project di looping--}}
-        <ul>Estimasi Harga: {{ $items[$i]->estimasi}}</ul> {{--ini fungsi buat manggil nama profesi di looping--}}
-    </div>
-        <div class="profesi">
-        <ul>{{ $profesis[$i]->nama_profesi}}</ul> {{--ini fungsi buat manggil nama profesi di looping--}}
-        <ul><img src= "/pinblue.png" class="pin">{{ $profesis[$i]->alamat}}</ul> {{--ini fungsi buat manggil alamat profesi di looping--}}
-      </div>
-    </div>
+    @for($i=0;$i<(count($items) > 10 ? 10 : count($items));$i++)
+    
     @endfor
 </div>
-{{-- <div class="tulisanhome">Pencarian Terpopuler :</div>class untuk search --}}
-<div class="list">
-@for($i=0;$i<(count($items) > 10 ? 10 : count($items));$i++)
-{{-- <div class="box">
-    <div class="project">
-    <img src= {{ $items[$i]->namagambar}}> ini fungsi buat manggil gambar project di looping
-    <ul><a style="text-decoration: none; color: black;" href ="/project/{{ $items[$i]->id_profesi}}">{{ $items[$i]->namaProject}}</a></ul> ini fungsi buat manggil project di looping
-    </div>
-    <div class="profesi">
-      <ul>{{ $profesis[$i]->namaProect}}</ul>
-      <ul><img src= "/pinblue.png" class="pin">{{ $profesis[$i]->alamat}}</ul>
-    </div>
-  </div> --}}
-  @endfor
-</div>
+<br><br><br><br><br><br><br><br><br><br>
 @endsection

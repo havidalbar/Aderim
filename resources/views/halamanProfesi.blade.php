@@ -2,32 +2,36 @@
 @section('title', 'Aderim')
 
 @section('content')
-<div class="boxluartoko">
-    <center><p style="font-size:54px;margin-bottom:30px;color: #006faa;">{{ $profesi->nama_profesi}}</p></center>
-    <div class="tab">
-        <button style="font-size:20px;" class="tablinks" onclick="openCity(event, 'semuaproject')" id="defaultOpen">project</button>
-    <button style="font-size:20px;" class="tablinks" onclick="window.location.href='/profesi/{{$profesi->id}}/info'">Informasi profesi</button>
-    </div>
-<!-- Tab content -->
-<div id="semuaproject">
-    <p style="font-size:20px;font-weight:bold;margin-top:20px;color:#4c4c4c">Semua project</p>
-    <center><div class="projecttoko">
+<div class="container untuk-daftar-profesi halaman-profile">
+        <center><h2 style="margin-bottom: 30px;">{{ $profesi->nama_profesi}}</h2></center>
+    <div class="tab"><center>
+        <button style="font-size:20px;" class="tablinks btn btn-primary disabled" onclick="openCity(event, 'semuaproject')" id="defaultOpen">project</button>
+        <button style="font-size:20px;" class="tablinks btn btn-primary" onclick="window.location.href='/profesi/{{$profesi->id}}/info'">Informasi profesi</button>
+    </center></div>
+    <!-- Tab content -->
+    <div id="semuaproject">
+        <center><p style="font-size:20px;font-weight:bold;margin-top:20px;color:#4c4c4c">Semua project</p></center>
         @for($i = 0; $i < count($items); $i++)
-        <div class="box" style="text-align:left">
-                <div class="project">
-                  <img src="/{{$items[$i]->namagambar}}">
-                  <ul><a style="text-decoration: none; color: black;" href ="/project/{{ $items[$i]->id_profesi}}">{{ $items[$i]->project}}</a></ul>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="card">
+                <img class="card-img-top" src="/{{$items[$i]->namagambar}}" style="cursor: zoom-in;">
+                <div class="card-block" style="background-color: white;">
+                    <h4 class="uploader mt-3"><a href="/project/{{ $items[$i]->id_profesi}}" style="text-decoration: none; color: black;">{{ $items[$i]->project}}</a></h4>
+                    <div class="kategori">
+                        <h5>{{ $profesi->nama_profesi}}</h5>
+                    </div>
+                    <div class="deskripsi">
+                        Estimasi Harga: {{ $items[$i]->estimasi}}
+                    </div>
                 </div>
-                <div class="profesi">
-                  <ul>{{ $profesi->nama_profesi}}</ul>
-                  <ul><img src= "/pinblue.png" class="pin">{{ $profesi->alamat}}</ul>
+                <div class="card-footer">
+                    <small><i class="fas fa-map-marker-alt"></i> {{ $profesi->alamat}}</small>
                 </div>
-              </div>
+            </div>
+        </div>
     @endfor
-    </div>
-
 </div>
-
+</div>
 </div>
 
 <script>
@@ -50,7 +54,8 @@
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
-}
+    }
+
     // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
 </script>

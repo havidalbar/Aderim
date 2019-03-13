@@ -5,33 +5,36 @@
 <link rel="stylesheet" href="{{asset('css/dropzone.css')}}">
 @endsection
 @section('content')
-<div style="display: flex;flex-direction">
-    <div class="infoprofesi">
-        <div style="margin-left:20px;">
-    <div class="tampiluploadproject">
-        <center>
-            <h2 style="padding: 3px;">FOTO ATAU CATATAN YANG MENDUKUNG</h2>
-            {{ csrf_field() }}
-            <form action="{{ url('/uploadFotoOrder') }}" enctype="multipart/form-data" style="width:400px; height: 200px" class="dropzone" id="my-dropzone">
+<div class="container untuk-daftar-profesi halaman-profile">
+    <div class="row">
+        <center><h2 style="margin-bottom: 30px;"><img src="/z_aderimLogo.png" width="50" height="50"> FOTO ATAU CATATAN YANG MENDUKUNG</h2></center>
+        <div class="col-md-4">
+            <form action="{{ url('/uploadFotoOrder') }}" enctype="multipart/form-data" class="dropzone" id="my-dropzone">
                 {{csrf_field()}}
             </form>
-
-        </center>
-        <div class="contactFrm">
-                <center><button id="submit-all" type="submit" class="submitDropzone">Kirim</button></center>
-        <form id="tambah-order" method='post' action='{{url('/tambah-orderproses')}}'>
-                <label for="pesan">Deskripsi:</label>
-                <textarea name="pesan" style="border-radius: 5px;" placeholder="Tulis deskripsi project Anda di sini" required>{{ old('pesan') }}</textarea>
+            <center><button id="submit-all" type="submit" class="submitDropzone btn-block">Kirim</button></center>
+        </div>
+        <div class="col-md-8 untuk-isi-daftar-profesi">
+            <form id="tambah-order" method='post' action='{{url('/tambah-orderproses')}}'>
                 <input type="hidden" name="id_project" value="{{$desProject->id}}" />
                 <input type="hidden" name="id_user" value="{{Session::get('id')}}" />
-                <input type="hidden" name="id_profesi" value="{{$desProject->id_profesi}}" />
+                <input type="hidden" name="id_profesi" value="{{$desProject->id_profesi}}" />                
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="pesan"><b>Deskripsi</b></label>
+                        </div>
+                        <div class="col-md-6">
+                            <textarea type="text" class="form-control" name="pesan" placeholder="Tulis deskripsi project Anda di sini" style="height: 150px;" required>{{ old('pesan') }}</textarea>
+                        </div>
+                    </div>
+                </div>                
                 {{csrf_field()}}
-                <center><input type="submit" name="submit" value="Lanjutkan ke pembayaran" /></center>
-        </form>
+                <center><input type="submit" name="submit" value="Lanjutkan ke pembayaran" class="btn" style="color: background-color: #ff5722;" /></center>
+            </form>
+        </div>
+
     </div>
-    </div>
-    </div>
-</div>
 </div>
     @section('js')
     <script src="/js/dropzone.js"></script>

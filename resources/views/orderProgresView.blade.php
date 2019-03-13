@@ -2,25 +2,28 @@
 @section('title', 'Order')
 
 @section('content')
-<div class="haladmin">
+<center><h1><i class="fas fa-business-time" style="font-size: 100px;"></i></h1><br><h2>PROGRES</h2></center>
+<br><br><br><br><br>
 
-<!-- Tab content -->
-  <div style="display:flex;flex-direction:row;font-size:20px">
-      <div style="border: 1px solid #ddd;width:16.66%"><center>ID Order</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center>Nama Pembeli</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%" ><center>Nama Project</center></div>
-  </div>
-  @for($i=0;$i<count($dataOrder);$i++)
-  <div style="display:flex;flex-direction:row;font-size:20px">
-  <div style="border: 1px solid #ddd;width:16.66%"><center>{{$dataOrder[$i]->id}}</center></div>
-  <div style="border: 1px solid #ddd;width:16.66%"><center>{{$users[$i]->name}}</center></div>
-  <a style="border: 1px solid #ddd;width:16.66%" href ="/order-progres/{{ $dataOrder[$i]->id}}">{{ $items[$i]->namaProject}}<center></center></a>
-        </center></div>
-
+<!-- Progres Order -->
+<div id="pendaftaran">
+<table style="font-size: 20px;">
+  <thead>
+    <tr>
+      <th><center>ID Order</center></th>
+      <th><center>Nama Pembeli</center></th>
+      <th><center>Nama Project</center></th>
+    </tr>
+  </thead>
+  @for($i=0;$i< count($dataOrder);$i++)
+  <tbody id="myTable">
+    <tr>
+      <td><center>{{$dataOrder[$i]->id}}</center></td>
+      <td><center>{{$users[$i]->name}}</center></td>
+      <td><a href ="/order-progres/{{ $dataOrder[$i]->id}}"><center>{{$items[$i]->namaProject}}</center></a></td>   
+    </tr>
+  </tbody>
   @endfor
-
+</table>
 </div>
-
-</div>
-
 @endsection

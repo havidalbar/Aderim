@@ -1,36 +1,63 @@
-@extends (\Session::has('name') ? 'layouts.navlogin' : 'layouts.nav')
+@extends (\Session::has('name') ? 'layouts.navLogin' : 'layouts.nav')
 @section('title', 'Aderim')
 
 @section('content')
-<div class="haladmin">
-    <center><p style="font-size:34px;margin-bottom:30px;">order</p></center>
-    <div class="tab">
-        <button style="font-size:24px;" class="tablinks" onclick="openCity(event, 'transaksi')" id="defaultOpen">Riwayat Order</button>
-        <button style="font-size:24px;" class="tablinks" onclick="window.location.href='/order/terima-order'">Terima order</button>
-        <button style="font-size:24px;" class="tablinks" onclick="window.location.href='/order/konfirmasi-order'">Konfirmasi order</button>
+<center><h2>ORDER</h2></center>
+<br>
+<div class="tab"><center>
+  <button style="font-size:24px;" class="tablinks btn btn-primary" onclick="window.location.href='/order/terima-order'">Terima Order</button>
+  <button style="font-size:24px;" class="tablinks btn btn-primary disabled" onclick="openCity(event, 'transaksi')" id="defaultOpen">Riwayat Order</button>
+  <button style="font-size:24px;" class="tablinks btn btn-primary"  onclick="window.location.href='/order/konfirmasi-order'">Konfirmasi Order</button>
+</center></div>
+<br><br>
+
+<div class="input-group" style="margin: 20px;">
+  <div class="row">
+    <div class="col-md-9">
+      <input type="text" id="myInput" class="form-control" placeholder="Cari riwayat order..." aria-label="" aria-describedby="basic-addon1" style="border: 2px solid black; border-radius: 12px">
     </div>
-<!-- Tab content -->
-<div id="transaksi" class="tabcontent">
-  <div style="display:flex;flex-direction:row;font-size:20px">
-      <div style="border: 1px solid #ddd;width:20%"><center>ID Order</center></div>
-      <div style="border: 1px solid #ddd;width:20%"><center>Nama Pembeli</center></div>
-      <div style="border: 1px solid #ddd;width:20%"><center>Nama Project</center></div>
-      <div style="border: 1px solid #ddd;width:20%"><center>Jumlah Transaksi</center></div>
+    <div class="col-md-3">
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+      </div>
+    </div>
   </div>
-  @for($i=0;$i<count($dataOrder);$i++)
-  <div style="display:flex;flex-direction:row;font-size:20px">
-      <div style="border: 1px solid #ddd;width:20%"><center>{{$dataOrder[$i]->id}}</center></div>
-      <div style="border: 1px solid #ddd;width:20%"><center>{{$users[$i]->name}}</center></div>
-      <div style="border: 1px solid #ddd;width:20%"><center>{{$items[$i]->namaProject}}</center></div>
-      <div style="border: 1px solid #ddd;width:20%"><center>{{$items[$i]->estimasi}}</center></div>
-  </div>
-    @endfor
 </div>
 
+<!-- Riwayat Order -->
+<div id="pendaftaran">
+<table>
+  <thead>
+    <tr>
+      <th><center>ID Order</center></th>
+      <th><center>Nama Pembeli</center></th>
+      <th><center>Nama Project</center></th>
+      <th><center>Jumlah Transaksi</center></th>
+    </tr>
+  </thead>
+  @for($i=0;$i< count($dataOrder);$i++)
+  <tbody id="myTable">
+    <tr>
+      <td><center>{{$dataOrder[$i]->id}}</center></td>
+      <td><center>{{$users[$i]->name}}</center></td>
+      <td><center>{{$items[$i]->namaProject}}</center></td>
+      <td><center>{{$items[$i]->estimasi}}</center></td>
+    </tr>
+  </tbody>
+  @endfor
+</table>
 </div>
 
 <script>
-    function openCity(evt, cityName) {
+$(document).ready(function() {
+    $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+});
+function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
 
     tabcontent = document.getElementsByClassName("tabcontent");

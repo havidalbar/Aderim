@@ -2,65 +2,45 @@
 @section('title', 'Aderim')
 
 @section('content')
-
-<div class="luarhistory">
-
-    <div class="boxluarhistory">
-
-        <h2>History Transaksi</h2>
+<div class="container" style="border:2px solid black; background-color: #faf9f9;">
+    <div class="row">
+        <h2 class="text-center light bold">HISTORY TRANSAKSI</h2>
         @for($i = 0; $i < count($histories); $i++)
         <?php
         $fotos = explode(" ", $histories[$i]->url_gambar);
         ?>
-        <div class="kotakhistory">
+        <div class="col-sm-10" style="display:inline-block; width:100%; height:auto; border-bottom: 2px solid black; margin-top: 20px;">
+            <center><img src="{{$items[$i]->namagambar}}" class="img-responsive center" width="600"></center>
+            <center><p><br></p><h3>{{ $items[$i]->namaProject}}</h3></center>
+            <details>
+                <summary>Status</summary>
+                <p>{{$histories[$i]->status}}</p>
+            </details>
+            <details>
+                <summary>Profesi</summary>
+                <p>{{$profesis[$i]->nama_profesi}}</p>
+            </details>
+            <details>
+                <summary>Total harga</summary>
+                <p>Rp.{{ number_format($items[$i]->estimasi,0,",",".")}}</p>
+            </details>
+            <details>
+                <summary>Deskripsi Pesanan Pembeli</summary>
+                <center><p class="text-justify">{{$histories[$i]->pesan}}</p></center>
+            </details>
 
-            <div class="iconhistory">
-
-                <div class="iconimage">
-                    <img src={{$items[$i]->namagambar}}>
+            <center><h3>Desain</h3></center>
+            <br>
+            <center>
+                <div class="col-sm" style="padding-bottom: 20px;">
+                    @for($j=0; $j< count($fotos); $j++)
+                    <img src="/{{$fotos[$j]}}" width="100" height="80" style="border:2px solid black; margin: 1px; padding: 2px;">
+                    @endfor
                 </div>
-                <div class="tatahistory">
-                    <h3 style="margin-bottom: 5px;">{{$items[$i]->namaProject}}</h3>
-                    <div class="iconhistory">
-                        <div>
-                            <div style="padding-bottom: 5px">
-                                <p>Status Pemesanan :</p>
-                                <p2>{{$histories[$i]->status}}</p2>
-                            </div>
-                            <div style="padding-bottom: 5px">
-                                <p>profesi :</p>
-                            <p2>{{$profesis[$i]->nama_profesi}}</p2>
-                            </div>
-                        </div>
-                            <div style="padding-bottom: 5px">
-                                <p>Total Harga :</p>
-                                <p2>Rp {{ number_format($items[$i]->estimasi,0,",",".")}}</p2>
-                            </div>
-                        </div>
-                        <div class="keteranganhistory">
-                            <div style="padding-bottom: 5px;">
-                                <p>Catatan Untuk Penjual :</p>
-                                <p2>{{$histories[$i]->pesan}}</p2>
-                            </div>
-                            <div class="" style="padding-bottom: 5px">
-                                <p>Design :</p>
-                                <div class="tinyimagehistory">
-                                    @for($j=0; $j<count($fotos); $j++)
-                                    <img src="/{{$fotos[$j]}}" style="width: 35px; height: 35px; margin: 3px;">
-                                @endfor
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
+            </center>
         </div>
         @endfor
-
     </div>
-
 </div>
-
+<br><br><br><br><br><br><br><br><br><br>
 @endsection

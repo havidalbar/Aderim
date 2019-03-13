@@ -2,57 +2,40 @@
 @section('title', 'Aderim')
 
 @section('content')
-
-<div class="luarhistory">
-
-    <div class="boxluarhistory">
-
-        <h2>Progres Order</h2>
+<div class="container" style="border:2px solid black">
+    <div class="row">
+        <h2 class="text-center light bold">PROGRES ORDER</h2>
         @for($i = 0; $i < count($orderProgres); $i++)
         <?php
         $fotos = explode(" ", $orderProgres[$i]->url_gambar);
         ?>
-        <div class="kotakhistory">
-
-            <div class="iconhistory">
-                <div class="tatahistory">
-                    <h3 style="margin-bottom: 5px;">{{$orders[$i]->namaProject}}</h3>
-                    <div class="iconhistory">
-                        <div>
-                            <div style="padding-bottom: 5px">
-                                <p>Status Pemesanan :</p>
-                                <p2>{{$orderProgres[$i]->status}}</p2>
-                            </div>
-                            <div style="padding-bottom: 5px">
-                                <p>profesi :</p>
-                            <p2>{{$profesis[$i]->nama_profesi}}</p2>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="keteranganhistory">
-                            <div style="padding-bottom: 5px;">
-                                <p>Catatan Untuk Penjual :</p>
-                                <p2>{{$orderProgres[$i]->pesan}}</p2>
-                            </div>
-                            <div class="" style="padding-bottom: 5px">
-                                <p>Design :</p>
-                                <div class="tinyimagehistory">
-                                    @for($j=0; $j<count($fotos); $j++)
-                                    <img src="/{{$fotos[$j]}}" style="width: 35px; height: 35px; margin: 3px;">
-                                @endfor
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="col-sm-10" style="display:inline-block; width:100%; height:auto; border-bottom: 2px solid black; margin-top: 20px;">
+            <center><h3>{{$orders[$i]->namaProject}}</h3></center>
+            <br>
+            <details open>
+                <summary>Status Pemesanan</summary>
+                <p>{{$orderProgres[$i]->status}} bulan</p>
+            </details>
+            <details open>
+                <summary>Profesi</summary>
+                <p>{{$profesis[$i]->nama_profesi}}</p>
+            </details>
+            <details>
+                <summary>Catatan Untuk Penjual</summary>
+                <p class="text-justify">{{$orderProgres[$i]->pesan}}</p>
+            </details>            
+            <center>
+                <h3>Desain</h3>
+                <br>
+                <div class="col-sm" style="padding-bottom: 20px;">
+                    @for($j=0; $j< count($fotos); $j++)
+                    <img src="/{{$fotos[$j]}}" width="200" height="150" style="border:2px solid black; margin: 1px; padding: 2px;">
+                    @endfor
                 </div>
-
-            </div>
-
+            </center>
         </div>
         @endfor
-
     </div>
-
 </div>
-
+<br><br><br><br><br><br><br><br><br><br>
 @endsection

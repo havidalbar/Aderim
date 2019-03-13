@@ -242,7 +242,7 @@ class OrderController extends Controller
 
     function getTerimaOrder() {
         if(Session::has('id_profesi')) {
-            $dataOrder = Order::where('id_user', Session::get('id_profesi'))->where('status', 'Pembayaran terkonfirmasi')->get();
+            $dataOrder = Order::where('id_profesi', Session::get('id_profesi'))->where('status', 'Pembayaran terkonfirmasi')->get();
             $items = array();
             for($i=0; $i<count($dataOrder); $i++) {
                 $items[$i] = Project::where('id', $dataOrder[$i]->id_project)->first();
@@ -259,7 +259,7 @@ class OrderController extends Controller
 
     function getKonfirmasiOrder() {
         if(Session::has('id_profesi')) {
-            $dataOrder = Order::where('status', 'Order sedang diproses')->where('id_user', Session::get('id_profesi'))->get();
+            $dataOrder = Order::where('status', 'Order sedang diproses')->where('id_profesi', Session::get('id_profesi'))->get();
             $items = array();
             for($i=0; $i<count($dataOrder); $i++) {
                 $items[$i] = Project::where('id', $dataOrder[$i]->id_project)->first();
@@ -283,7 +283,7 @@ class OrderController extends Controller
 
     function getRiwayatOrder() {
         if(Session::has('id_profesi')) {
-            $dataOrder = Order::where('status', 'Selesai')->where('id_user', Session::get('id_profesi'))->get();
+            $dataOrder = Order::where('status', 'Selesai')->where('id_profesi', Session::get('id_profesi'))->get();
             $items = array();
             for($i=0; $i<count($dataOrder); $i++) {
                 $items[$i] = Project::where('id', $dataOrder[$i]->id_project)->first();
@@ -331,7 +331,7 @@ class OrderController extends Controller
 
     function getOrderProgres(){
         if(Session::has('id_profesi')) {
-            $dataOrder = Order::where('status', 'Order sedang diproses')->where('id_user', Session::get('id_profesi'))->get();
+            $dataOrder = Order::where('status', 'Order sedang diproses')->where('id_profesi', Session::get('id_profesi'))->get();
             $items = array();
             for($i=0; $i<count($dataOrder); $i++) {
                 $items[$i] = Project::where('id', $dataOrder[$i]->id_project)->first();

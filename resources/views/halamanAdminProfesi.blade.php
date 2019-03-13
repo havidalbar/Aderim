@@ -2,56 +2,100 @@
 @section('title', 'Halaman Admin')
 
 @section('content')
-<div class="haladmin">
-    <center><p style="font-size:34px;margin-bottom:30px;">Halaman Admin</p></center>
-    <div class="tab">
-        <button style="font-size:24px;" class="tablinks" onclick="window.location.href='/halaman-admin'">Konfirmasi Transfer</button>
-        <button style="font-size:24px;" class="tablinks" onclick="openCity(event, 'pendaftaran')" id="defaultOpen">Pendaftaran Profesi</button>
+<center><h2 class="judul-halaman-admin">HALAMAN ADMIN</h2></center>
+<br>
+<div class="tab"><center>
+  <button style="font-size:24px;" class="tablinks btn btn-primary" onclick="window.location.href='/halaman-admin'">Konfirmasi Transfer</button>
+  <button style="font-size:24px;" class="tablinks btn btn-primary disabled" onclick="openCity(event, 'pendaftaran')" id="defaultOpen">Pendaftaran Profesi</button>
+</center></div>
+<br>
+<br>
+<div class="input-group" style="margin: 20px;">
+  <div class="row">
+    <div class="col-md-9">
+      <input type="text" id="myInput" class="form-control" placeholder="Cari daftar..." aria-label="" aria-describedby="basic-addon1" style="border: 2px solid black; border-radius: 12px">
     </div>
-<!-- Pendaftaran profesi -->
-<div id="pendaftaran" class="tabcontent">
-  <div style="display:flex;flex-direction:row;font-size:20px">
-      <div style="border: 1px solid #ddd;width:16.66%"><center>ID Profesi</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center>Nama Profesi</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center>Portofolio</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center>Alamat Kantor</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center>Nama Pemilik</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center>Nomor Telepon Yang Dapat Dihubungi</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center>Konfirmasi</center></div>
+    <div class="col-md-3">
+      <div class="input-group-append">
+        <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+      </div>
+    </div>
   </div>
+</div>
+
+<!-- Pendaftaran profesi -->
+<div id="pendaftaran">
+<table>
+  <thead>
+    <tr>
+      <th><center>ID Profesi</center></th>
+      <th><center>Nama Profesi</center></th>
+      <th><center>Portofolio dengan minimal 4 gambar</center></th>
+      <th><center>Alamat Kantor</center></th>
+      <th><center>Nama Pemilik</center></th>
+      <th><center>Nomor Telepon</center></th>
+      <th><center>Konfirmasi</center></th>
+    </tr>
+  </thead>
   @for($i = 0; $i < count($profesis); $i++)
   <?php
   $fotos= explode(" ", $profesis[$i]->url_image);
-  ?>
-  <div style="display:flex;flex-direction:row;font-size:20px">
-      <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->id}}</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->nama_profesi}}</center></div>
-
-      @for($j=0; $j<count($fotos); $j++)
-      <div style="border: 1px solid #ddd;width:16.66%"><center><img style="width:100px" src="/{{$fotos[$j]}}"</center></div>
-      <a href="/{{$fotos[$j]}}" download="namafile"><button class="terima">Download</button></a>
-      @endfor
-      <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->alamat}}</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->nama_profesi}}</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center>{{$profesis[$i]->nohp}}</center></div>
-      <div style="border: 1px solid #ddd;width:16.66%"><center>
-        <form action='/terima-profesi?id={{$profesis[$i]->id}}' method="post">
-            {{csrf_field()}}
-            <button type="submit" class="terima">Terima</button>
-        </form>
-        <form action='/tolak-profesi?id={{$profesis[$i]->id}}' method="post">
-                {{csrf_field()}}
-                <button type="submit" class="tolak">Tolak</button>
-            </form>
-        </center></div>
+  ?> 
+  <tbody id="myTable">
+    <tr>
+      <td><center>{{$profesis[$i]->id}}</center></td>
+      <td><center>{{$profesis[$i]->nama_profesi}}</center></td>
+      <td>
+        <center><a href="" data-toggle="modal" data-target="#foto-modal"><button class="btn btn-primary">LIHAT</button></a></center>
+      </td>
+      <td><center>{{$profesis[$i]->alamat}}</center></td>
+      <td><center>{{$profesis[$i]->nama_profesi}}</center></td>
+      <td><center>{{$profesis[$i]->nohp}}</center></td>
+      <td style="padding: 1px;">
+        <center><form action='/terima-profesi?id={{$profesis[$i]->id}}' method="post">
+          {{csrf_field()}}
+          <button type="submit" class="btn btn-success">Terima</button>
+        </form></center>
+        <center><form action='/tolak-profesi?id={{$profesis[$i]->id}}' method="post">
+          {{csrf_field()}}
+          <button type="submit" class="btn btn-danger">Tolak</button>
+        </form></center>
+      </td>
+    </tr>
+  </tbody>
+  <!--GAMBAR PORTOFOLIO-->
+  <div class="modal fade" id="foto-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+          <div class="loginmodal-container" style="background-color: gray;">
+              <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+              <center>
+                <h1>PORTOFOLIO</h1>
+                <h5><i>{{$profesis[$i]->nama_profesi}}</i></h5><br>
+              </center>
+              <div class="row">
+                  <div class="col-sm">
+                      @for($j=0; $j < count($fotos); $j++)
+                      <center>
+                        <img src="/{{$fotos[$j]}}" width="130" height="90" style="padding-top: 5px;">
+                      </center>
+                      <center>
+                        <a href="/{{$fotos[$j]}}" download="namafile"><button class="btn btn-success">Download</button></a>
+                      </center>
+                      @endfor                    
+                  </div>
+              </div>
+              <br>
+          </div>
+      </div>
   </div>
   @endfor
+</table>
 </div>
-
-</div>
-
+  
 <script>
-    function openCity(evt, cityName) {
+function openCity(evt, cityName) {
     // Declare all variables
     var i, tabcontent, tablinks;
 
@@ -73,5 +117,14 @@
 }
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
+
+$(document).ready(function() {
+    $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+});
 </script>
 @endsection
