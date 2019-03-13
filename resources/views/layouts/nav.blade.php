@@ -188,25 +188,25 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input type="text" name="email" value="{{ old('email') }}" placeholder="@mail" required="" />
+                                <input type="text" name="email" value="{{ old('email') }}" placeholder="@mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" reqired title="Example x@gmail.com" />
                             </div>
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <label for="password">Password:</label>
-                                        <input type="password" name="password" placeholder="******" required="" />
+                                        <input type="password" name="password" placeholder="******" required title="Either 0 OR (6 chars minimum)" pattern=".{0}|.{6,}" />
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <label for="confirmation">Ulang Password:</label>
-                                        <input type="password" name="confirmation" placeholder="******" required="" />
+                                        <input type="password" name="confirmation" placeholder="******" required title="Either 0 OR (6 chars minimum)" pattern=".{0}|.{6,}" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="nohp">Nomor HP:</label>
-                                <input type="text" name="nohp" value="{{ old('nohp') }}" placeholder="08xx" required="" />
+                                <input type="text" name="nohp" value="{{ old('nohp') }}" placeholder="08xx" required title="Either 0 OR (6 chars minimum)" pattern=".{0}|.{6,}" />
                             </div>
                             {{csrf_field()}}
                             <input type="submit" name="submit" value="Daftar" class="login loginmodal-submit"/>

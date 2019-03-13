@@ -20,7 +20,7 @@
     <tr>
       <td><center>{{$dataOrder[$i]->id}}</center></td>
       <td><center>{{$users[$i]->name}}</center></td>
-      <td><center>{{$items[$i]->namaProject}}</center></td>
+      <td><a href ="/order-progres/{{ $dataOrder[$i]->id}}"><center>{{$items[$i]->namaProject}}</center></a></td>
     </tr>
   </tbody>
   @endfor
