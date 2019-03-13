@@ -89,7 +89,7 @@ class UserController extends Controller
             'password' => 'required|min:6|max:20',
             'confirmation' => 'required|same:password',
             'address' => 'required',
-            'nohp' => 'required|min:11|max:15|unique:users',
+            'nohp' => 'required|min:6|max:15|unique:users',
         ]);
 
         if ($validator->fails()) {

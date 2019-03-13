@@ -98,8 +98,4 @@ class ProjectController extends Controller
         $profesi = Profesi::where('id', $desProject->id_profesi)->first();
         return view('deskripsiProject', ['desProject'=>$desProject, 'profesi' => $profesi]);
     }
-
-    function uploadProject(Request $request) {
-
-    }
 }

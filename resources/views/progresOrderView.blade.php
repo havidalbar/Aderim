@@ -10,7 +10,7 @@
         $fotos = explode(" ", $orderProgres[$i]->url_gambar);
         ?>
         <div class="col-sm-10" style="display:inline-block; width:100%; height:auto; border-bottom: 2px solid black; margin-top: 20px;">
-            <center><h3>{{$orders[$i]->namaProject}}</h3></center>
+            <center><h3>{{$items[$i]->namaProject}}</h3></center>
             <br>
             <details open>
                 <summary>Status Pemesanan</summary>
@@ -23,7 +23,7 @@
             <details>
                 <summary>Catatan Untuk Penjual</summary>
                 <p class="text-justify">{{$orderProgres[$i]->pesan}}</p>
-            </details>            
+            </details>
             <center>
                 <h3>Desain</h3>
                 <br>

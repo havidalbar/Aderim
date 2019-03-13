@@ -19,7 +19,7 @@ class CreateProfesiTable extends Migration
             $table->unsignedInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users')->nullable();
             $table->string('alamat');
-            $table->unsignedInteger('nohp');
+            $table->string('nohp');
             $table->string('job_title');
             $table->string('url_image');
             $table->integer('status')->nullable();

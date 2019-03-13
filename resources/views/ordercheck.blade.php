@@ -6,7 +6,7 @@
     <div class="row">
         @if(count($orders) > 0)
         <center>
-            <h2>Periksa kembali order belanja Anda sebelum melakukan transfer.</h2>
+            <h2>Periksa kembali order Anda sebelum melakukan transfer.</h2>
         </center>
         <?php $total = 0; $sisa = 0; ?>
         @for($i = 0; $i < 1; $i++)

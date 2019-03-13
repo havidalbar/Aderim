@@ -55,7 +55,7 @@
             {{-- <h4>Deskripsi :</h4><br>
             <p>{!! $desProject->deskripsi !!}</p> --}}
             {{-- <div class="buttonpembayaran">
-                <center><a  href="/upload"><button id="menu-pembayaran" class="submitcash">Beli</button></a></center> 
+                <center><a  href="/upload"><button id="menu-pembayaran" class="submitcash">Beli</button></a></center>
             </div> --}}
     </div>
 </div>
@@ -65,7 +65,7 @@
             <div class="col-md-3 text-center">
                 <img class="rounded-circle reviewer" src="{{asset('/grab-vector-graphic-person-icon--imagebasket-13.png')}}">
                 <div class="caption">
-                    <small>dari <a href="#">Ucup</a></small>
+                    <small>dari <a href="#">Bejo</a></small>
                 </div>
             </div>
             <div class="col-md-9">

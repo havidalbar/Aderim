@@ -64,13 +64,13 @@ class OrderController extends Controller
         $dataProfesi = Profesi::where('id', $request->input('id'))->first();
         $dataProfesi->status = 1;
         $dataProfesi->save();
-        return redirect()->back()->with('alert', 'Operasi berhasil');
+        return redirect()->back()->with('alert', 'Berhasil menerima profesi');
     }
 
     function tolakProfesi(Request $request) {
         $dataProfesi = Profesi::where('id', $request->input('id'))->first();
         $dataProfesi->delete();
-        return redirect()->back()->with('alert', 'Operasi berhasil');
+        return redirect()->back()->with('alert', 'Berhasil menolak profesi');
     }
 
     public function order(Request $request) {
@@ -322,11 +322,14 @@ class OrderController extends Controller
         for($i = 0; $i < count($orderProgres); $i++) {
         $orders[$i] = Order::where('id', $orderProgres[$i]->id_order)->first();
         }
+        for($i=0; $i<count($orderProgres); $i++) {
+            $items[$i] = Project::where('id', $orderProgres[$i]->id_project)->first();
+        }
         $profesis = array();
         for($i = 0; $i < count($orderProgres); $i++) {
         $profesis[$i] = Profesi::where('id', $orderProgres[$i]->id_profesi)->first();
         }
-        return view('progresOrderView', ['orderProgres'=>$orderProgres, 'profesis' => $profesis,'orders' =>$orders]);
+        return view('progresOrderView', ['orderProgres'=>$orderProgres, 'profesis' => $profesis,'orders' =>$orders,'items'=>$items]);
     }
 
     function getOrderProgres(){
@@ -362,7 +365,7 @@ class OrderController extends Controller
             $data->url_gambar = implode(" ", $request['files']);
             $data->pesan = $request->pesan;
             $data->save();
-            return redirect()->back()->with('alert', 'Order Progres Telah Diupdate');
+            return redirect('/')->with('alert', 'Order Progres Telah Diupdate');
         } else {
             return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();
         }

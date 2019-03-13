@@ -9,7 +9,7 @@
         </center>
         <div class="tab">
             <center>
-                <button style="font-size:20px;" class="tablinks btn btn-primary" onclick="window.location.href='/profesi/{{$profesi->id}}'">project</button>
+                <button style="font-size:20px;" class="tablinks btn btn-primary" onclick="window.location.href='/profesi/{{$profesi->id}}'">Project</button>
                 <button style="font-size:20px;" class="tablinks btn btn-primary disabled" onclick="openCity(event, 'informasitoko')" id="defaultOpen">Informasi profesi</button>
             </center>
         </div>
