@@ -11,7 +11,7 @@
         <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        
+
         <!--FRAMEWORK-->
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -216,7 +216,7 @@
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>
 
             <!--SLIDE GAMBAR-->
             <div class="slideshow-container">
@@ -238,9 +238,9 @@
             </div>
             <br>
             <div style="text-align:center">
-                <span class="dot"></span> 
-                <span class="dot"></span> 
-                <span class="dot"></span> 
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
             </div>
             <br>@yield('content')</br>
         </section>
