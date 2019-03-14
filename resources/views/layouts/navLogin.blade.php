@@ -11,7 +11,7 @@
         <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
         <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-        
+
         <!--FRAMEWORK-->
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -28,7 +28,7 @@
   <script type="text/javascript">
       alert("{{Session::get('alert-success')}}");
     </script>
-  @endif            
+  @endif
         <div id="navbarHeader">
             <div class="container">
                 <div class="row kolomA">
@@ -44,7 +44,7 @@
                       <li class="upper-links"><a class="links" href="/order">ORDER</a></li>
                       @if(Session::get('name') == "admin")
                       <li class="upper-links"><a href="/halaman-admin" class="links"><i class="fas fa-book-open"></i> HALAMAN ADMIN</a></li>
-                      @endif                     
+                      @endif
                     </ul>
                 </div>
                 <div class="row kolomB">
@@ -127,7 +127,7 @@
         <section id="branda" class="container">
             <br>
             <br>
-            
+
             <br>@yield('content')</br>
         </section>
 

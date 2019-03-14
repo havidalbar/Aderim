@@ -171,6 +171,16 @@
                             <span aria-hidden="true" class="white-text">&times;</span>
                         </button>
                         <center><h1>HALAMAN DAFTAR</h1><br></center>
+                        @if ($errors->any())
+                        <div class="alert alert-danger" role="alert">
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            <ul>
+                            @foreach ($errors->all() as $error)
+                                <li style="color:red">{{ $error }}</li>
+                            @endforeach
+                            </ul>
+                        </div>
+                        @endif
                         <form name='registration' method='post' action='{{url('registerproses')}}'>
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -188,25 +198,25 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input type="text" name="email" value="{{ old('email') }}" placeholder="@mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" reqired title="Example x@gmail.com" />
+                                <input type="text" name="email" value="{{ old('email') }}" placeholder="@mail" required="" />
                             </div>
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <label for="password">Password:</label>
-                                        <input type="password" name="password" placeholder="******" required title="Either 0 OR (6 chars minimum)" pattern=".{0}|.{6,}" />
+                                        <input type="password" name="password" placeholder="******" required="" />
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <label for="confirmation">Ulang Password:</label>
-                                        <input type="password" name="confirmation" placeholder="******" required title="Either 0 OR (6 chars minimum)" pattern=".{0}|.{6,}" />
+                                        <input type="password" name="confirmation" placeholder="******" required="" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="nohp">Nomor HP:</label>
-                                <input type="text" name="nohp" value="{{ old('nohp') }}" placeholder="08xx" required title="Either 0 OR (6 chars minimum)" pattern=".{0}|.{6,}" />
+                                <input type="text" name="nohp" value="{{ old('nohp') }}" placeholder="08xx" required="" />
                             </div>
                             {{csrf_field()}}
                             <input type="submit" name="submit" value="Daftar" class="login loginmodal-submit"/>
@@ -232,7 +242,7 @@
                 <div class="mySlides">
                     <img src="/Apartemen1_3.jpg" style="width:100%">
                     <div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.8);">
-                        <p>Suasana cahaya dengan ketinggian yang rapi membuat mata manja</p>
+                        <p>Suasana cahaya dengan ketinggian yang rapi membuat mata menjadi manja</p>
                     </div>
                 </div>
             </div>
