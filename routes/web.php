@@ -50,8 +50,6 @@ Route::get('/penjualan', 'OrderController@getRiwayatPesanan');
 
 Route::get('/search', 'ProjectController@search');
 
-Route::get('/get-search', 'ProjectController@getSearch');
-
 Route::get('/informasi-akun', 'UserController@informasi');
 
 Route::get('/halaman-admin/profesi', 'OrderController@getHalamanAdminProfesi');

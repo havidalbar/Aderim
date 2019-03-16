@@ -22,7 +22,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="name"><b>ID Pemesanan</b></label>
+                            <label for="name"><b>Nomor Transaksi</b></label>
                         </div>
                         <div class="col-md-6">
                             <input type="number" class="form-control" name="idOrder" value="{{$id_transaksi}}" placeholder="Nomor ID Transaksi Anda" readonly />
@@ -35,7 +35,7 @@
                             <label for="bank" ><b>Bank Anda</b></label>
                         </div>
                         <div class="col-md-6">
-                        <select class="form-control">
+                        <select class="form-control" name="bank">
                             <option selected="" value="Default">(Pilih Bank Anda)</option>
                             <option value="MANDIRI">MANDIRI</option>
                             <option value="BRI">BRI</option>
@@ -74,7 +74,7 @@
                             <label for="bank" ><b>Bank Tujuan</b></label>
                         </div>
                         <div class="col-md-6">
-                        <select class="form-control">
+                        <select class="form-control" name="bank_penerima">
                             <option selected="" value="Default">(Pilih Bank Aderim)</option>
                             <option value="MANDIRI">MANDIRI</option>
                             <option value="BRI">BRI</option>

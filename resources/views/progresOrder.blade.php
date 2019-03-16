@@ -14,14 +14,14 @@
             <center><p><br></p></center>
             <center><h3>{{ $items[$i]->namaProject}}</h3></center>
             <br>
-            <center><a href="/progresorder/{{ $orders[$i]->id}}"><button class="btn btn-primary">LIHAT DAFTAR PROGRES DARI PROJECT INI</button></a></center>
+            <center><a href="/progresorder/{{ $orders[$i]->id}}"><button class="btn btn-primary">LIHAT PROGRES DARI PROJECT INI</button></a></center>
             <br>
             <details>
                 <summary>Status</summary>
                 <p>{{$orders[$i]->status}}</p>
             </details>
             <details>
-                <summary>Profesi</summary>
+                <summary>Nama Profesi</summary>
                 <p>{{$profesis[$i]->nama_profesi}}</p>
             </details>
             <center><h3>Desain</h3><br></center>

@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<a href="/home#branda"><button class="btn btn-primary pull-left"><i class="fas fa-arrow-left"></i> KEMBALI</button></a><br>
+<a href="/order-progres"><button class="btn btn-primary pull-left"><i class="fas fa-arrow-left"></i> KEMBALI</button></a><br>
 <p><br></p>
 <div class="container untuk-daftar-profesi halaman-profile">
     <div class="row">

@@ -13,15 +13,15 @@
             <center><h3>{{$items[$i]->namaProject}}</h3></center>
             <br>
             <details open>
-                <summary>Status Pemesanan</summary>
+                <summary>Status Progres</summary>
                 <p>{{$orderProgres[$i]->status}} bulan</p>
             </details>
             <details open>
-                <summary>Profesi</summary>
+                <summary>Nama Profesi</summary>
                 <p>{{$profesis[$i]->nama_profesi}}</p>
             </details>
             <details>
-                <summary>Catatan Untuk Penjual</summary>
+                <summary>Catatan Dari Profesi</summary>
                 <p class="text-justify">{{$orderProgres[$i]->pesan}}</p>
             </details>
             <center><h3>Desain</h3><br></center>

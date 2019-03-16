@@ -17,7 +17,7 @@
     </div>
     <div class="col-md-3">
       <div class="input-group-append">
-        <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+        <button class="btn btn-success" type="submit"><i class="fas fa-search">Cari</i></button>
       </div>
     </div>
   </div>
@@ -40,7 +40,7 @@
   @for($i = 0; $i < count($profesis); $i++)
   <?php
   $fotos= explode(" ", $profesis[$i]->url_image);
-  ?> 
+  ?>
   <tbody id="myTable">
     <tr>
       <td><center>{{$profesis[$i]->id}}</center></td>
@@ -83,7 +83,7 @@
                       <center>
                         <a href="/{{$fotos[$j]}}" download="namafile"><button class="btn btn-success">Download</button></a>
                       </center>
-                      @endfor                    
+                      @endfor
                   </div>
               </div>
               <br>
@@ -93,7 +93,7 @@
   @endfor
 </table>
 </div>
-  
+
 <script>
 function openCity(evt, cityName) {
     // Declare all variables

@@ -17,15 +17,15 @@
                 <p>{{$histories[$i]->status}}</p>
             </details>
             <details>
-                <summary>Profesi</summary>
+                <summary>Nama Profesi</summary>
                 <p>{{$profesis[$i]->nama_profesi}}</p>
             </details>
             <details>
-                <summary>Total harga</summary>
+                <summary>Total Harga</summary>
                 <p>Rp.{{ number_format($items[$i]->estimasi,0,",",".")}}</p>
             </details>
             <details>
-                <summary>Deskripsi Pesanan Pembeli</summary>
+                <summary>Deskripsi Project</summary>
                 <center><p class="text-justify">{{$histories[$i]->pesan}}</p></center>
             </details>
 

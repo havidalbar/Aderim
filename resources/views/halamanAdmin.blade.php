@@ -17,7 +17,7 @@
     </div>
     <div class="col-md-3">
       <div class="input-group-append">
-        <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+        <button class="btn btn-success" type="submit"><i class="fas fa-search">Cari</i></button>
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@
 <table>
   <thead>
     <tr>
-      <th><center>ID Transaksi</center></th>
+      <th><center>Nomor Transaksi</center></th>
       <th><center>Tanggal Transaksi</center></th>
       <th><center>Nama Pembeli</center></th>
       <th><center>No. Rekening</center></th>
@@ -63,7 +63,7 @@
   @endfor
 </table>
 </div>
-  
+
 <script>
 
 $(document).ready(function() {

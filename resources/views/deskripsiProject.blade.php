@@ -60,7 +60,7 @@
     </div>
 </div>
     <div class="reviews">
-        <legend>Ulasan pengguna</legend>
+        <legend>Ulasan User</legend>
         <div class="row blockquote review-item">
             <div class="col-md-3 text-center">
                 <img class="rounded-circle reviewer" src="{{asset('/grab-vector-graphic-person-icon--imagebasket-13.png')}}">
