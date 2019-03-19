@@ -38,7 +38,7 @@
                         <div class="row">
                             <form class="navbar-form navbar-right" method="GET" action="/get-search#branda" style="margin-left: 0px;" autocomplete="off">
                                 <div class="searchbar">
-                                    <input class="search_input" type="text" name="cari" placeholder="Cari project">
+                                    <input class="search_input" type="text" name="cari" placeholder="Cari Project">
                                     <input class="search_icon" type="submit" value="➤" style="cursor:pointer;">
                                 </div>
                             </form>

@@ -6,7 +6,7 @@
         <center><h2 style="margin-bottom: 30px;">{{ $profesi->nama_profesi}}</h2></center>
     <div class="tab"><center>
         <button style="font-size:20px;" class="tablinks btn btn-primary disabled" onclick="openCity(event, 'semuaproject')" id="defaultOpen">Project</button>
-        <button style="font-size:20px;" class="tablinks btn btn-primary" onclick="window.location.href='/profesi/{{$profesi->id}}/info'">Informasi profesi</button>
+        <button style="font-size:20px;" class="tablinks btn btn-primary" onclick="window.location.href='/profesi/{{$profesi->id}}/info'">Informasi Profesi</button>
     </center></div>
     <!-- Tab content -->
     <div id="semuaproject">

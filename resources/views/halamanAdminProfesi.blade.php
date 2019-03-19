@@ -17,7 +17,7 @@
     </div>
     <div class="col-md-3">
       <div class="input-group-append">
-        <button class="btn btn-success" type="submit"><i class="fas fa-search">Cari</i></button>
+        <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
       </div>
     </div>
   </div>

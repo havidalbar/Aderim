@@ -63,7 +63,7 @@ class UserController extends Controller
                 return redirect()->back()->with('alert', 'Password salah!');
             }
         } else {
-            return redirect()->back()->with('alert', 'Username atau Email salah!');
+            return redirect()->back()->with('alert', 'Email atau Password salah!');
         }
     }
 
