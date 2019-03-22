@@ -322,14 +322,19 @@ class OrderController extends Controller
         for($i = 0; $i < count($orderProgres); $i++) {
         $orders[$i] = Order::where('id', $orderProgres[$i]->id_order)->first();
         }
+        $items = array();
         for($i=0; $i<count($orderProgres); $i++) {
             $items[$i] = Project::where('id', $orderProgres[$i]->id_project)->first();
         }
+        // if(!($items == null)){
         $profesis = array();
         for($i = 0; $i < count($orderProgres); $i++) {
         $profesis[$i] = Profesi::where('id', $orderProgres[$i]->id_profesi)->first();
         }
         return view('progresOrderView', ['orderProgres'=>$orderProgres, 'profesis' => $profesis,'orders' =>$orders,'items'=>$items]);
+    // }else{
+    //     return redirect()->back()->with('alert', 'Progres Order Belum Ada');
+    // }
     }
 
     function getOrderProgres(){

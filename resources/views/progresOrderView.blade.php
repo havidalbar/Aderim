@@ -4,6 +4,7 @@
 @section('content')
 <div class="container" style="border:2px solid black">
     <div class="row">
+        @if(count($orderProgres) > 0)
         <h2 class="text-center light bold">PROGRES ORDER</h2>
         @for($i = 0; $i < count($orderProgres); $i++)
         <?php
@@ -41,6 +42,13 @@
             </div>
         </div>
         @endfor
+        @else
+        <center>
+            <h2><i class="fas fa-exclamation-triangle"></i></h2>
+            <h2>Progres Order Belum Ada.</h2>
+        </center>
+    </div>
+    @endif
     </div>
 </div>
 <br><br><br><br><br><br><br><br><br><br>
