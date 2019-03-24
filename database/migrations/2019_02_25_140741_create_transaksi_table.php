@@ -24,6 +24,7 @@ class CreateTransaksiTable extends Migration
             $table->integer('kode_token');
             $table->string('gambar_konfirmasi')->nullable();
             $table->integer('status')->default('0');
+            $table->integer('statusLagi')->default('0');
             $table->timestamps();
         });
     }

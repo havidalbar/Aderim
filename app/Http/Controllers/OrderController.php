@@ -20,7 +20,7 @@ class OrderController extends Controller
             $desProject = Project::where('id', $id)->first();
             return view('order', ['desProject' => $desProject]);
         } else {
-            return redirect("/login")->with('alert', 'Kamu harus login dulu');
+            return redirect()->back()->with('alert', 'Kamu harus login dulu');
         }
     }
 
@@ -35,7 +35,6 @@ class OrderController extends Controller
         } else {
             return redirect("/login")->with('alert', 'Kamu harus login dulu');
         }
-
     }
 
     function getHalamanAdmin() {
@@ -121,6 +120,7 @@ class OrderController extends Controller
             return redirect("/login")->with('alert', 'Kamu harus login dulu');
         }
     }
+
     public function delete(Request $request) {
         $data = Order::where('id', $request->input('id'))->delete();
         return $this->indexcheck();
@@ -161,6 +161,11 @@ class OrderController extends Controller
         return view('konfirmasitransfer', ['id_transaksi' => $id_transaksi]);
     }
 
+    public function showKonfirmasiTransferLagi($id_transaksi,$id_transaksiLama){
+        $orders = Order::where('id_user', Session::get('id'))->where('id_transaksi',$id_transaksiLama)->first();
+        return view('konfirmasitransferLagi', ['id_transaksi' => $id_transaksi, 'orders' => $orders,'id_transaksiLama' => $id_transaksiLama]);
+    }
+
     public function inputBukti(Request $request,$id_transaksi) {
         if($request->gambarbukti != null) {
             if($request->bank != "Default") {
@@ -172,6 +177,38 @@ class OrderController extends Controller
                     $data->bank_tujuan = $request->bank_penerima;
                     $data->gambar_konfirmasi = $request->gambarbukti;
                     $data->save();
+                    return redirect('/home')->with('alert', 'Permohonan konfirmasi telah dikirim');
+                } else {
+                    return redirect()->back()->with('alert', 'Masukkan bank tujuan')->withInput();
+                }
+            } else {
+                return redirect()->back()->with('alert', 'Masukkan bank Anda')->withInput();
+            }
+        } else {
+            return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();
+        }
+    }
+
+    public function inputBuktiLagi(Request $request,$id_transaksi) {
+        if($request->gambarbukti != null) {
+            if($request->bank != "Default") {
+                if($request->bank_penerima != "Default") {
+                    $data = Transaksi::where('id',$id_transaksi)->first();
+                    $data->nama = $request->namaRek;
+                    $data->norek = $request->noRek;
+                    $data->bank_pengirim = $request->bank;
+                    $data->bank_tujuan = $request->bank_penerima;
+                    $data->gambar_konfirmasi = $request->gambarbukti;
+                    $data->save();
+                    if($request->id_transaksi2!=0){
+                        $dataOrder = Order::where('id',$request->id_order)->update(['id_transaksi2' => $id_transaksi]);
+                    }
+                    else if($request->id_transaksi3!=0){
+                        $dataOrder = Order::where('id',$request->id_order)->update(['id_transaksi3' => $id_transaksi]);
+                    }
+                    else if($request->id_transaksi4!=0){
+                        $dataOrder = Order::where('id',$request->id_order)->update(['id_transaksi4' => $id_transaksi]);
+                    }
                     return redirect('/home')->with('alert', 'Permohonan konfirmasi telah dikirim');
                 } else {
                     return redirect()->back()->with('alert', 'Masukkan bank tujuan')->withInput();
@@ -204,12 +241,19 @@ class OrderController extends Controller
 
     function terimaTransfer(Request $request) {
         $dataTransaksi = Transaksi::where('id', $request->input('id'))->first();
+        if($dataTransaksi->status==0){
         $dataTransaksi->status = 1;
         $dataTransaksi->save();
+        }else{
+        $dataTransaksi->statusLagi += 1;
+        $dataTransaksi->save();
+        }
         $dataOrder = Order::where('id_transaksi', $dataTransaksi->id)->get();
         for($i = 0; $i < count($dataOrder); $i++) {
+            if($dataOrder[$i]->status=="Menunggu pembayaran"){
             $dataOrder[$i]->status = "Pembayaran terkonfirmasi";
             $dataOrder[$i]->save();
+            }
         }
         return redirect()->back()->with('alert', 'berhasil mensetujui transfer');
     }
@@ -303,14 +347,16 @@ class OrderController extends Controller
             $orders = Order::where('id_user', Session::get('id'));
             $orders = $orders->where('status', "!=", "order")->get();
             $items = array();
+            $orderProgres = array();
             for($i = 0; $i < count($orders); $i++) {
+                $orderProgres = Progres::where('id_order', $orders[$i]->id)->first();
                 $items[$i] = Project::where('id', $orders[$i]->id_project)->first();
             }
             $profesis = array();
             for($i = 0; $i < count($orders); $i++) {
                 $profesis[$i] = Profesi::where('id', $items[$i]->id_profesi)->first();
             }
-            return view('progresOrder', ['orders' => $orders, 'items' => $items, 'profesis' => $profesis]);
+            return view('progresOrder', ['orders' => $orders, 'items' => $items, 'profesis' => $profesis, 'orderProgres' => $orderProgres]);
         } else {
             return redirect("/login")->with('alert', 'Kamu harus login dulu');
         }
@@ -359,6 +405,44 @@ class OrderController extends Controller
         return view('orderProgresInput', ['id_order' => $id_order,'dataOrder' => $dataOrder]);
     }
 
+    public function setStatus($status,$id_order){
+        if($status==3){
+        $dataOrder = Order::where('id', $id_order)->where('id_profesi', Session::get('id_profesi'))->update(['statusLagi' => 3]);
+        }else if($status==6){
+        $dataOrder = Order::where('id', $id_order)->where('id_profesi', Session::get('id_profesi'))->update(['statusLagi' => 6]);
+        }else if($status==9){
+        $dataOrder = Order::where('id', $id_order)->where('id_profesi', Session::get('id_profesi'))->update(['statusLagi' => 9]);
+        }else if($status==12){
+        $dataOrder = Order::where('id', $id_order)->where('id_profesi', Session::get('id_profesi'))->update(['statusLagi' => 12]);
+        }
+    }
+
+        public function getBayarLagi(Request $request) {
+            if (Session::has('name')) {
+                $orders = Order::where(['id_user' => Session::get('id'), 'statusLagi' => $request->input('statusLagi')])->where('id', $request->input('id'))->get();
+                $items = array();
+                for($i = 0; $i < count($orders); $i++) {
+                    $items[$i] = Project::where('id', $orders[$i]->id_project)->first();
+                }
+                $transaksis = array();
+                for($i = 0; $i < count($transaksis); $i++) {
+                    $transaksis[$i] = Transaksi::where('id', $orders[$i]->id_transaksi)->first();
+                }
+                return view('bayarLagi', ['orders' => $orders, 'items' => $items, 'transaksis' => $transaksis]);
+            } else {
+                return redirect("/login")->with('alert', 'Kamu harus login dulu');
+            }
+        }
+        public function transaksiOrderLagi(Request $request) {
+            $dataTransaksi = new Transaksi;
+            $dataTransaksi->jumlah = $request->jumlah;
+            $dataTransaksi->sisaharga = $request->sisaharga;
+            $dataTransaksi->kode_token = rand(100, 999);
+            $dataTransaksi->save();
+            $id_transaksiLama = $request->id_transaksiLama;
+            return redirect("/konfirmasiPembayaranLagi/$dataTransaksi->id/$id_transaksiLama");
+        }
+
     function orderProgres(Request $request,$id_order){
         if($request['files'] != null) {
             $data = new Progres();
@@ -370,6 +454,7 @@ class OrderController extends Controller
             $data->url_gambar = implode(" ", $request['files']);
             $data->pesan = $request->pesan;
             $data->save();
+            $this->setStatus($request->status,$id_order);
             return redirect('/')->with('alert', 'Order Progres Telah Diupdate');
         } else {
             return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();

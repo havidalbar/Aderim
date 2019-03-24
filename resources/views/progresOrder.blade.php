@@ -4,6 +4,7 @@
 @section('content')
 <div class="container" style="border:2px solid black">
     <div class="row">
+
         <h2 class="text-center light bold">PROGRES ORDER</h2>
         @for($i = 0; $i < count($orders); $i++)
         <?php
@@ -16,10 +17,30 @@
             <br>
             <center><a href="/progresorder/{{ $orders[$i]->id}}"><button class="btn btn-primary">LIHAT PROGRES DARI PROJECT INI</button></a></center>
             <br>
+            @if(($orders[$i]->statusLagi===3 && $orders[$i]->id_transaksi2==null) || ($orders[$i]->statusLagi==6 && $orders[$i]->id_transaksi3==null)
+            || ($orders[$i]->statusLagi===9 && $orders[$i]->id_transaksi4==null))
+        <form action='/bayarLagi?statusLagi={{$orders[$i]->statusLagi}}&id={{$orders[$i]->id}}' method="post" style="margin-left: 20px;">
+                {{csrf_field()}}
+                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i>bayar bro</button>
+            </form>
+            @endif
             <details>
                 <summary>Status</summary>
                 <p>{{$orders[$i]->status}}</p>
             </details>
+            @if($orders[$i]->statusLagi!=0)
+            <details>
+                <summary>Status Lagi</summary>
+                <p>{{$orders[$i]->statusLagi}} Bulan</p>
+            </details>
+            @elseif($orders[$i]->status=="Order sedang diproses")
+            @if($orderProgres[$i]!=[])
+            <details>
+                    <summary>Status Lagi</summary>
+                    <p>{{$orderProgres->status}} Bulan</p>
+                </details>
+            @endif
+            @endif
             <details>
                 <summary>Nama Profesi</summary>
                 <p>{{$profesis[$i]->nama_profesi}}</p>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     @if(count($items) > 0)
-    <div class="row">
+    <div class="coloumn">
         <h2 class="text-center light bold">HASIL PENCARIAN</h2>
         @for($i=0;$i < count($items);$i++) <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
             <div class="card">

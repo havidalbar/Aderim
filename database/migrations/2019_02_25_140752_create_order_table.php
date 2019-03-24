@@ -22,8 +22,15 @@ class CreateOrderTable extends Migration
             $table->unsignedInteger('id_user')->nullable();
             $table->foreign('id_user')->references('id')->on('users');
             $table->unsignedInteger('id_transaksi')->nullable();
+            $table->unsignedInteger('id_transaksi2')->nullable();
+            $table->unsignedInteger('id_transaksi3')->nullable();
+            $table->unsignedInteger('id_transaksi4')->nullable();
             $table->foreign('id_transaksi')->references('id')->on('transaksi');
+            $table->foreign('id_transaksi2')->references('id')->on('transaksi');
+            $table->foreign('id_transaksi3')->references('id')->on('transaksi');
+            $table->foreign('id_transaksi4')->references('id')->on('transaksi');
             $table->string('status')->default('order');
+            $table->integer('statusLagi')->default('0');
             $table->text('url_gambar');
             $table->text('pesan');
             $table->timestamps();

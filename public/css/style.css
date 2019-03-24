@@ -13,7 +13,7 @@
 
 .kolomA {
     padding-top: 10px;
-    border-bottom: 2px solid black;
+    border-bottom: 4px solid white;
     margin-top: 15px;
 }
 
@@ -49,18 +49,17 @@
     margin-bottom: auto;
     margin-top: auto;
     height: 60px;
-    background-color: #353b48;
-    border-radius: 32px;
+    background-color: white;
+    border-radius: 12px;
     padding: 10px;
 }
 
 .search_input {
-    color: white;
+    color: black;
     border: 0;
     outline: 0;
     background: none;
     width: 0;
-    caret-color: transparent;
     line-height: 40px;
     transition: width 0.4s linear;
 }
@@ -68,13 +67,13 @@
 .searchbar .search_input {
     padding: 0 10px;
     width: 300px;
-    caret-color: white;
     transition: width 0.4s linear;
     font-weight: bold;
+    text-transform: capitalize;
 }
 
 .searchbar .search_icon {
-    background: white;
+    background: transparent;
     color: black;
     text-decoration: none;
 }
@@ -86,9 +85,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
-    color: white;
     border: none;
+    font-size: 20px;
 }
 
 .upper-links {
@@ -111,13 +109,11 @@
     margin-right: 15px;
 }
 
-.navbarBeliKategori:hover {
-    color: black;
-}
-
 .dropdown-toggle {
-    color: white;
+    color: black;
     text-decoration: none;
+    text-transform: capitalize;
+    font-weight: bold;
 }
 
 .dropdown .dropdown-menu {
@@ -490,8 +486,8 @@ input[type=password]:hover {
     display: none
 }
 
-img {
-    vertical-align: middle;
+.mySlides img{
+    height: 500px;
 }
 
 /* Slideshow container */
@@ -501,14 +497,33 @@ img {
     margin: auto;
 }
 
+/* Tanda Slide */
+.dot {
+    cursor: not-allowed;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #e0e0e0;
+    -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active{
+    background-color: #263238;
+}
+
 /* Card */
 .card {
     font-size: 1em;
     overflow: hidden;
     padding: 0;
     border: none;
-    border-radius: .28571429rem;
-    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    border-radius: 12px;
+    -webkit-box-shadow: 0px 10px 10px -5px rgba(0,0,0,0.56);
+    -moz-box-shadow: 0px 10px 10px -5px rgba(0,0,0,0.56);
+    box-shadow: 0px 10px 10px -5px rgba(0,0,0,0.56);
     margin: 30px 0;
 }
 
@@ -594,41 +609,6 @@ img {
     color: rgba(0, 0, 0, .87);
 }
 
-/* Next & previous buttons */
-.prev,
-.next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    padding: 16px;
-    margin-top: -22px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-}
-
-/* Tanda Slide */
-.dot {
-    cursor: not-allowed;
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #e0e0e0;
-    -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-    display: inline-block;
-    transition: background-color 0.6s ease;
-}
-
-.active,
-.dot:hover {
-    background-color: #263238;
-}
-
 /* Halaman Admin */
 .judul-halaman-admin {
     letter-spacing: 5px;
@@ -692,6 +672,7 @@ th {
 #backtop:hover {
     background-color: red;
     color: black;
+    font-weight: bold;
 }
 
 /*Kotak Profile & Kotak DaftarProfesi*/
@@ -741,6 +722,7 @@ th {
 .kotak-profil-atas h2 {
     color: black;
     font-weight: bold;
+    text-transform: capitalize;
 }
 
 .kotak-profil-atas h6 {
@@ -801,19 +783,9 @@ th {
     font-size: 14px;
 }
 
-.kotak-data-tambahan .fb:hover {
+.kotak-data-tambahan a:hover {
     text-decoration: none;
-    color: blue;
-}
-
-.kotak-data-tambahan .twit:hover {
-    text-decoration: none;
-    color: lightblue;
-}
-
-.kotak-data-tambahan .ig:hover {
-    text-decoration: none;
-    color: pink;
+    color: red;
 }
 
 .kotak-data-tambahan ul {

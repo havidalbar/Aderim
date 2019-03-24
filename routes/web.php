@@ -82,11 +82,17 @@ Route::post('/hapusorder', 'OrderController@delete');
 
 Route::post('/transaksiorder', 'OrderController@transaksiorder');
 
+Route::post('/transaksiorderLagi', 'OrderController@transaksiorderLagi');
+
 Route::post('/uploadBukti', 'OrderController@uploadBukti');
 
 Route::get('/konfirmasiPembayaran/{id_transaksi}', 'OrderController@showKonfirmasiTransfer');
 
+Route::get('/konfirmasiPembayaranLagi/{id_transaksi}/{id_transaksiLama}', 'OrderController@showKonfirmasiTransferLagi');
+
 Route::post('/buktiproses/{id_transaksi}', 'OrderController@inputBukti');
+
+Route::post('/buktiprosesLagi/{id_transaksi}', 'OrderController@inputBuktiLagi');
 
 Route::get('/riwayat-order', 'OrderController@getHistory');
 
@@ -113,3 +119,5 @@ Route::get('/order-progres/{id_order}', 'OrderController@showOrderProgres');
 Route::post('/orderprogresproses/{id_order}', 'OrderController@orderProgres');
 
 Route::post('/uploadProgres', 'OrderController@uploadProgres');
+
+Route::post('/bayarLagi', 'OrderController@getBayarLagi');

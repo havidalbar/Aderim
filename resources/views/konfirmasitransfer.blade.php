@@ -103,11 +103,9 @@
             maxFilesize: 5,
             maxFiles: 1,
             acceptedFiles: "image/*",
-
             init: function() {
                 this.on("success", function(file, response) {
                     let hasil = 'image/' + response;
-
                     var forms = document.getElementById('formbukti');
                     var files = document.createElement("input");
                     files.setAttribute('name', 'gambarbukti');
@@ -115,7 +113,6 @@
                     files.setAttribute("value", hasil);
                     forms.appendChild(files);
                 });
-
                 var submitButton = document.querySelector("#submitbukti");
                 myDropzone = this;
                 submitButton.addEventListener("click", function() {
