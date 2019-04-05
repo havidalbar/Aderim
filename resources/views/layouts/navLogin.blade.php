@@ -32,17 +32,17 @@
         <div id="navbarHeader">
             <div class="container">
                 <div class="row kolomA">
-                    <ul class="ukuran-besar-navBar pull-right">
+                    <ul class="ukuran-besar-navBar pull-left">
                       <li class="upper-links"><a class="links" href="/home">BERANDA</a></li>
                       @if(Session::has('nama_profesi'))
-                      <li class="upper-links"><a href="/tambah-project" class="links">TAMBAH PROJECT</a></li>
+                      <li class="upper-links"><a href="/tambah-project/{{Session::get('id_profesi')}}" class="links">TAMBAH PROJECT</a></li>
                       <li class="upper-links"><a href="/profesi/{{Session::get('id_profesi')}}" class="links">PROFESI SAYA</a></li>
                       @else
                       <li  class="upper-links"><a href="/daftar-profesi" class="links">DAFTAR PROFESI</a></li>
                       @endif
                       <li class="upper-links"><a class="links" href="/order-progres">ORDER PROGRES</a></li>
                       <li class="upper-links"><a class="links" href="/order">ORDER</a></li>
-                      @if(Session::get('name') == "admin")
+                      @if(Session::get('username') == "admin")
                       <li class="upper-links"><a href="/halaman-admin" class="links"><i class="fas fa-book-open"></i> HALAMAN ADMIN</a></li>
                       @endif
                     </ul>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="navbarHeader-search smallsearch col-sm-6 col-xs-11">
                         <div class="row">
-                            <form class="navbar-form navbar-right" method="GET" action="/get-search" style="margin-left: 0px;" autocomplete="off">
+                            <form class="navbar-form navbar-right" method="GET" action="/get-search" style="margin-left: 0px;">
                                 <div class="searchbar">
                                     <input class="search_input" type="text" name="cari" placeholder="Cari Project">
                                     <input class="search_icon" type="submit" value="➤" style="cursor:pointer;">
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div class="ukuran-besar-navBar col-sm-2 pull-right navbarBeliKategori" style="width: 162px; padding-left: 0px;">
-                      <li class="upper-links dropdown"><a href="/informasi-akun" class="dropdown-toggle links" data-toggle="dropdown"><i class="fas fa-user"></i> {{\Session::get('name')}}</a>
+                      <li class="upper-links dropdown"><a href="/informasi-akun" class="dropdown-toggle links" data-toggle="dropdown"><i class="fas fa-user"></i> {{\Session::get('username')}}</a>
                         <ul class="dropdown-menu">
                           <li><a href="/informasi-akun">Informasi Akun</a></li>
                           <li><a href="/progres-order">Progres Order</a></li>
@@ -88,7 +88,7 @@
         <div id="myNavbarSamping" class="navbar-samping">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <button class="dropdown-btn">
-                <i class="fas fa-user"></i> {{\Session::get('name')}} <i class="caret"></i>
+                <i class="fas fa-user"></i> {{\Session::get('username')}} <i class="caret"></i>
             </button>
             <div class="dropdown-container-navBar-samping">
                 <a href="/informasi-akun">Informasi Akun</i></a>
@@ -96,7 +96,7 @@
                 <a href="/riwayat-order">History Order</i></a>
                 <a href="/logoutproses">Log Out</i></a>
             </div>
-            @if(Session::get('name') == "admin")
+            @if(Session::get('username') == "admin")
             <a href="/halaman-admin">HALAMAN ADMIN</a>
             @endif
             @if(Session::has('nama_profesi'))
@@ -129,6 +129,7 @@
             <br>
 
             <br>@yield('content')</br>
+            <br><br><br><br><br><br><br>
         </section>
 
         <footer class="section footer-classic context-dark bg-image">

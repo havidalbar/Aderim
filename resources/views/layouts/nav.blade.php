@@ -23,9 +23,9 @@
         <div id="navbarHeader">
             <div class="container">
                 <div class="row kolomA">
-                    <ul class="ukuran-besar-navBar pull-right">
-                        <li class="upper-links"><a class="links" href="" data-toggle="modal" data-target="#daftar-modal">DAFTAR</a></li>
+                    <ul class="ukuran-besar-navBar pull-left">
                         <li class="upper-links"><a class="links" href="" data-toggle="modal" data-target="#login-modal">LOGIN</a></li>
+                        <li class="upper-links"><a class="links" href="" data-toggle="modal" data-target="#daftar-modal">DAFTAR</a></li>
                     </ul>
                 </div>
                 <div class="row kolomB">
@@ -36,7 +36,7 @@
                     </div>
                     <div class="navbarHeader-search smallsearch col-sm-6 col-xs-11">
                         <div class="row">
-                            <form class="navbar-form navbar-right" method="GET" action="/get-search#branda" style="margin-left: 0px;" autocomplete="off">
+                            <form class="navbar-form navbar-right" method="GET" action="/get-search#branda" style="margin-left: 0px;">
                                 <div class="searchbar">
                                     <input class="search_input" type="text" name="cari" placeholder="Cari Project">
                                     <input class="search_icon" type="submit" value="➤" style="cursor:pointer;">
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="ukuran-besar-navBar col-sm-2 pull-right navbarBeliKategori" style="width: 162px; padding-left: 0px;">
-                        <li class="upper-links dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-archive"></i> KATEGORI</a>
+                        <li class="upper-links dropdown"><a href="#" class="dropdown-toggle x" data-toggle="dropdown"><i class="fas fa-archive"></i> KATEGORI</a>
                             <ul class="dropdown-menu">
                                 <li><a href="/kategori/rumah#branda"><i class="fas fa-home"></i> Rumah</a></li>
                                 <li><a href="/kategori/hotel#branda"><i class="fas fa-hotel"></i> Hotel</a></li>
@@ -74,7 +74,7 @@
 
         <div class="image">
            <h1 class="heading">Arsitek Desain Rum<i class="fas fa-home"></i>h Impian</h1>
-           <p><button class="btn btn-large button"><a href="#branda"><span><b><i>BERANDA </i></b></span></a></button></p>
+           <p><button class="btn btn-large button"><a href="#branda"><span><b><i>PILIH LANGSUNG </i></b></span></a></button></p>
         </div>
 
         <section id="alur-sistem">
@@ -133,6 +133,31 @@
                 </div>
         </section>
         <div class="container pembatas"></div>
+            <!--SLIDE GAMBAR-->
+            <br><br>
+            <div class="slideshow-container">
+                <div class="mySlides">
+                    <img src="/z_ADERIMWallz.jpg" style="width:100%">
+                </div>
+                <div class="mySlides">
+                    <img src="/Apartemen1_1.jpg" style="width:100%">
+                    <div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.8);">
+                        <p>Kerapian merupakan keindahan yang ternyaman untuk disaksikan</p>
+                    </div>
+                </div>
+                <div class="mySlides">
+                    <img src="/Apartemen1_3.jpg" style="width:100%">
+                    <div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.8);">
+                        <p>Suasana cahaya dengan ketinggian yang rapi membuat mata menjadi manja</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div style="text-align:center">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
 
         <section id="branda" class="container">
             <br>
@@ -185,8 +210,14 @@
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <label for="name">Nama Pengguna:</label>
-                                        <input type="text" name="name" value="{{ old('name') }}" placeholder="Nama" required="" />
+                                        <label for="username">Username:</label>
+                                        <input type="text" name="username" value="{{ old('username') }}" placeholder="Username" required="" />
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Nama:</label>
+                                        <input type="text" name="nama" value="{{ old('nama') }}" placeholder="Nama" required="" />
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -210,7 +241,7 @@
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <label for="confirmation">Ulang Password:</label>
-                                        <input type="password" name="confirmation" placeholder="******" required="" />
+                                        <input type="password" name="validpassword" placeholder="******" required="" />
                                     </div>
                                 </div>
                             </div>
@@ -228,30 +259,6 @@
                 </div>
             </div>
 
-            <!--SLIDE GAMBAR-->
-            <div class="slideshow-container">
-                <div class="mySlides">
-                    <img src="/z_ADERIMWallz.jpg" style="width:100%">
-                </div>
-                <div class="mySlides">
-                    <img src="/Apartemen1_1.jpg" style="width:100%">
-                    <div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.8);">
-                        <p>Kerapian merupakan keindahan yang ternyaman untuk disaksikan</p>
-                    </div>
-                </div>
-                <div class="mySlides">
-                    <img src="/Apartemen1_3.jpg" style="width:100%">
-                    <div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.8);">
-                        <p>Suasana cahaya dengan ketinggian yang rapi membuat mata menjadi manja</p>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div style="text-align:center">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
             <br>@yield('content')</br>
         </section>
 
@@ -279,9 +286,9 @@
                 <div class="col-md-4 col-xl-3">
                     <h5 style="color: red;">Tambahan</h5>
                     <ul class="nav-list">
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Kelompok 10</a></li>
-                        <li><a href="#">Bcc 2019</a></li>
+                        <li><a href="">About</a></li>
+                        <li><a href="">Kelompok 10</a></li>
+                        <li><a href="">Bcc 2019</a></li>
                     </ul>
                 </div>
                 </div>

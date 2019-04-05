@@ -13,11 +13,11 @@
 
 Route::get('/', 'ProjectController@index');
 Route::get('/register', function () {
-    return view('register');
+    return view('daftar');
 });
 
 Route::get('/login', function () {
-    return view('login');
+    return view('masuk');
 });
 
 Route::get('/home', 'ProjectController@index');
@@ -40,6 +40,8 @@ Route::get('/project/{id}', 'ProjectController@project');
 
 Route::get('/get-search', 'ProjectController@getSearch');
 
+Route::get('/get-urut', 'ProjectController@getUrut');
+
 Route::post('/daftarprofesiproses', 'UserController@daftarProfesi');
 
 Route::get('/profesi/{id}', 'ProjectController@projectProfesi');
@@ -50,7 +52,7 @@ Route::get('/penjualan', 'OrderController@getRiwayatPesanan');
 
 Route::get('/search', 'ProjectController@search');
 
-Route::get('/informasi-akun', 'UserController@informasi');
+Route::get('/informasi-akun/profil', 'UserController@informasi');
 
 Route::get('/halaman-admin/profesi', 'OrderController@getHalamanAdminProfesi');
 
@@ -94,7 +96,7 @@ Route::post('/buktiproses/{id_transaksi}', 'OrderController@inputBukti');
 
 Route::post('/buktiprosesLagi/{id_transaksi}', 'OrderController@inputBuktiLagi');
 
-Route::get('/riwayat-order', 'OrderController@getHistory');
+Route::get('/informasi-akun/riwayat', 'OrderController@getHistory');
 
 Route::get('/order/terima-order', 'OrderController@getTerimaOrder');
 
@@ -108,7 +110,7 @@ Route::post('/terima-order', 'OrderController@terimaOrder');
 
 Route::post('/tolak-order', 'OrderController@tolakOrder');
 
-Route::get('/progres-order','OrderController@getProgresOrder');
+Route::get('/informasi-akun/progres','OrderController@getProgresOrder');
 
 Route::get('/progresorder/{id_order}', 'OrderController@progres');
 
@@ -121,3 +123,50 @@ Route::post('/orderprogresproses/{id_order}', 'OrderController@orderProgres');
 Route::post('/uploadProgres', 'OrderController@uploadProgres');
 
 Route::post('/bayarLagi', 'OrderController@getBayarLagi');
+
+//coba
+Route::get('/coba', function () {
+    return view('layouts.coba');
+});
+Route::get('/cobahome', function () {
+    return view('cobahome1');
+});
+Route::get('/cobamasuk', function () {
+    return view('cobamasuk');
+});
+Route::get('/cobadaftar', function () {
+    return view('cobadaftar');
+});
+Route::get('/cobadaftarProfesi', function () {
+    return view('cobadaftarProfesi');
+});
+Route::get('/cobainformasiAkun', function () {
+    return view('cobainformasiAkun');
+});
+Route::get('/cobahalamanAdminProfesi', function () {
+    return view('halamanAdmin/halamanAdminProfesi');
+});
+Route::get('/cobapencarian', function () {
+    return view('cobapencarian');
+});
+Route::get('/cobaprofilprofesi', function () {
+    return view('halamanProfesi/profilProfesi');
+});
+Route::get('/cobakumpulanproyek', function () {
+    return view('halamanProfesi/kumpulanProyek');
+});
+Route::get('/cobapesananproyek', function () {
+    return view('halamanProfesi/pesananProyek');
+});
+Route::get('/cobaprogrespesanan', function () {
+    return view('halamanProfesi/progresPesanan');
+});
+Route::get('/tambahproyek', function () {
+    return view('halamanProfesi/tambahProyek');
+});
+Route::get('/pesanProyek', function () {
+    return view('pesanProyek');
+});
+Route::get('/cobainstruksipembayaran', function () {
+    return view('cobainstruksiPembayaran');
+});

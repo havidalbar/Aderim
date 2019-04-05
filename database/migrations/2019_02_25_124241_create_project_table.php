@@ -18,6 +18,8 @@ class CreateProjectTable extends Migration
             $table->string('namagambar');
             $table->string('namaProject');
             $table->text('deskripsi');
+            $table->text('spesifikasi');
+            $table->string('daerah');
             $table->string('category');
             $table->unsignedInteger('estimasi');
             $table->unsignedInteger('id_profesi');

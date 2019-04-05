@@ -1,4 +1,4 @@
-@extends (\Session::has('name') ? 'layouts.navLogin' : 'layouts.nav')
+@extends (\Session::has('username') ? 'layouts.navLogin' : 'layouts.nav')
 @section('title', 'Aderim')
 
 @section('content')

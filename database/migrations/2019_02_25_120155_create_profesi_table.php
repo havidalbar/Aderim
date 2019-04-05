@@ -16,6 +16,7 @@ class CreateProfesiTable extends Migration
         Schema::create('profesi', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama_profesi');
+            $table->string('foto')->nullable();
             $table->unsignedInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users')->nullable();
             $table->string('alamat');
