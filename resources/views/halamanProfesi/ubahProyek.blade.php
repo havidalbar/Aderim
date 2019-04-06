@@ -1,5 +1,5 @@
 @extends ('layouts.cobanavLogin')
-@section('title', 'Tambah Proyek | Aderim')
+@section('title', 'Ubah Detail Proyek | Aderim')
 
 @section('js')
     <script type="text/javascript">
@@ -31,9 +31,9 @@
 @section('content')
 <div class="ui container" style="color:#4d4d4d;margin-top:50px">
     <div style="max-width:700px;margin: 0 auto;border:1px solid #e1e2e3;border-radius:6px;padding:40px 45px 40px 45px">
-        <div style="font-size:28px"><b>Tambah Proyek</b></div>
+        <div style="font-size:28px"><b>Ubah Detail Proyek</b></div>
         <div style="font-size:20px;margin-top:15px;line-height:1.5">
-            Bagikan informasi proyek anda kepada para pengguna Aderim agar mereka tertarik menggunakan jasa anda.
+            Ubah informasi proyek anda menjadi lebih menarik agar para pengguna Aderim tertarik menggunakan jasa anda.
         </div>
         <div class="ui divider"></div>
         <div class="ui container fluid" style="margin-top:20px">

@@ -29,12 +29,13 @@ class OrderController extends Controller
     public function indexcheck()
     {
         if (Session::has('username')) {
-            $orders = Order::where(['id_user' => Session::get('id'), 'status' => 'order'])->get();
-            $items = array();
-            for ($i = 0; $i < count($orders); $i++) {
-                $items[$i] = Project::where('id', $orders[$i]->id_project)->first();
-            }
-            return view('ordercheck', ['orders' => $orders, 'items' => $items]);
+            $orders = Order::where(['id_user' => Session::get('id'), 'status' => 'order'])->first();
+            // $items = array();
+            // for ($i = 0; $i < count($orders); $i++) {
+            // }
+            $items = Project::where('id', $orders->id_project)->first();
+            $profesi = Profesi::where('id', $orders->id_profesi)->first();
+            return view('periksaPesanan', ['orders' => $orders, 'items' => $items, 'profesi' => $profesi]);
         } else {
             return redirect("/login")->with('alert', 'Kamu harus login dulu');
         }
@@ -94,7 +95,7 @@ class OrderController extends Controller
             $data->id_user = $request->id_user;
             $data->url_gambar = implode(" ", $request['files']);
             $data->pesan = $request->pesan;
-            $data->spesifikasi = $request->spesifikasi;
+            $data->address = $request->alamat;
             $data->save();
             return redirect('/order-check')->with('alert', 'Permintaan anda telah di data, silahkan melanjutkan ke pembayaran');
         } else {
@@ -120,11 +121,11 @@ class OrderController extends Controller
     public function transfer($id_transaksi)
     {
         $dataTransaksi = Transaksi::where('id', $id_transaksi)->first();
-        $dataOrder = Order::where('id_user', Session::get('id'))->where('id_transaksi', $id_transaksi)->get();
+        $dataOrder = Order::where('id_user', Session::get('id'))->where('id_transaksi', $id_transaksi)->first();
         if (Session::has('username')) {
-            if ($dataOrder[0]->id_user == Session::get('id')) {
-                if ($dataOrder[0]->status == "Menunggu pembayaran") {
-                    return view('transfer', ['dataTransaksi' => $dataTransaksi, 'dataOrder' => $dataOrder]);
+            if ($dataOrder->id_user == Session::get('id')) {
+                if ($dataOrder->status == "Menunggu pembayaran") {
+                    return view('pilihMetodePembayaran', ['dataTransaksi' => $dataTransaksi, 'dataOrder' => $dataOrder]);
                 } else {
                     return redirect("/history-transaksi")->with('alert', 'Transaksi telah disetujui');
                 }
@@ -138,8 +139,8 @@ class OrderController extends Controller
 
     public function delete(Request $request)
     {
-        $data = Order::where('id', $request->input('id'))->delete();
-        return $this->indexcheck();
+        $data = Order::where('id', $request->input('id'))->update(['status' => 'Dibatalkan']);
+        return redirect('/')->with('alert', 'Pesanan Telah Dibatalkan');
     }
 
     public function transaksiOrder(Request $request)
@@ -157,6 +158,15 @@ class OrderController extends Controller
         }
         return redirect("/transaksi/$dataTransaksi->id/transfer");
     }
+
+    public function updateTransaksiOrder(Request $request)
+    {
+        $dataTransaksi2 = Transaksi::where('id',$request->id_transaksi)->update(['nama' => $request->namaRek, 
+        'norek' => $request->noRek, 'bank_pengirim' => $request->bank_pengirim, 'bank_tujuan' => $request->bank_pengirim]);
+        $dataTransaksi = Transaksi::where('id',$request->id_transaksi)->first();
+        return redirect('/konfirmasiPembayaran/'.$dataTransaksi->id);
+    }
+
     public function uploadBukti(Request $request)
     {
         $time = Carbon::now();
@@ -174,35 +184,26 @@ class OrderController extends Controller
 
     public function showKonfirmasiTransfer($id_transaksi)
     {
-        return view('konfirmasitransfer', ['id_transaksi' => $id_transaksi]);
+        $dataTransaksi = Transaksi::where('id',$id_transaksi)->first();
+        return view('instruksipembayaran', ['dataTransaksi' => $dataTransaksi]);
     }
 
     public function showKonfirmasiTransferLagi($id_transaksi, $id_transaksiLama)
     {
         $orders = Order::where('id_user', Session::get('id'))->where('id_transaksi', $id_transaksiLama)->first();
-        return view('konfirmasitransferLagi', ['id_transaksi' => $id_transaksi, 'orders' => $orders, 'id_transaksiLama' => $id_transaksiLama]);
+        $dataTransaksi = Transaksi::where('id',$id_transaksi)->first();
+        return view('instruksipembayaranselanjutnya', ['id_transaksi' => $id_transaksi, 'orders' => $orders, 'id_transaksiLama' => $id_transaksiLama,'dataTransaksi' => $dataTransaksi]);
     }
 
     public function inputBukti(Request $request, $id_transaksi)
     {
         if ($request->gambarbukti != null) {
-            if ($request->bank != "Default") {
-                if ($request->bank_penerima != "Default") {
                     $data = Transaksi::where('id', $id_transaksi)->first();
-                    $data->nama = $request->namaRek;
-                    $data->norek = $request->noRek;
-                    $data->bank_pengirim = $request->bank;
-                    $data->bank_tujuan = $request->bank_penerima;
                     $data->gambar_konfirmasi = $request->gambarbukti;
                     $data->save();
                     return redirect('/home')->with('alert', 'Permohonan konfirmasi telah dikirim');
-                } else {
-                    return redirect()->back()->with('alert', 'Masukkan bank tujuan')->withInput();
                 }
-            } else {
-                return redirect()->back()->with('alert', 'Masukkan bank Anda')->withInput();
-            }
-        } else {
+        else {
             return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();
         }
     }
@@ -210,13 +211,7 @@ class OrderController extends Controller
     public function inputBuktiLagi(Request $request, $id_transaksi)
     {
         if ($request->gambarbukti != null) {
-            if ($request->bank != "Default") {
-                if ($request->bank_penerima != "Default") {
                     $data = Transaksi::where('id', $id_transaksi)->first();
-                    $data->nama = $request->namaRek;
-                    $data->norek = $request->noRek;
-                    $data->bank_pengirim = $request->bank;
-                    $data->bank_tujuan = $request->bank_penerima;
                     $data->gambar_konfirmasi = $request->gambarbukti;
                     $data->save();
                     if ($request->id_transaksi2 != 0) {
@@ -227,12 +222,6 @@ class OrderController extends Controller
                         $dataOrder = Order::where('id', $request->id_order)->update(['id_transaksi4' => $id_transaksi, 'status' => 'Menunggu pembayaran']);
                     }
                     return redirect('/home')->with('alert', 'Permohonan konfirmasi telah dikirim');
-                } else {
-                    return redirect()->back()->with('alert', 'Masukkan bank tujuan')->withInput();
-                }
-            } else {
-                return redirect()->back()->with('alert', 'Masukkan bank Anda')->withInput();
-            }
         } else {
             return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();
         }
@@ -263,31 +252,41 @@ class OrderController extends Controller
             }
             // $orders = Order::where('id_user', Session::get('id'));
             // $orders = $orders->where('status', "!=", "order")->get();
-            $orders2 = Order::where('id_user', Session::get('id'));
-            $orders2 = $orders2->where('status',"==","Order sedang diproses")->get();
-            $orders3 = Order::where('id_user', Session::get('id'));
-            $orders3 = $orders3->where('status',"==","Selesai")->get();
+            // $orders2 = Order::where('id_user', Session::get('id'));
+            // $orders2 = $orders2->where('status',"==","Order sedang diproses")->get();
+            // $orders3 = Order::where('id_user', Session::get('id'));
+            // $orders3 = $orders3->where('status',"==","Selesai")->get();
+            // $orders4 = Order::where('id_user', Session::get('id'));
+            // $orders4 = $orders4->where('status',"==","Dibatalkan")->get();
             //proses
-            $items2 = array();
-            for ($i = 0; $i < count($orders2); $i++) {
-                $items2[$i] = Project::where('id', $orders2[$i]->id_project)->first();
-            }
-            $profesis2 = array();
-            for ($i = 0; $i < count($orders2); $i++) {
-                $profesis2[$i] = Profesi::where('id', $items2[$i]->id_profesi)->first();
-            }
-            //selesai
-            $items3 = array();
-            for ($i = 0; $i < count($orders3); $i++) {
-                $items3[$i] = Project::where('id', $orders3[$i]->id_project)->first();
-            }
-            $profesis3 = array();
-            for ($i = 0; $i < count($orders3); $i++) {
-                $profesis3[$i] = Profesi::where('id', $items3[$i]->id_profesi)->first();
-            }
-            return view('informasiAkun.informasiAkunRiwayat', ['histories' => $orders, 'items' => $items,
-            'histories2' => $orders2, 'items2' => $items2, 'histories3' => $orders3, 'items3' => $items3, 
-            'profesis' => $profesis,'infos' => $infos,'orderProgres' => $orderProgres]);
+            // $items2 = array();
+            // for ($i = 0; $i < count($orders2); $i++) {
+            //     $items2[$i] = Project::where('id', $orders2[$i]->id_project)->first();
+            // }
+            // $profesis2 = array();
+            // for ($i = 0; $i < count($orders2); $i++) {
+            //     $profesis2[$i] = Profesi::where('id', $items2[$i]->id_profesi)->first();
+            // }
+            // //selesai
+            // $items3 = array();
+            // for ($i = 0; $i < count($orders3); $i++) {
+            //     $items3[$i] = Project::where('id', $orders3[$i]->id_project)->first();
+            // }
+            // $profesis3 = array();
+            // for ($i = 0; $i < count($orders3); $i++) {
+            //     $profesis3[$i] = Profesi::where('id', $items3[$i]->id_profesi)->first();
+            // }
+            // //dibatalkan
+            // $items4 = array();
+            // for ($i = 0; $i < count($orders4); $i++) {
+            //     $items4[$i] = Project::where('id', $orders4[$i]->id_project)->first();
+            // }
+            // $profesis4 = array();
+            // for ($i = 0; $i < count($orders4); $i++) {
+            //     $profesis4[$i] = Profesi::where('id', $items4[$i]->id_profesi)->first();
+            // }
+            return view('informasiAkun.informasiAkunRiwayat', ['histories' => $orders, 'items' => $items,'profesis' => $profesis,
+            'infos' => $infos,'orderProgres' => $orderProgres]);
         } else {
             return redirect("/login")->with('alert', 'Kamu harus login dulu');
         }
@@ -349,7 +348,6 @@ class OrderController extends Controller
         $dataOrder = Order::where('id_transaksi', $dataTransaksi->id)->get();
         for ($i = 0; $i < count($dataOrder); $i++) {
             // $dataOrder[$i]->update(['id_transaksi' => null]);
-            $dataOrder = Order::where('id_transaksi', $request->input('id'))->update(['id_transaksi' => null]);
             $dataOrder[$i]->status = "Pembayaran tidak terkonfirmasi";
             $dataOrder[$i]->save();
         }
@@ -623,31 +621,42 @@ class OrderController extends Controller
             }
             // $orders = Order::where('id_user', Session::get('id'));
             // $orders = $orders->where('status', "!=", "order")->get();
-            $orders2 = Order::where('id_user', Session::get('id'));
-            $orders2 = $orders2->where('status',"==","Order sedang diproses")->get();
-            $orders3 = Order::where('id_user', Session::get('id'));
-            $orders3 = $orders3->where('status',"==","Selesai")->get();
+            // $orders2 = Order::where('id_user', Session::get('id'));
+            // $orders2 = $orders2->where('status',"==","Order sedang diproses")->get();
+            // $orders3 = Order::where('id_user', Session::get('id'));
+            // $orders3 = $orders3->where('status',"==","Selesai")->get();
+            // $orders4 = Order::where('id_user', Session::get('id'));
+            // $orders4 = $orders4->where('status',"==","Dibatalkan")->get();
             //proses
-            $items2 = array();
-            for ($i = 0; $i < count($orders2); $i++) {
-                $items2[$i] = Project::where('id', $orders2[$i]->id_project)->first();
-            }
-            $profesis2 = array();
-            for ($i = 0; $i < count($orders2); $i++) {
-                $profesis2[$i] = Profesi::where('id', $items2[$i]->id_profesi)->first();
-            }
-            //selesai
-            $items3 = array();
-            for ($i = 0; $i < count($orders3); $i++) {
-                $items3[$i] = Project::where('id', $orders3[$i]->id_project)->first();
-            }
-            $profesis3 = array();
-            for ($i = 0; $i < count($orders3); $i++) {
-                $profesis3[$i] = Profesi::where('id', $items3[$i]->id_profesi)->first();
-            }
-            return view('informasiAkun.informasiAkunProgres', ['histories' => $orders, 'items' => $items,
-            'histories2' => $orders2, 'items2' => $items2, 'histories3' => $orders3, 'items3' => $items3, 
-            'profesis' => $profesis,'infos' => $infos,'orderProgres' => $orderProgres]);
+            // $items2 = array();
+            // for ($i = 0; $i < count($orders2); $i++) {
+            //     $items2[$i] = Project::where('id', $orders2[$i]->id_project)->first();
+            // }
+            // $profesis2 = array();
+            // for ($i = 0; $i < count($orders2); $i++) {
+            //     $profesis2[$i] = Profesi::where('id', $items2[$i]->id_profesi)->first();
+            // }
+            // //selesai
+            // $items3 = array();
+            // for ($i = 0; $i < count($orders3); $i++) {
+            //     $items3[$i] = Project::where('id', $orders3[$i]->id_project)->first();
+            // }
+            // $profesis3 = array();
+            // for ($i = 0; $i < count($orders3); $i++) {
+            //     $profesis3[$i] = Profesi::where('id', $items3[$i]->id_profesi)->first();
+            // }
+            
+            // //dibatalkan
+            // $items4 = array();
+            // for ($i = 0; $i < count($orders4); $i++) {
+            //     $items4[$i] = Project::where('id', $orders4[$i]->id_project)->first();
+            // }
+            // $profesis4 = array();
+            // for ($i = 0; $i < count($orders4); $i++) {
+            //     $profesis4[$i] = Profesi::where('id', $items4[$i]->id_profesi)->first();
+            // }
+            return view('informasiAkun.informasiAkunProgres', ['histories' => $orders, 'items' => $items,'profesis' => $profesis,
+            'infos' => $infos,'orderProgres' => $orderProgres]);
         } else {
             return redirect("/login")->with('alert', 'Kamu harus login dulu');
         }
@@ -655,24 +664,18 @@ class OrderController extends Controller
 
     public function progres($id_order)
     {
-        $orderProgres = Progres::where('id_order', $id_order)->get();
-        $orders = array();
-        for ($i = 0; $i < count($orderProgres); $i++) {
-            $orders[$i] = Order::where('id', $orderProgres[$i]->id_order)->first();
+
+        $dataOrder = Order::where('id', $id_order)->where('status', "!=", "order")->first();
+        $user = User::where('id', $dataOrder->id_user)->first();
+        $orderProgres = Progres::where('id_order', $dataOrder->id)->first();
+        $items = Project::where('id', $dataOrder->id_project)->first();
+        $profesi = Profesi::where('id', $items->id_profesi)->first();
+        $user2 = User::where('id', $profesi->id_user)->first();
+        if(count($orderProgres)>0){
+        return view('informasiAkun.lihatProgresProyek', ['dataOrder' => $dataOrder, 'user' => $user, 'user2' => $user2, 'orderProgres' => $orderProgres, 'items' => $items, 'profesi' => $profesi]);
+        }else{
+            return redirect()->back()->with('alert','Belum ada progres dari project ini');
         }
-        $items = array();
-        for ($i = 0; $i < count($orderProgres); $i++) {
-            $items[$i] = Project::where('id', $orderProgres[$i]->id_project)->first();
-        }
-        // if(!($items == null)){
-        $profesis = array();
-        for ($i = 0; $i < count($orderProgres); $i++) {
-            $profesis[$i] = Profesi::where('id', $orderProgres[$i]->id_profesi)->first();
-        }
-        return view('progresOrderView', ['orderProgres' => $orderProgres, 'profesis' => $profesis, 'orders' => $orders, 'items' => $items]);
-        // }else{
-        //     return redirect()->back()->with('alert', 'Progres Order Belum Ada');
-        // }
     }
 
     public function getOrderProgres()
@@ -740,23 +743,39 @@ class OrderController extends Controller
     }
 }
 
-    public function showOrderProgres($id_order)
+    public function showOrderProgresView($id_order)
+    {
+        $dataOrder = Order::where('id', $id_order)->where('status', "!=", "order")->first();
+        $user = User::where('id', $dataOrder->id_user)->first();
+        $orderProgres = Progres::where('id_order', $dataOrder->id)->first();
+        $items = Project::where('id', $dataOrder->id_project)->first();
+        $profesi = Profesi::where('id', $items->id_profesi)->first();
+        if(count($orderProgres)>0){
+        return view('halamanProfesi.lihatProgresProyek', ['dataOrder' => $dataOrder, 'user' => $user, 'orderProgres' => $orderProgres, 'items' => $items, 'profesi' => $profesi]);
+        }else{
+        return redirect('/order-progres/'.$id_order.'/tambah')->with('alert','Progres order masih belum ada silahkan menambah terlebih dahulu');
+        }
+    }
+
+    public function showOrderProgresAdd($id_order)
     {
         $dataOrder = Order::where('id', $id_order)->first();
-        return view('orderProgresInput', ['id_order' => $id_order, 'dataOrder' => $dataOrder]);
+        return view('halamanProfesi.tambahProgres', ['id_order' => $id_order, 'dataOrder' => $dataOrder]);
     }
 
     public function setStatus($status, $id_order)
     {
-        if ($status == 3) {
-            $dataOrder = Order::where('id', $id_order)->where('id_profesi', Session::get('id_profesi'))->update(['statusLagi' => 3, 'status' => 'Menunggu pembayaran']);
-        } else if ($status == 6) {
+        if ($status == 6) {
             $dataOrder = Order::where('id', $id_order)->where('id_profesi', Session::get('id_profesi'))->update(['statusLagi' => 6, 'status' => 'Menunggu pembayaran']);
-        } else if ($status == 9) {
-            $dataOrder = Order::where('id', $id_order)->where('id_profesi', Session::get('id_profesi'))->update(['statusLagi' => 9, 'status' => 'Menunggu pembayaran']);
         } else if ($status == 12) {
-            $dataOrder = Order::where('id', $id_order)->where('id_profesi', Session::get('id_profesi'))->update(['statusLagi' => 12, 'status' => 'Order sedang diproses']);
-        } else {
+            $dataOrder = Order::where('id', $id_order)->where('id_profesi', Session::get('id_profesi'))->update(['statusLagi' => 12, 'status' => 'Menunggu pembayaran']);
+        } else if ($status == 18) {
+            $dataOrder = Order::where('id', $id_order)->where('id_profesi', Session::get('id_profesi'))->update(['statusLagi' => 18, 'status' => 'Menunggu pembayaran']);
+        } 
+        // else if ($status == 24) {
+        //     $dataOrder = Order::where('id', $id_order)->where('id_profesi', Session::get('id_profesi'))->update(['statusLagi' => 24, 'status' => 'Order sedang diproses']);
+        // } 
+        else {
             $dataOrder = Order::where('id', $id_order)->where('id_profesi', Session::get('id_profesi'))->update(['statusLagi' => $status, 'status' => 'Order sedang diproses']);
         }
     }
@@ -764,16 +783,10 @@ class OrderController extends Controller
     public function getBayarLagi(Request $request)
     {
         if (Session::has('username')) {
-            $orders = Order::where(['id_user' => Session::get('id'), 'statusLagi' => $request->input('statusLagi')])->where('id', $request->input('id'))->get();
-            $items = array();
-            for ($i = 0; $i < count($orders); $i++) {
-                $items[$i] = Project::where('id', $orders[$i]->id_project)->first();
-            }
-            $transaksis = array();
-            for ($i = 0; $i < count($transaksis); $i++) {
-                $transaksis[$i] = Transaksi::where('id', $orders[$i]->id_transaksi)->first();
-            }
-            return view('bayarLagi', ['orders' => $orders, 'items' => $items, 'transaksis' => $transaksis]);
+            $orders = Order::where(['id_user' => Session::get('id'), 'statusLagi' => $request->input('statusLagi')])->where('id', $request->input('id'))->first();
+            $items = Project::where('id', $orders->id_project)->first();
+            $transaksis= Transaksi::where('id', $orders->id_transaksi)->first();
+            return view('pembayaranSelanjutnya', ['orders' => $orders, 'items' => $items, 'transaksis' => $transaksis]);
         } else {
             return redirect("/login")->with('alert', 'Kamu harus login dulu');
         }
@@ -783,6 +796,8 @@ class OrderController extends Controller
         $dataTransaksi = new Transaksi;
         $dataTransaksi->jumlah = $request->jumlah;
         $dataTransaksi->sisaharga = $request->sisaharga;
+        $dataTransaksi->bank_pengirim = $request->bank_pengirim;
+        $dataTransaksi->bank_tujuan = $request->bank_pengirim;
         $dataTransaksi->kode_token = rand(100, 999);
         $dataTransaksi->save();
         $id_transaksiLama = $request->id_transaksiLama;

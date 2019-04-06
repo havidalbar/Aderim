@@ -22,15 +22,13 @@
                                         <p style="color:white;font-size:16px">Aderim merupakan merupakan singkatan dari
                                             Arsitek Desain Rumah
                                             Impian. Aderim merupakan pilihan yang tepat bagi
-                                            kamu untuk mengadopsi, mencari pengadopsi, maupun berdonasi untuk hewan
-                                            peliharaan yang lucu!.
+                                            masyarakat untuk membangun, mendesain, maupun merenovasi rumah, hotel, dan apartemen.
                                         </p>
                                     </div>
                                     <div class="row" style="margin-top:30px">
-                                        <h2 class="ui header" style="color:white">Berbagi Informasi Hewan Terlantar</h2>
-                                        <p style="color:white;font-size:16px">Selain itu, di HelpPet kamu juga bisa
-                                            membagikan
-                                            informasi tentang hewan peliharaan yang terlantar, lho!
+                                        <h2 class="ui header" style="color:white">Berbagai Desain Arsitektur</h2>
+                                        <p style="color:white;font-size:16px">Selain itu, di Aderim kamu juga bisa
+                                            mendaftar sebagai arsitektur atau desain interior, lho!
                                         </p>
                                     </div>
                                 </div>
@@ -50,7 +48,7 @@
                         </div>
                     </a>
                     @else
-                    <a href="/">
+                    <a href="#cari">
                         <div class="ui huge animated fade button teal" tabindex="0"
                             style="border-radius:5px;margin-bottom:20px;color:white">
                             <div class="visible content">Buat Rumah Impian?</div>
@@ -148,8 +146,8 @@
     </div>
 </div>
 
+<div id="cari"  class="ui container fluid">
 <div class="ui divider"></div>
-
 <div class="ui container" style="margin-top:30px">
     <div class="ui center aligned container" style="font-size:36px">
         <p>Mulai Membuat Rumah Impian?</p>
@@ -157,14 +155,11 @@
     <div class="ui center aligned container" style="margin-top:10px;font-size:22px">
         <p>Silahkan cari hingga mendapatkan desain arsitek terbaik pilihan anda</p>
     </div>
-    <div class="ui fluid action input" style="margin-top:20px;font-size:18px;padding-left:60px;padding-right:60px">
-        <input type="text" name="cari" placeholder="Cari desain rumah impian yang ingin anda buat..."
-            onclick="window.location.href='/get-search'">
-        <div class="ui button teal" onclick="window.location.href='/get-search'">Cari</div>
-    </div>
+    <form class="ui fluid action input" style="margin-top:20px;font-size:18px;padding-left:60px;padding-right:60px" method="get" action="/get-search">
+        <input type="text" name="cari" placeholder="Cari desain rumah impian yang ingin anda buat...">
+        <div class="ui button teal">Cari</div>
+    </form>
 </div>
-
-
 
 <div class="ui container" style="margin-top:30px">
     <div class="ui four stackable doubling link cards">
@@ -313,6 +308,9 @@
         </a>
     </div>
 </div>
+</div>
+
+
 
 
 

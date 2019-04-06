@@ -21,7 +21,8 @@
                 </tr>
             </thead>
             <tbody>
-                @for($i = 0; $i < count($profesis); $i++) <?php $fotos= explode(" ", $profesis[$i]->url_image);?> <tr>
+                @for($i = 0; $i < count($profesis); $i++) <?php $fotos= explode(" ", $profesis[$i]->url_image);?> 
+                <tr>
                     <td>{{$profesis[$i]->id}}</td>
                     <td>
                         <div>{{$profesis[$i]->nama_profesi}}</div>
@@ -50,32 +51,31 @@
                             </div>
                         </div>
                     </td>
-                    </tr>
-                    <!-- Dimmer Pengajuan Pengadopsi -->
-                    <div class="ui large modal portofolio <?php echo $i ?>">
-                        <div class="header">
-                            Portofolio Pendaftar
-                        </div>
-                        <div class="content">
-                            <div class="ui two stackable cards">
-                            @for($j=0; $j < count($fotos); $j++) 
+                </tr>
+                <!-- Dimmer Portofolio Pendaftar -->
+                <div class="ui large modal portofolio <?php echo $i ?>">
+                    <div class="header">
+                        Portofolio Pendaftar
+                    </div>
+                    <div class="content">
+                        <div class="ui two stackable cards">
+                        @for($j=0; $j < count($fotos); $j++) 
                             <div class="card">
                                 <img src="/{{$fotos[$j]}}" style="height:250px;object-fit:cover">
                                 <a class="ui teal bottom attached button" href="/{{$fotos[$j]}}" download="portofolio<?php echo $j+1 ?>">                                     
                                     Download
                                 </a>
                             </div>
-                            @endfor
+                        @endfor
                         </div>
                     </div>
-
                     <div class="actions">
                         <button class="ui positive button">
                             Oke
                         </button>
                     </div>
-    </div>
-    @endfor
+                </div>
+                @endfor
     </tbody>
 
 

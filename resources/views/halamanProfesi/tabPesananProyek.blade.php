@@ -32,23 +32,25 @@
                     <th>Konfirmasi</th>
                 </tr>
             </thead>
-            @for($i=0;$i< count($dataOrder2); $i++) <?php
+            @for($i=0;$i< count($dataOrder2); $i++) 
+            <?php
             $fotos= explode(" ", $dataOrder2[$i]->url_gambar);
-            ?> <tbody>
+            ?> 
+            <tbody>
                 <tr>
                     <td>{{$dataOrder2[$i]->id}}</td>
                     <td>{{$users2[$i]->name}}</td>
                     <td>
                         <div>{{$items2[$i]->namaProject}}</div>
                         <div>
-                            <button class="ui button basic teal" onclick="$('.ui.large.modal.desain.').modal('show')">
+                            <button class="ui button basic teal" onclick="$('.ui.large.modal.lihat.desain.<?php echo $i ?>').modal('show')">
                                 Lihat
                             </button>
                         </div>
                     </td>
                     <td>
                         <span>Rp </span>
-                        <span>{{$items2[$i]->estimasi}}</span>
+                        <span>{{number_format(($items2[$i]->estimasi),0,",",".")}}</span>
                     </td>
                     <td>
                         <div class="ui internally celled grid">
@@ -67,8 +69,31 @@
                         </div>
                     </td>
                 </tr>
+                <!-- Dimmer Lihat desain -->
+                <div class="ui large modal lihat desain <?php echo $i ?>">
+                    <div class="header">
+                        Portofolio Pendaftar
+                    </div>
+                    <div class="content">
+                        <div class="ui two stackable cards">
+                        @for($j=0; $j < count($fotos); $j++) 
+                            <div class="card">
+                                <img src="/{{$fotos[$j]}}" style="height:250px;object-fit:cover">
+                                <a class="ui teal bottom attached button" href="/{{$fotos[$j]}}" download="portofolio<?php echo $j+1 ?>">                                     
+                                    Download
+                                </a>
+                            </div>
+                        @endfor
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="ui positive button">
+                            Oke
+                        </button>
+                    </div>
+                </div>
                 @endfor
-                </tbody>
+            </tbody>
         </table>
         @endif
     </div>
@@ -100,7 +125,7 @@
                     <td>{{$items3[$i]->namaProject}}</td>
                     <td>
                         <span>Rp </span>
-                        <span>{{$items3[$i]->estimasi}}</span>
+                        <span>{{number_format(($items3[$i]->estimasi),0,",",".")}}</span>
                     </td>
                     <td>
                         <form action="/konfirmasi-order?id={{$dataOrder3[$i]->id}}" method="post">
@@ -133,18 +158,19 @@
                     <th>Nama Proyek</th>
                     <th>Nominal Transaksi</th>
                 </tr>
-            </thead>
-            @for($i=0;$i< count($dataOrder4);$i++) <tbody>
+            </thead>            
+            <tbody>
+            @for($i=0;$i< count($dataOrder4);$i++) 
                 <tr>
-                    <td>{{$dataOrder[$i]->id}}</td>
+                    <td>{{$dataOrder4[$i]->id}}</td>
                     <td>{{$users4[$i]->name}}</td>
                     <td>{{$items4[$i]->namaProject}}</td>
                     <td>
                         <span>Rp </span>
-                        <span>{{$items4[$i]->estimasi}}</span>
+                        <span>{{number_format(($items4[$i]->estimasi),0,",",".")}}</span>
                     </td>
                 </tr>
-                @endfor
+            @endfor
                 </tbody>
         </table>
         @endif

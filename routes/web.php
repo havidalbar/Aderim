@@ -84,6 +84,8 @@ Route::post('/hapusorder', 'OrderController@delete');
 
 Route::post('/transaksiorder', 'OrderController@transaksiorder');
 
+Route::post('/tambah-transaksi', 'OrderController@updateTransaksiOrder');
+
 Route::post('/transaksiorderLagi', 'OrderController@transaksiorderLagi');
 
 Route::post('/uploadBukti', 'OrderController@uploadBukti');
@@ -116,7 +118,9 @@ Route::get('/progresorder/{id_order}', 'OrderController@progres');
 
 Route::get('/order-progres','OrderController@getOrderProgres');
 
-Route::get('/order-progres/{id_order}', 'OrderController@showOrderProgres');
+Route::get('/order-progres/{id_order}', 'OrderController@showOrderProgresView');
+
+Route::get('/order-progres/{id_order}/tambah', 'OrderController@showOrderProgresAdd');
 
 Route::post('/orderprogresproses/{id_order}', 'OrderController@orderProgres');
 
@@ -169,4 +173,28 @@ Route::get('/pesanProyek', function () {
 });
 Route::get('/cobainstruksipembayaran', function () {
     return view('cobainstruksiPembayaran');
+});
+Route::get('/periksaPesanan', function () {
+    return view('periksaPesanan');
+});
+Route::get('/pilihMetodePembayaran', function () {
+    return view('pilihMetodePembayaran');
+});
+Route::get('/test123', function () {
+    return view('test123');
+});
+Route::get('/lihatProgresProyek', function () {
+    return view('halamanProfesi/lihatProgresProyek');
+});
+Route::get('/lihatProgresProyekAkun', function () {
+    return view('informasiAkun/lihatProgresProyek');
+});
+Route::get('/tambahProgres', function () {
+    return view('halamanProfesi/tambahProgres');
+});
+Route::get('/ubahProyek', function () {
+    return view('halamanProfesi/ubahProyek');
+});
+Route::get('/pembayaranSelanjutnya', function () {
+    return view('pembayaranSelanjutnya');
 });

@@ -33,7 +33,7 @@ class CreateOrderTable extends Migration
             $table->integer('statusLagi')->default('0');
             $table->text('url_gambar');
             $table->text('pesan');
-            $table->text('spesifikasi');
+            $table->text('address');
             $table->timestamps();
         });
     }

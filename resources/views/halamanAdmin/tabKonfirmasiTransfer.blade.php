@@ -28,9 +28,9 @@
                     <td>{{$transaksis[$i]->norek}}</td>
                     <td>
                         <span>Rp </span>
-                        <span>{{$transaksis[$i]->jumlah*0.25+$transaksis[$i]->kode_unik}}</span>
+                        <span>{{number_format(($transaksis[$i]->jumlah*0.25+$transaksis[$i]->kode_unik),0,",",".")}}</span>
                         <div style="margin-top:5px">
-                            <button class="ui button basic teal" onclick="$('.ui.large.modal.bukti').modal('show')">Lihat</button>
+                            <button class="ui button basic teal" onclick="$('.ui.large.modal.bukti.<?php echo $i ?>').modal('show')">Lihat</button>
                         </div>
                     </td>
                     <td>
@@ -50,17 +50,20 @@
                 </tr>
             </tbody>
             <!-- Dimmer Pengajuan Transaksi -->
-            <div class="ui large modal bukti">
+            <div class="ui large modal bukti <?php echo $i ?>">
                 <div class="header">
-                    Portofolio Pendaftar
+                    Bukti Pembayaran
                 </div>
                 <div class="content">
-                    <img class="ui large centered image" src={{asset($transaksis[$i]->gambar_konfirmasi)}}>
+                    <img class="ui large centered image" src={{asset($transaksis[$i]->gambar_konfirmasi)}}>                    
                 </div>
                 <div class="actions">
-                    <button class="ui positive button">
-                        Oke
+                    <button class="ui negative button">
+                        Tutup
                     </button>
+                    <a class="ui teal right button" href="{{asset($transaksis[$i]->gambar_konfirmasi)}}" download="buktipembayaran<?php echo $transaksis[$i]->nama ?>">                                     
+                        Download
+                    </a>                    
                 </div>
             </div>
             @endfor

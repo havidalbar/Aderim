@@ -51,8 +51,8 @@ Dropzone.options.myDropzone = {
         <div class="ui divider"></div>
         <div class="ui container fluid" style="margin-top:20px">
             <div style="font-size:18px"><b>Gambar Desain</b></div>
-            <form action="{{ url('/uploadFotoOrder') }}" enctype="multipart/form-data" class="dropzone"
-                id="my-dropzone" style="margin-top:5px">
+            <form action="{{ url('/uploadFotoOrder') }}" enctype="multipart/form-data" class="dropzone" id="my-dropzone"
+                style="margin-top:5px">
                 {{csrf_field()}}
             </form>
             <button id="submit-all" type="submit" class="submitDropzone" style="display:none">Unggah</button>
@@ -64,23 +64,39 @@ Dropzone.options.myDropzone = {
             <input type="hidden" name="id_profesi" value="{{$desProject->id_profesi}}" />
             <div class="field">
                 <label style="font-size:18px">Deskripsi Proyek</label>
-                <textarea name="pesan" maxlength="500" rows="6"
-                    placeholder="Tuliskan deskripsi pesanan proyek anda..." required=""></textarea>
+                <textarea name="pesan" maxlength="500" rows="6" placeholder="Tuliskan deskripsi pesanan proyek anda..."
+                    required=""></textarea>
             </div>
             <div class="field">
-                <label style="font-size:18px">Biaya Proyek</label>
+                <label style="font-size:18px">Alamat Pengerjaan Proyek</label>
+                <input name="alamat" required type="text">
+            </div>
+            <div class="field">
+                <label style="font-size:18px">Total Biaya Proyek</label>
                 <div class="ui labeled fluid input" style="font-size:18px">
                     <label class="ui label">Rp</label>
-                    <input type="number" name="estimasi" value="{{$desProject->estimasi}}" readonly style="background-color:#e8e8e8;border:none">
+                    <input type="text" name="estimasi" value="{{number_format(($desProject->estimasi),0,",",".")}}"
+                        readonly style="background-color:#e8e8e8;border:none">
+                </div>
+            </div>
+            <div style="margin-top:20px;padding:20px 20px 20px 20px;border-radius:5px;background-color:#F7EFD2">
+                <div class="ui grid">
+                    <div class="one wide column middle aligned">
+                        <i class="info circle large teal icon"></i>
+                    </div>
+                    <div class="fifteen wide column" style="font-size:14px;line-height:1.5">
+                        Pembayaran total biaya proyek dilakukan secara bertahap sebanyak 4 kali. Pembayaran dilakukan untuk progres pengerjaan proyek selama 6 bulan kedepan.
+                    </div>
                 </div>
             </div>
             {{csrf_field()}}
-            <button class="ui big teal button fluid" onclick="" type="submit" name="submit" style="margin-top:40px">
-                Pesan Proyek
+            <button class="ui big teal button fluid" onclick="" type="submit" name="submit" style="margin-top:30px">
+                Periksa Pesanan Proyek
             </button>
         </form>
     </div>
 </div>
+
 
 @include('layouts.cobafooter')
 @endsection

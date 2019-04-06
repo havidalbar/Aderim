@@ -21,9 +21,9 @@
             <center><a href="/progresorder/{{ $orders[$i]->id}}"><button class="btn btn-primary">LIHAT PROGRES DARI
                         PROJECT INI</button></a></center>
             <br>
-            @if(($orders[$i]->statusLagi===3 && $orders[$i]->id_transaksi2==null) || ($orders[$i]->statusLagi==6 &&
+            @if(($orders[$i]->statusLagi===6 && $orders[$i]->id_transaksi2==null) || ($orders[$i]->statusLagi==12 &&
             $orders[$i]->id_transaksi3==null)
-            || ($orders[$i]->statusLagi===9 && $orders[$i]->id_transaksi4==null)||($orders[$i]->status=="Pembayaran tidak terkonfirmasi"))
+            || ($orders[$i]->statusLagi===18 && $orders[$i]->id_transaksi4==null)||($orders[$i]->status=="Pembayaran tidak terkonfirmasi"))
             <form action='/bayarLagi?statusLagi={{$orders[$i]->statusLagi}}&id={{$orders[$i]->id}}' method="post"
                 style="margin-left: 20px;">
                 {{csrf_field()}}

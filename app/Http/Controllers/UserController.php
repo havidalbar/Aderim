@@ -41,31 +41,41 @@ class UserController extends Controller
             }
             // $orders = Order::where('id_user', Session::get('id'));
             // $orders = $orders->where('status', "!=", "order")->get();
-            $orders2 = Order::where('id_user', Session::get('id'));
-            $orders2 = $orders2->where('status',"==","Order sedang diproses")->get();
-            $orders3 = Order::where('id_user', Session::get('id'));
-            $orders3 = $orders3->where('status',"==","Selesai")->get();
+            // $orders2 = Order::where('id_user', Session::get('id'));
+            // $orders2 = $orders2->where('status',"==","Order sedang diproses")->get();
+            // $orders3 = Order::where('id_user', Session::get('id'));
+            // $orders3 = $orders3->where('status',"==","Selesai")->get();
+            // $orders4 = Order::where('id_user', Session::get('id'));
+            // $orders4 = $orders4->where('status',"==","Dibatalkan")->get();
             //proses
-            $items2 = array();
-            for ($i = 0; $i < count($orders2); $i++) {
-                $items2[$i] = Project::where('id', $orders2[$i]->id_project)->first();
-            }
-            $profesis2 = array();
-            for ($i = 0; $i < count($orders2); $i++) {
-                $profesis2[$i] = Profesi::where('id', $items2[$i]->id_profesi)->first();
-            }
-            //selesai
-            $items3 = array();
-            for ($i = 0; $i < count($orders3); $i++) {
-                $items3[$i] = Project::where('id', $orders3[$i]->id_project)->first();
-            }
-            $profesis3 = array();
-            for ($i = 0; $i < count($orders3); $i++) {
-                $profesis3[$i] = Profesi::where('id', $items3[$i]->id_profesi)->first();
-            }
-            return view('informasiAkun.informasiAkunProfil', ['histories' => $orders, 'items' => $items,
-            'histories2' => $orders2, 'items2' => $items2, 'histories3' => $orders3, 'items3' => $items3, 
-            'profesis' => $profesis,'infos' => $infos,'orderProgres' => $orderProgres]);
+            // $items2 = array();
+            // for ($i = 0; $i < count($orders2); $i++) {
+            //     $items2[$i] = Project::where('id', $orders2[$i]->id_project)->first();
+            // }
+            // $profesis2 = array();
+            // for ($i = 0; $i < count($orders2); $i++) {
+            //     $profesis2[$i] = Profesi::where('id', $items2[$i]->id_profesi)->first();
+            // }
+            // //selesai
+            // $items3 = array();
+            // for ($i = 0; $i < count($orders3); $i++) {
+            //     $items3[$i] = Project::where('id', $orders3[$i]->id_project)->first();
+            // }
+            // $profesis3 = array();
+            // for ($i = 0; $i < count($orders3); $i++) {
+            //     $profesis3[$i] = Profesi::where('id', $items3[$i]->id_profesi)->first();
+            // }
+            // //dibatalkan
+            // $items4 = array();
+            // for ($i = 0; $i < count($orders4); $i++) {
+            //     $items4[$i] = Project::where('id', $orders4[$i]->id_project)->first();
+            // }
+            // $profesis4 = array();
+            // for ($i = 0; $i < count($orders4); $i++) {
+            //     $profesis4[$i] = Profesi::where('id', $items4[$i]->id_profesi)->first();
+            // }
+            return view('informasiAkun.informasiAkunProfil', ['histories' => $orders, 'items' => $items,'profesis' => $profesis,
+            'infos' => $infos,'orderProgres' => $orderProgres]);
         } else {
             return redirect('/login')->with('alert', 'Kamu harus login dulu');
         }

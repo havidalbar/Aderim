@@ -46,9 +46,7 @@
                 <div class="seven wide column">
                     <h4 class="ui header" style="color:white">Aderim</h4>
                     <p style="color:white">Aderim merupakan singkatan dari Arsitek Desain Rumah
-                        Impian. Aderim merupakan pilihan yang tepat bagi
-                        kamu untuk mengadopsi, mencari pengadopsi, maupun berdonasi untuk hewan
-                        peliharaan yang lucu!.
+                        Impian. Aderim merupakan pilihan yang tepat bagi masyarakat untuk membangun, mendesain, maupun merenovasi rumah, hotel, dan apartemen.
                     </p>
                 </div>
             </div>
@@ -61,5 +59,4 @@
             </div>
         </div>
     </div>
-
 </footer>

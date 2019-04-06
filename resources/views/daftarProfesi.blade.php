@@ -83,8 +83,8 @@ Dropzone.options.myDropzone = {
                     <i class="dropdown icon"></i>
                     <div class="default text">Pilih Pekerjaan</div>
                     <div class="menu">
-                        <div class="item" value="arsitektur">Arsitektur</div>
-                        <div class="item" value="desain">Desain Interior</div>
+                        <div class="item" value="Arsitektur">Arsitektur</div>
+                        <div class="item" value="Desain Interior">Desain Interior</div>
                     </div>
                 </div>
             </div>

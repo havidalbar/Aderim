@@ -17,7 +17,7 @@
                 <div class="ui dimmer">
                     <div class="content">
                         <span>
-                            <button class="ui inverted medium button">Lihat</button>
+                            <button class="ui inverted medium button" onclick="$('.ui.fullscreen.modal.lihat.<?php echo $i ?>').modal('show');">Lihat</button>
                         </span>
                         <span>
                             <button class="ui inverted medium button">Ubah</button>
@@ -48,15 +48,114 @@
                 </div>
             </div>
         </div>
+            <!-- Modal Detail -->
+            <div class="ui fullscreen modal lihat <?php echo $i ?>">
+                <div class="content">
+                    <div class="ui stackable grid">
+                        <div class="nine wide column">
+                            <div class="ui stackable grid" style="height:100%">
+                                <div class="twelve wide middle aligned column">
+                                    <div class="ui one stackable cards">
+                                        <div class="card">
+                                            <div class="image">
+                                                <img class="ui big image" src="/{{$fotos[0]}}">
+                                            </div>
+                                        </div>  
+                                    </div>                                
+                                </div>
+                                <div class="four wide middle aligned column">
+                                @for($j=0; $j < count($fotos); $j++)
+                                    <div class="ui one stackable cards">
+                                        <div class="card">
+                                            <div class="image">
+                                                <img src="/{{$fotos[$j]}}" style="height:145px;object-fit:cover">
+                                            </div>
+                                        </div>  
+                                    </div>                                                                       
+                                @endfor
+                                </div>
+                            </div>
+                        </div>
+                        <div class="seven wide column">
+                            <div class="ui divider"></div>
+                            <div class="ui grid">
+                                <div class="one wide middle aligned column">
+                                    <i class="info circle large teal icon"></i>
+                                </div>
+                                <div class="fifteen wide column">
+                                    <div style="font-size:22px;color:teal"><b>Detail Proyek</b></div>
+                                </div>
+                            </div>
+                            <div class="ui divider"></div>
+                            <div class="ui stackable grid">
+                                <div class="three wide column">
+                                    <img class="ui circular image" src="{{asset($profesi->foto)}}"
+                                        style="width:80px;height:80px;object-fit:cover">
+                                </div>
+                                <div class="thirteen wide column">
+                                    <div style="font-size:22px"><b>{{$profesi->nama_profesi}}</b></div>
+                                    <div style="font-size:17px">{{$profesi->job_title}}</div>
+                                </div>
+                            </div>
+                            <div class="ui divider"></div>
+                            <div class="ui stackable grid">
+                                <div class="twelve wide column">
+                                    <div style="font-size:22px">
+                                    <b>{{$items[$i]->namaProject}}</b>
+                                    </div>
+                                </div>
+                                <div class="four wide middle aligned column">
+                                <button class="ui button basic"><b>{{$items[$i]->category}}</b></button>
+                                </div>
+                            </div>
+                            <div>
+                                <span><i class="map pin teal icon"></i></span>
+                            <span style="font-size:18px">{{$items[$i]->daerah}}</span>
+                            </div>
+                            <div class="ui divider"></div>
+                            <div>
+                                <div style="font-size:16px"><b>Deskripsi</b></div>
+                                <div style="font-size:15px">
+                                    {{$items[$i]->deskripsi}}
+                                </div>
+                            </div>
+                            <div style="margin-top:10px">
+                                <div style="font-size:16px"><b>Spesifikasi</b></div>
+                                <div style="font-size:15px">
+                                        {{$items[$i]->spesifikasi}}
+                                </div>
+                            </div>
+                            <div class="ui divider"></div>
+                            <div class="ui container fluid" style="text-align:right">
+                                <div style="font-size:22px"><b>Biaya Proyek</b></div>
+                                <div style="color:teal;font-size:20px">
+                                    <b>
+                                        <span>Rp </span>
+                                    <span>{{number_format(($items[$i]->estimasi),0,",",".")}}</span>
+                                    </b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <a href="#">
+                        <button class="ui teal button">
+                            Ubah Detail Proyek
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <!--Akhir Modal Detail -->
         @endfor
         <!-- Card untuk tambah proyek -->
         <div class="card">
-            <div class="blurring dimmable segments" style="height:100%;padding:190px 20px 190px 20px">
+            <div class="blurring dimmable segments" style="height:100%;padding:150px 20px 150px 20px">
                 <div class="ui dimmer">
                     <div class="content">
                         <div class="center">
-                            <a href="/tambah-project"></a>
-                                <button class="ui inverted button">Tambah Proyek</button>
+                            <a>
+                                <button class="ui inverted button" onclick="window.location.href='/tambah-project'">Tambah Proyek</button>
                             </a>
                         </div>
                     </div>
