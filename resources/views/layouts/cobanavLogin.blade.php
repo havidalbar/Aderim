@@ -239,7 +239,7 @@
             <div class="right item">
                 <div class="ui teal top right pointing dropdown button">
                     <i class="briefcase icon"></i>
-                    <span class="text">Profesi</span>
+                    <span>Profesi</span>
                     <div class="menu">
                         @if(Session::has('nama_profesi'))
                         <div class="header" style="font-size:14px">
@@ -273,7 +273,7 @@
                 </div>
                 <div class="ui teal top right pointing dropdown button" style="margin-left:15px">
                     <i class="user circle icon"></i>
-                    <span class="text">Akun</span>
+                    <span>Akun</span>
                     <div class="menu">
                         <a href="/informasi-akun/profil">
                             <div style="width:250px;padding:20px">
@@ -333,7 +333,7 @@
         <div class="right item">
             <div class="ui inverted top right pointing dropdown button">
                 <i class="briefcase icon"></i>
-                <span class="text">Profesi</span>
+                <span>Profesi</span>
                 <div class="menu">
                     <div class="divider"></div>
                     @if(Session::has('nama_profesi'))
@@ -368,7 +368,7 @@
             </div>
             <div class="ui inverted top right pointing dropdown button" style="margin-left:15px">
                 <i class="user circle icon"></i>
-                <span class="text">Akun</span>
+                <span>Akun</span>
                 <div class="menu">
                     <a href="/informasi-akun/profil">
                         <div style="width:250px;padding:20px">
@@ -436,9 +436,9 @@
                         </form>
                     </div>
                     <div class="right item">
-                        <div class="ui inverted top right pointing dropdown button">
+                        <div class="ui inverted top right pointing dropdown link button">
                             <i class="briefcase icon"></i>
-                            <span class="text">Profesi</span>
+                            <span>Profesi</span>
                             <div class="menu">
                                 @if(Session::has('nama_profesi'))
                                 <div class="header" style="font-size:14px">
@@ -472,7 +472,7 @@
                         </div>
                         <div class="ui inverted top right pointing dropdown button" style="margin-left:15px;">
                             <i class="user circle icon"></i>
-                            <span class="text">Akun</span>
+                            <span>Akun</span>
                             <div class="menu">
                                 <a href="/informasi-akun/profil">
                                     <div style="width:250px;padding:20px">

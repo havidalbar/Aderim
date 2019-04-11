@@ -57,10 +57,10 @@
                         <i class="user circle teal icon"></i>
                         {{$profesis[$i]->nama_profesi}}
                     </div>
-                    <div style="margin-top:5px">
-                        <i class="map pin teal icon"></i>
-                        {{ $items[$i]->daerah}}
-                    </div>
+                    <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
+                        <div><i class="map marker alternate teal icon"></i></div>
+                        <div>{{$items[$i]->daerah}}</div>
+                    </div>                    
                 </div>
             </div>
             @elseif($i==0 && $histories[$i]->statusLagi==0 && $histories[$i]->status!="Order sedang diproses" && $histories[$i]->status!="Pembayaran tidak terkonfirmasi")
@@ -117,10 +117,10 @@
                         <i class="user circle teal icon"></i>
                         {{$profesis[$i]->nama_profesi}}
                     </div>
-                    <div style="margin-top:5px">
-                        <i class="map pin teal icon"></i>
-                        {{ $items[$i]->daerah}}
-                    </div>
+                    <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
+                        <div><i class="map marker alternate teal icon"></i></div>
+                        <div>{{$items[$i]->daerah}}</div>
+                    </div> 
                 </div>
             </div>
             @elseif($i==0 && $histories[$i]->status!="Selesai")
@@ -177,10 +177,10 @@
                         <i class="user circle teal icon"></i>
                         {{$profesis[$i]->nama_profesi}}
                     </div>
-                    <div style="margin-top:5px">
-                        <i class="map pin teal icon"></i>
-                        {{ $items[$i]->daerah}}
-                    </div>
+                    <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
+                        <div><i class="map marker alternate teal icon"></i></div>
+                        <div>{{$items[$i]->daerah}}</div>
+                    </div> 
                 </div>
             </div>
             @endif

@@ -49,10 +49,10 @@
                         <i class="user circle teal icon"></i>
                         {{$profesis[$i]->nama_profesi}}
                     </div>
-                    <div style="margin-top:5px">
-                        <i class="map pin teal icon"></i>
-                        {{$items[$i]->daerah}}
-                    </div>
+                    <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
+                        <div><i class="map marker alternate teal icon"></i></div>
+                        <div>{{$items[$i]->daerah}}</div>
+                    </div> 
                 </div>
             </div>    
             @endif  

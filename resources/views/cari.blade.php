@@ -67,127 +67,116 @@
                         <i class="user circle teal icon"></i>
                         {{ $profesis[$i]->nama_profesi}}
                     </div>
-                    <div style="margin-top:5px">
-                        <i class="map pin teal icon"></i>
-                        {{ $items[$i]->daerah}}
-                    </div>
+                    <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
+                        <div><i class="map marker alternate teal icon"></i></div>
+                        <div>{{$items[$i]->daerah}}</div>
+                    </div> 
                 </div>
         </div>
         <!-- Modal Detail -->
         <div class="ui fullscreen modal detail <?php echo $i ?>">
-            <div class="content">
-                <div class="ui stackable grid">
-                    <div class="nine wide column">
-                        <div class="ui stackable grid" style="height:100%">
-                            <div class="twelve wide middle aligned column">
-                                <div class="ui one stackable cards">
-                                    <div class="card">
-                                        <div class="image">
-                                            <img class="ui big image" src="/{{$fotos[0]}}">
-                                        </div>
-                                    </div>
+                <div class="content">
+                    <div class="ui stackable grid">
+                        <div class="nine wide column">
+                            <div class="ui stackable grid" style="height:100%">
+                                <div class="twelve wide middle aligned column">
+                                    <div class="ui one stackable cards">
+                                        <div class="card">
+                                            <div class="image">
+                                                <img class="ui big image" src="/{{$fotos[0]}}">
+                                            </div>
+                                        </div>  
+                                    </div>                                
+                                </div>
+                                <div class="four wide middle aligned column">
+                                @for($j=0; $j < count($fotos); $j++)
+                                    <div class="ui one stackable cards">
+                                        <div class="card">
+                                            <div class="image">
+                                                <img src="/{{$fotos[$j]}}" style="height:145px;object-fit:cover">
+                                            </div>
+                                        </div>  
+                                    </div>                                                                       
+                                @endfor
                                 </div>
                             </div>
-                            <div class="four wide middle aligned column">
-                                @for($j=0; $j < count($fotos); $j++) <div class="ui one stackable cards">
-                                    <div class="card">
-                                        <div class="image">
-                                            <img src="/{{$fotos[$j]}}" style="height:145px;object-fit:cover">
-                                        </div>
-                                    </div>
+                        </div>
+                        <div class="seven wide column">
+                            <div class="ui divider"></div>
+                            <div class="ui grid">
+                                <div class="one wide middle aligned column">
+                                    <i class="info circle large teal icon"></i>
+                                </div>
+                                <div class="fifteen wide column">
+                                    <div style="font-size:22px;color:teal"><b>Detail Proyek</b></div>
+                                </div>
                             </div>
-                            @endfor
+                            <div class="ui divider"></div>
+                            <div class="ui stackable grid">
+                                <div class="three wide column">
+                                    <img class="ui circular image" src="{{asset($profesis[$i]->foto)}}"
+                                        style="width:80px;height:80px;object-fit:cover">
+                                </div>
+                                <div class="thirteen wide column">
+                                    <div style="font-size:22px"><b>{{$profesis[$i]->nama_profesi}}</b></div>
+                                    <div style="font-size:17px">{{$profesis[$i]->job_title}}</div>
+                                </div>
+                            </div>
+                            <div class="ui divider"></div>
+                            <div class="ui stackable grid">
+                                <div class="twelve wide column">
+                                    <div style="font-size:22px">
+                                        <b>{{$items[$i]->namaProject}}</b>
+                                    </div>
+                                    <div style="display:flex;flex-direction:row;align-items: center">
+                                        <div><i class="map marker alternate teal icon"></i></div>
+                                        <div style="font-size:17px">{{$items[$i]->daerah}}</div>
+                                    </div>
+                                </div>
+                                <div class="four wide right aligned middle aligned column">
+                                    <span style="border:2px solid #d4d4d5;border-radius:4px;padding:5px 15px 5px 15px;font-size:17px">
+                                        {{$items[$i]->category}}
+                                    </span>                                
+                                </div>
+                            </div>                            
+                            <div class="ui divider"></div>
+                            <div>
+                                <div style="font-size:17px"><b>Deskripsi</b></div>
+                                <div style="font-size:16px">
+                                    {{$items[$i]->deskripsi}}
+                                </div>
+                            </div>
+                            <div style="margin-top:10px">
+                                <div style="font-size:17px"><b>Spesifikasi</b></div>
+                                <div style="font-size:16px">
+                                        {{$items[$i]->spesifikasi}}
+                                </div>
+                            </div>
+                            <div class="ui divider"></div>
+                            <div class="ui container fluid" style="text-align:right">
+                                <div style="font-size:22px"><b>Biaya Proyek</b></div>
+                                <div style="color:teal;font-size:20px">
+                                    <b>
+                                        <span>Rp </span>
+                                    <span>{{number_format(($items[$i]->estimasi),0,",",".")}}</span>
+                                    </b>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="seven wide column">
-                    <div class="ui divider"></div>
-                    <div class="ui grid">
-                        <div class="one wide middle aligned column">
-                            <i class="info circle large teal icon"></i>
-                        </div>
-                        <div class="fifteen wide column">
-                            <div style="font-size:22px;color:teal"><b>Detail Proyek</b></div>
-                        </div>
-                    </div>
-                    <div class="ui divider"></div>
-                    <div class="ui stackable grid">
-                        <div class="three wide column">
-                            <img class="ui circular image" src="{{asset('arsitek2.jpg')}}"
-                                style="width:80px;height:80px;object-fit:cover">
-                        </div>
-                        <div class="thirteen wide column">
-                            <div style="font-size:22px"><b>Arsitek Java</b></div>
-                            <div style="font-size:17px">Arsitektur</div>
-                        </div>
-                    </div>
-                    <div class="ui divider"></div>
-                    <div class="ui stackable grid">
-                        <div class="twelve wide column">
-                            <div style="font-size:22px">
-                                <b>Rumah Minimalis</b>
-                            </div>
-                        </div>
-                        <div class="four wide middle aligned column">
-                            <button class="ui button basic"><b>Rumah</b></button>
-                        </div>
-                    </div>
-                    <div>
-                        <span><i class="map pin teal icon"></i></span>
-                        <span style="font-size:18px">Surabaya</span>
-                    </div>
-                    <div class="ui divider"></div>
-                    <div>
-                        <div style="font-size:16px"><b>Deskripsi</b></div>
-                        <div style="font-size:15px">
-                            Rumah minimalis dengan lingkungan yang sejuk Rumah minimalis dengan lingkungan yang
-                            sejuk
-                            Rumah
-                            minimalis dengan lingkungan yang sejuk dan sejuk
-                        </div>
-                    </div>
-                    <div style="margin-top:10px">
-                        <div style="font-size:16px"><b>Spesifikasi</b></div>
-                        <div style="font-size:15px">
-                            Rumah minimalis dengan lingkungan yang sejuk Rumah minimalis dengan lingkungan yang
-                            sejuk
-                            Rumah
-                            minimalis dengan lingkungan yang sejuk dan sejuk Rumah minimalis dengan lingkungan
-                            yang
-                            sejuk Rumah minimalis dengan lingkungan yang sejuk
-                            Rumah
-                            minimalis dengan lingkungan yang sejuk dan sejuk Rumah minimalis dengan lingkungan
-                            yang
-                            sejuk Rumah minimalis dengan lingkungan yang sejuk
-                            Rumah
-                            minimalis dengan lingkungan yang sejuk dan sejuk
-                        </div>
-                    </div>
-                    <div class="ui divider"></div>
-                    <div class="ui container fluid" style="text-align:right">
-                        <div style="font-size:22px"><b>Biaya Proyek</b></div>
-                        <div style="color:teal;font-size:20px">
-                            <b>
-                                <span>Rp </span>
-                                <span>400.000.000</span>
-                            </b>
-                        </div>
-                    </div>
+                <div class="actions">
+                    <a href="#">
+                        <button class="ui negative button">
+                            Pilih Lagi
+                        </button>
+                        <button class="ui positive button" onclick="window.location.href='/project/{{$items[$i]->id}}/order'">
+                            Pesan Proyek
+                        </button>
+                    </a>
                 </div>
             </div>
-        </div>
-        <div class="actions">
-            <a href="#">
-                <button class="ui negative button">
-                    Pilih Lagi
-                </button>
-                <button class="ui positive button">
-                    Pesan Proyek
-                </button>
-            </a>
-        </div>
-</div>
-<!--Akhir Modal Detail -->
+        <!--Akhir Modal Detail -->
 @endfor
 </div>
 </div>
