@@ -1,4 +1,4 @@
-@extends ('layouts.cobanavLogin')
+@extends (\Session::has('username') ? 'layouts.navLogin' : 'layouts.nav')
 @section('title', 'Progres Proyek | Aderim')
 
 @section('content')
@@ -11,7 +11,7 @@
             <div class="ui stackable grid" style="height:100%">
                 <?php
                 $fotos = explode(" ", $orderProgres->url_gambar);
-                ?> 
+                ?>
                 <div class="twelve wide column">
                     <div class="ui one stackable cards">
                         <div class="card">
@@ -63,19 +63,15 @@
                     <div style="font-size:22px">
                         <b>{{$items->namaProject}}</b>
                     </div>
-                </div>
-                <div class="four wide middle aligned column">
-                    <button class="ui button basic"><b>{{$items->category}}</b></button>
-                </div>
-            </div>
-            <div class="ui grid">
-                <div class="one wide middle aligned column">
-                    <i class="map pin large teal icon"></i>
-                </div>
-                <div class="fourteen wide column" style="margin-left:5px">
-                    <div style="font-size:17px">
-                            {{$dataOrder->address}}
+                    <div style="margin-top:10px;display:flex;flex-direction:row;align-items: center">
+                        <div><i class="map marker alternate teal icon"></i></div>
+                        <div style="font-size:16px">{{$dataOrder->address}}</div>
                     </div>
+                </div>
+                <div class="four wide right aligned middle aligned column">
+                    <span style="border:2px solid #d4d4d5;border-radius:4px;padding:5px 15px 5px 15px;font-size:17px">
+                        {{$items->category}}
+                    </span>
                 </div>
             </div>
             <div class="ui divider"></div>
@@ -85,7 +81,7 @@
                 <span>{{$dataOrder->statusLagi}}</span>
             </div>
             <div style="font-size:20px;margin-top:15px"><b>Deskripsi Progres</b></div>
-            <div style="font-size:17px;margin-top:10px">
+            <div style="font-size:17px;margin-top:10px;line-height:1.5">
                     {{$orderProgres->pesan}}
             </div>
             <div class="ui divider"></div>
@@ -95,7 +91,7 @@
                     ($dataOrder->status=="Pembayaran tidak terkonfirmasi" && $dataOrder->id_transaksi3==null)||
                     ($dataOrder->status=="Pembayaran tidak terkonfirmasi" && $dataOrder->id_transaksi4==null))
             <form class="ui button teal right floated" action='/bayarLagi?statusLagi={{$dataOrder->statusLagi}}&id={{$dataOrder->id}}' method="post">
-                {{csrf_field()}}    
+                {{csrf_field()}}
                 <button type="submit" class="ui button teal right floated">Bayar Progres Selanjutnya</button>
             </form>
             @endif
@@ -123,9 +119,9 @@
                 <a class="item">
                     {{$j+1}}
                 </a>
-            @endfor 
-    </div>    
+            @endfor
+    </div>
 </div>
 
-@include('layouts.cobafooter')
+@include('layouts.footer')
 @endsection

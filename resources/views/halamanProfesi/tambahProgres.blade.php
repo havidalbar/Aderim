@@ -1,4 +1,4 @@
-@extends ('layouts.cobanavLogin')
+@extends (\Session::has('username') ? 'layouts.navLogin' : 'layouts.nav')
 @section('title', 'Tambah Progres | Aderim')
 
 @section('js')
@@ -62,9 +62,9 @@ Dropzone.options.myDropzone = {
                     <i class="dropdown icon"></i>
                     <div class="default text">Pilih Bulan</div>
                     <div class="menu">
-                        @for($i=1;$i<25;$i++)
+                    @for($i=1;$i<25;$i++)
                     <div class="item" data-value="{{$i}}">{{$i}}</div>
-                        @endfor
+                    @endfor
                     </div>
                 </div>
             </div>
@@ -76,5 +76,5 @@ Dropzone.options.myDropzone = {
     </div>
 </div>
 
-@include('layouts.cobafooter')
+@include('layouts.footer')
 @endsection

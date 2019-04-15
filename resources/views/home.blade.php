@@ -1,4 +1,4 @@
-@extends (\Session::has('username') ? 'layouts.cobanavLogin' : 'layouts.cobanav')
+@extends (\Session::has('username') ? 'layouts.navLogin' : 'layouts.nav')
 @section('title', 'Beranda | Aderim')
 
 @section('content')
@@ -22,7 +22,8 @@
                                         <p style="color:white;font-size:16px">Aderim merupakan merupakan singkatan dari
                                             Arsitek Desain Rumah
                                             Impian. Aderim merupakan pilihan yang tepat bagi
-                                            masyarakat untuk membangun, mendesain, maupun merenovasi rumah, hotel, dan apartemen.
+                                            masyarakat untuk membangun, mendesain, maupun merenovasi rumah, hotel, dan
+                                            apartemen.
                                         </p>
                                     </div>
                                     <div class="row" style="margin-top:30px">
@@ -146,78 +147,78 @@
     </div>
 </div>
 
-<div id="cari"  class="ui container fluid">
-<div class="ui divider"></div>
-<div class="ui container" style="margin-top:30px">
-    <div class="ui center aligned container" style="font-size:36px">
-        <p>Mulai Membuat Rumah Impian?</p>
+<div id="cari" class="ui container fluid">
+    <div class="ui divider"></div>
+    <div class="ui container" style="margin-top:30px">
+        <div class="ui center aligned container" style="font-size:36px">
+            <p>Mulai Membuat Rumah Impian?</p>
+        </div>
+        <div class="ui center aligned container" style="margin-top:10px;font-size:22px">
+            <p>Silahkan cari hingga mendapatkan desain arsitek terbaik pilihan anda</p>
+        </div>
+        <form class="ui fluid action input" style="margin-top:20px;font-size:18px;padding-left:60px;padding-right:60px"
+            method="get" action="/get-search">
+            <input type="text" name="cari" placeholder="Cari desain rumah impian yang ingin anda buat...">
+            <div class="ui button teal">Cari</div>
+        </form>
     </div>
-    <div class="ui center aligned container" style="margin-top:10px;font-size:22px">
-        <p>Silahkan cari hingga mendapatkan desain arsitek terbaik pilihan anda</p>
-    </div>
-    <form class="ui fluid action input" style="margin-top:20px;font-size:18px;padding-left:60px;padding-right:60px" method="get" action="/get-search">
-        <input type="text" name="cari" placeholder="Cari desain rumah impian yang ingin anda buat...">
-        <div class="ui button teal">Cari</div>
-    </form>
-</div>
 
-<div class="ui container" style="margin-top:30px">
-    <div class="ui four stackable doubling link cards">
-        @for($i=0;$i<(count($items)> 10 ? 10 : count($items));$i++)
-            <?php
-        $fotos = explode(" ", $items[$i]->namagambar);
-        ?>
-            <div class="card" onclick="$('.ui.fullscreen.modal.detail.<?php echo $i ?>').modal('show');">
-                <div class="image">
-                    <img src="{{asset($fotos[0])}}" style="object-fit:cover;height:250px">
+    <div class="ui container" style="margin-top:30px">
+        <div class="ui four stackable doubling link cards">
+            @for($i=0;$i<(count($items)> 10 ? 10 : count($items));$i++)
+                <?php
+                $fotos = explode(" ", $items[$i]->namagambar);
+                ?>
+                <div class="card" onclick="$('.ui.fullscreen.modal.detail.<?php echo $i ?>').modal('show');">
+                    <div class="image">
+                        <img src="{{asset($fotos[0])}}" style="object-fit:cover;height:250px">
+                    </div>
+                    <div class="content">
+                        <div class="header">{{$items[$i]->namaProject}}</div>
+                        <div class="meta" style="margin-top:5px">
+                            <span style="border:2px solid #d4d4d5;border-radius:4px;padding:2px 4px 2px 4px">
+                                {{$items[$i]->category}}
+                            </span>
+                        </div>
+                        <div class="description">
+                            {{$items[$i]->deskripsi}}
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <div>
+                            <i class="user circle teal icon"></i>
+                            {{$profesis[$i]->nama_profesi}}
+                        </div>                        
+                        <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
+                            <div><i class="map marker alternate teal icon"></i></div>
+                            <div>{{$items[$i]->daerah}}</div>
+                        </div>                        
+                    </div>
                 </div>
-                <div class="content">
-                    <div class="header">{{$items[$i]->namaProject}}</div>
-                    <div class="meta" style="margin-top:5px">
-                        <span style="border:2px solid #d4d4d5;border-radius:4px;padding:2px 4px 2px 4px">
-                            {{$items[$i]->category}}
-                        </span>
-                    </div>
-                    <div class="description">
-                        {{$items[$i]->deskripsi}}
-                    </div>
-                </div>
-                <div class="extra content">
-                    <div>
-                        <i class="user circle teal icon"></i>
-                        {{$profesis[$i]->nama_profesi}}
-                    </div>
-                    <div style="margin-top:5px">
-                        <i class="map pin teal icon"></i>
-                        {{$items[$i]->daerah}}
-                    </div>
-                </div>
-            </div>
-            <!-- Modal Detail -->
-            <div class="ui fullscreen modal detail <?php echo $i ?>">
-                <div class="content">
-                    <div class="ui stackable grid">
-                        <div class="nine wide column">
-                            <div class="ui stackable grid" style="height:100%">
-                                <div class="twelve wide middle aligned column">
-                                    <div class="ui one stackable cards">
-                                        <div class="card">
-                                            <div class="image">
-                                                <img class="ui big image" src="/{{$fotos[0]}}">
+                <!-- Modal Detail -->
+                <div class="ui fullscreen modal detail <?php echo $i ?>">
+                    <div class="content">
+                        <div class="ui stackable grid">
+                            <div class="nine wide column">
+                                <div class="ui stackable grid" style="height:100%">
+                                    <div class="twelve wide middle aligned column">
+                                        <div class="ui one stackable cards">
+                                            <div class="card">
+                                                <div class="image">
+                                                    <img class="ui big image" src="/{{$fotos[0]}}">
+                                                </div>
                                             </div>
-                                        </div>  
-                                    </div>                                
-                                </div>
-                                <div class="four wide middle aligned column">
-                                @for($j=0; $j < count($fotos); $j++)
-                                    <div class="ui one stackable cards">
-                                        <div class="card">
-                                            <div class="image">
-                                                <img src="/{{$fotos[$j]}}" style="height:145px;object-fit:cover">
+                                        </div>
+                                    </div>
+                                    <div class="four wide middle aligned column">
+                                        @for($j=0; $j < count($fotos); $j++) <div class="ui one stackable cards">
+                                            <div class="card">
+                                                <div class="image">
+                                                    <img src="/{{$fotos[$j]}}" style="height:145px;object-fit:cover">
+                                                </div>
                                             </div>
-                                        </div>  
-                                    </div>                                                                       
-                                @endfor
+                                    </div>
+                                    @endfor
                                 </div>
                             </div>
                         </div>
@@ -246,28 +247,31 @@
                             <div class="ui stackable grid">
                                 <div class="twelve wide column">
                                     <div style="font-size:22px">
-                                    <b>{{$items[$i]->namaProject}}</b>
+                                        <b>{{$items[$i]->namaProject}}</b>
+                                    </div>
+                                    <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
+                                        <div><i class="map marker alternate teal icon"></i></div>
+                                        <div style="font-size:17px">{{$items[$i]->daerah}}</div>
                                     </div>
                                 </div>
-                                <div class="four wide middle aligned column">
-                                <button class="ui button basic"><b>{{$items[$i]->category}}</b></button>
+                                <div class="four wide right aligned middle aligned column">
+                                    <span
+                                        style="border:2px solid #d4d4d5;border-radius:4px;padding:5px 15px 5px 15px;font-size:17px">
+                                        {{$items[$i]->category}}
+                                    </span>
                                 </div>
-                            </div>
-                            <div>
-                                <span><i class="map pin teal icon"></i></span>
-                            <span style="font-size:18px">{{$items[$i]->daerah}}</span>
                             </div>
                             <div class="ui divider"></div>
                             <div>
-                                <div style="font-size:16px"><b>Deskripsi</b></div>
-                                <div style="font-size:15px">
+                                <div style="font-size:17px"><b>Deskripsi</b></div>
+                                <div style="font-size:16px">
                                     {{$items[$i]->deskripsi}}
                                 </div>
                             </div>
                             <div style="margin-top:10px">
-                                <div style="font-size:16px"><b>Spesifikasi</b></div>
-                                <div style="font-size:15px">
-                                        {{$items[$i]->spesifikasi}}
+                                <div style="font-size:17px"><b>Spesifikasi</b></div>
+                                <div style="font-size:16px">
+                                    {{$items[$i]->spesifikasi}}
                                 </div>
                             </div>
                             <div class="ui divider"></div>
@@ -276,7 +280,7 @@
                                 <div style="color:teal;font-size:20px">
                                     <b>
                                         <span>Rp </span>
-                                    <span>{{number_format(($items[$i]->estimasi),0,",",".")}}</span>
+                                        <span>{{number_format(($items[$i]->estimasi),0,",",".")}}</span>
                                     </b>
                                 </div>
                             </div>
@@ -288,14 +292,15 @@
                         <button class="ui negative button">
                             Pilih Lagi
                         </button>
-                        <button class="ui positive button" onclick="window.location.href='/project/{{$items[$i]->id}}/order'">
+                        <button class="ui positive button"
+                            onclick="window.location.href='/project/{{$items[$i]->id}}/order'">
                             Pesan Proyek
                         </button>
                     </a>
                 </div>
-            </div>
-            <!--Akhir Modal Detail -->
-            @endfor
+        </div>
+        <!--Akhir Modal Detail -->
+        @endfor
     </div>
     <div class="ui center aligned container" style="margin-top:40px">
         <a href="#">
@@ -314,5 +319,5 @@
 
 
 
-@include('layouts.cobafooter')
+@include('layouts.footer')
 @endsection

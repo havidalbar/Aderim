@@ -1,4 +1,4 @@
-@extends ('layouts.cobanavLogin')
+@extends (\Session::has('username') ? 'layouts.navLogin' : 'layouts.nav')
 @section('title', 'Tambah Proyek | Aderim')
 
 @section('js')
@@ -92,5 +92,5 @@
     </div>
 </div>
 
-@include('layouts.cobafooter')
+@include('layouts.footer')
 @endsection

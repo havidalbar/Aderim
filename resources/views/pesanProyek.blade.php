@@ -1,4 +1,4 @@
-@extends ('layouts.cobanavLogin')
+@extends (\Session::has('username') ? 'layouts.navLogin' : 'layouts.nav')
 @section('title', 'Pesan Proyek | Aderim')
 
 @section('js')
@@ -42,9 +42,9 @@ Dropzone.options.myDropzone = {
             </div>
             <div class="thirteen wide column">
                 <div style="font-size:22px"><b>{{$profesi->nama_profesi}}</b></div>
-                <div style="margin-top:5px">
-                    <span><i class="map pin teal icon"></i></span>
-                    <span style="font-size:18px">{{$desProject->daerah}}</span>
+                <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
+                    <div><i class="map marker alternate teal icon"></i></div>
+                    <div style="font-size:18px">{{$desProject->daerah}}</div>
                 </div>
             </div>
         </div>
@@ -98,5 +98,5 @@ Dropzone.options.myDropzone = {
 </div>
 
 
-@include('layouts.cobafooter')
+@include('layouts.footer')
 @endsection

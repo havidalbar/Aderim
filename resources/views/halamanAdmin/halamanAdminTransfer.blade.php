@@ -1,4 +1,4 @@
-@extends (\Session::has('username') ? 'layouts.cobanavLogin' : 'layouts.cobanav')
+@extends (\Session::has('username') ? 'layouts.navLogin' : 'layouts.nav')
 @section('title', 'Halaman Admin | Konfirmasi Pembayaran')
 
 @section('content')
@@ -20,5 +20,5 @@
     </div>
 </div>
 
-@include('layouts.cobafooter')
+@include('layouts.footer')
 @endsection

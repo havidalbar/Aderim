@@ -1,4 +1,4 @@
-@extends ('layouts.cobanavLogin')
+@extends (\Session::has('username') ? 'layouts.navLogin' : 'layouts.nav')
 @section('title', 'Periksa Pesanan Proyek | Aderim')
 
 @section('content')
@@ -23,9 +23,9 @@
             </div>
             <div class="thirteen wide column">
                 <div style="font-size:22px"><b>{{$profesi->nama_profesi}}</b></div>
-                <div style="margin-top:5px">
-                    <span><i class="map pin teal icon"></i></span>
-                    <span style="font-size:18px">{{$items->daerah}}</span>
+                <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
+                    <div><i class="map marker alternate teal icon"></i></div>
+                    <div style="font-size:18px">{{$items->daerah}}</div>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
         ?>
         <div class="ui divider"></div>
         <div style="font-size:18px"><b>Gambar Desain</b></div>
-        <div class="ui container fluid" style="margin-top:20px">
+        <div class="ui container fluid" style="margin-top:5px">
             <div class="ui four stackable cards">
                 @for($j=0; $j < count($fotos); $j++) <div class="card">
                     <div class="image">
@@ -49,8 +49,8 @@
         enctype="multipart/form-data">
         <div class="field">
             <label style="font-size:18px">Deskripsi Proyek</label>
-            <input name="pesan" value="{{$orders->pesan}}" required type="text" readonly
-                style="background-color:#e8e8e8;border:none">
+            <textarea name="pesan" rows="6" placeholder="{{$orders->pesan}}" required type="text" readonly
+                style="background-color:#e8e8e8;border:none"></textarea>
         </div>
         <div class="field">
             <label style="font-size:18px">Total Biaya Proyek</label>
@@ -110,5 +110,5 @@
     </div>
 </div>
 
-@include('layouts.cobafooter')
+@include('layouts.footer')
 @endsection

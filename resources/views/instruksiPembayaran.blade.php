@@ -1,4 +1,4 @@
-@extends ('layouts.cobanavLogin')
+@extends (\Session::has('username') ? 'layouts.navLogin' : 'layouts.nav')
 @section('title', 'Instruksi Pembayaran | Aderim')
 
 @section('js')
@@ -185,5 +185,5 @@ Dropzone.options.myDropzone = {
     </form>
 </div>
 
-@include('layouts.cobafooter')
+@include('layouts.footer')
 @endsection

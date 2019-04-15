@@ -1,175 +1,507 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>@yield('title')</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" href="{{asset('/aderimLogoBGWhite.jpg')}}">
 
-        <!--STYLE-->
-        @yield('css')
-        <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
-        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>@yield('title')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <!-- Site Properties -->
+    <link rel="stylesheet" href="{{asset('css/dropzone.css')}}">
+    <script src="/js/dropzone.js"></script>
+    <link rel="icon" href="assets/image/favicon.ico" type="image/gif">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="http://semantic-ui.com/javascript/library/tablesort.js"></script>
 
-        <!--FRAMEWORK-->
-        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    </head>
-    <body>
+    @yield('js')
 
-        <header>
+    <style type="text/css">
+    .hidden.menu {
+        display: none;
+    }
+    .masthead.segment {
+        min-height: 700px;
+        padding: 1em 0em;
+    }
+    .masthead .logo.item img {
+        margin-right: 1em;
+    }
+    .masthead .ui.menu .ui.button {
+        margin-left: 0.5em;
+    }
+    .masthead h1.ui.header {
+        margin-top: 3em;
+        margin-bottom: 0em;
+        font-size: 4em;
+        font-weight: normal;
+    }
+    .masthead h2 {
+        font-size: 1.7em;
+        font-weight: normal;
+    }
+    .ui.vertical.stripe {
+        padding: 8em 0em;
+    }
+    .ui.vertical.stripe h3 {
+        font-size: 2em;
+    }
+    .ui.vertical.stripe .button+h3,
+    .ui.vertical.stripe p+h3 {
+        margin-top: 3em;
+    }
+    .ui.vertical.stripe .floated.image {
+        clear: both;
+    }
+    .ui.vertical.stripe p {
+        font-size: 1.33em;
+    }
+    .ui.vertical.stripe .horizontal.divider {
+        margin: 3em 0em;
+    }
+    .quote.stripe.segment {
+        padding: 0em;
+    }
+    .quote.stripe.segment .grid .column {
+        padding-top: 5em;
+        padding-bottom: 5em;
+    }
+    .footer.segment {
+        padding: 5em 0em;
+    }
+    .secondary.menu .toc.item {
+        display: none;
+    }
+    @media only screen and (max-width: 1024px) {
+        .ui.fixed.menu {
+            display: none !important;
+        }
+        .secondary.inverted.menu .item,
+        .secondary.inverted.menu .menu {
+            display: none;
+        }
+        .secondary.inverted.menu .toc.item {
+            display: block;
+        }
+    }
+    </style>
+    <script>
+    $(document)
+        .ready(function() {
+            // fix menu when passed
+            $('.inverted.vertical')
+                .visibility({
+                    once: false,
+                    onBottomPassed: function() {
+                        $('.fixed.menu').transition('fade in');
+                    },
+                    onBottomPassedReverse: function() {
+                        $('.fixed.menu').transition('fade out');
+                    }
+                });
+            // create sidebar and attach to menu open
+            $('.ui.sidebar')
+                .sidebar('attach events', '.toc.item');
+            $('table')
+                .tablesort();
+            $('.menu .item')
+                .tab();
+            $('.ui.dropdown')
+                .dropdown();
+            $('select.dropdown')
+                .dropdown();
+            $('.special.cards .image').dimmer({
+                on: 'hover'
+            });
+            $('.special.cards .segments').dimmer({
+                on: 'hover'
+            });
+            //Get Data
+            var date = $('.date');
+            var inputD = $('#dateD');
+            var inputF = $('#dateF');
+            date.on('click', function() {
+                var valueD = $(this).data('value');
+                var valueF = $(this).data('formatted');
+                alert(valueD);
+                /* inputD.val(valueD);
+                inputF.val(valueF);
+                console.log(valueD); */
+            });
+        });
+    </script>
+    <script>
+    //Salin Nilai
+    function copyToClipboard(element) {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(element).text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+    }
+    //Popup Berhasil
+    var popupTimer;
+    function delayPopup(popup) {
+        popupTimer = setTimeout(function() {
+            $(popup).popup('hide')
+        }, 1000);
+    }
+    $(document).ready(function() {
+        $('.copyToken').click(function() {
+            clearTimeout(popupTimer);
+            var $input = $(this).closest('div').find('.copyInput');
+            /* Select the text field */
+            $input.select();
+            /* Copy the text inside the text field */
+            document.execCommand("copy");
+            $(this)
+                .popup({
+                    title: 'Berhasil Disalin!',
+                    on: 'manual',
+                    exclusive: true
+                })
+                .popup('show');
+            // Hide popup after 5 seconds
+            delayPopup(this);
+        });
+    });
+    </script>
+    <script>
+    $(document)
+        .ready(function() {});
+    //Tampilkan gambar yang dipilih
+    function previewImage(preview, unggah) {
+        document.getElementById(preview).style.display = "block";
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById(unggah).files[0]);
+        oFReader.onload = function(oFREvent) {
+            document.getElementById(preview).src = oFREvent.target.result;
+        };
+    };
+    </script>
+</head>
+
+<body class="pushable">
     @if(\Session::has('alert'))
     <script type="text/javascript">
-      alert("{{Session::get('alert')}}");
+    alert("{{Session::get('alert')}}");
     </script>
-  @endif
-  @if(\Session::has('alert-success'))
-  <script type="text/javascript">
-      alert("{{Session::get('alert-success')}}");
+    @endif
+    @if(\Session::has('alert-success'))
+    <script type="text/javascript">
+    alert("{{Session::get('alert-success')}}");
     </script>
-  @endif
-        <div id="navbarHeader">
-            <div class="container">
-                <div class="row kolomA">
-                    <ul class="ukuran-besar-navBar pull-left">
-                      <li class="upper-links"><a class="links" href="/home">BERANDA</a></li>
-                      @if(Session::has('nama_profesi'))
-                      <li class="upper-links"><a href="/tambah-project/{{Session::get('id_profesi')}}" class="links">TAMBAH PROJECT</a></li>
-                      <li class="upper-links"><a href="/profesi/{{Session::get('id_profesi')}}" class="links">PROFESI SAYA</a></li>
-                      @else
-                      <li  class="upper-links"><a href="/daftar-profesi" class="links">DAFTAR PROFESI</a></li>
-                      @endif
-                      <li class="upper-links"><a class="links" href="/order-progres">ORDER PROGRES</a></li>
-                      <li class="upper-links"><a class="links" href="/order">ORDER</a></li>
-                      @if(Session::get('username') == "admin")
-                      <li class="upper-links"><a href="/halaman-admin" class="links"><i class="fas fa-book-open"></i> HALAMAN ADMIN</a></li>
-                      @endif
-                    </ul>
-                </div>
-                <div class="row kolomB">
-                    <div class="col-sm-2 logo">
-                        <h2><span class="ukuran-kecil-navBar menu" onclick="openNav()"><i class="fas fa-bars"></i></span></h2>
-                        <a href="/home"><h2><span class="ukuran-kecil-navBar menu">ADERIM</span></h2></a>
-                        <a href="/home"><h1><span class="ukuran-besar-navBar"><b>ADERIM</b></span></h1></a>
+    @endif
+    <!-- Following Menu -->
+    <div class="ui large top borderless menu fixed transition hidden">
+        <div class="ui container">
+            <div class="item" style="margin-right:10px">
+                <a href="/" style="color:black">Aderim
+                    <i class="pencil icon"></i></a>
+            </div>
+            <a class="item" href="/">Beranda</a>
+            <a class="item" href="/kategori/rumah">Rumah</a>
+            <a class="item" href="/kategori/hotel">Hotel</a>
+            <a class="item" href="/kategori/apartemen">Apartemen</a>
+            <div class="item">
+                <form class="ui icon input" method="get" action="/get-search" style="width:350px">
+                    <input type="text" placeholder="Cari sesuatu..." name="cari">
+                    <i class="search link icon"></i>
+                </form>
+            </div>
+            <div class="right item">
+                <div class="ui teal top right pointing dropdown button">
+                    <i class="briefcase icon"></i>
+                    <span>Profesi</span>
+                    <div class="menu">
+                        @if(Session::has('nama_profesi'))
+                        <div class="header" style="font-size:14px">
+                            Informasi Profesi
+                        </div>
+                        <a class="item" href="/halaman-profesi/{{Session::get('id_profesi')}}/informasi"
+                            style="margin-left:20px;margin-right:20px">
+                            Profil Profesi
+                        </a>
+                        <div class="header" style="font-size:14px">
+                            Proyek Profesi
+                        </div>
+                        <a class="item" href="/halaman-profesi/tambah-project" style="margin-left:20px;margin-right:20px">
+                            Tambah Proyek
+                        </a>
+                        <a class="item" href="/halaman-profesi/{{Session::get('id_profesi')}}/project" style="margin-left:20px;margin-right:20px">
+                            Kumpulan Proyek
+                        </a>
+                        <a class="item" href="/halaman-profesi/pesanan" style="margin-left:20px;margin-right:20px">
+                            Pesanan Proyek
+                        </a>
+                        <a class="item" href="/halaman-profesi/progres" style="margin-left:20px;margin-right:20px">
+                            Progres Pesanan Proyek
+                        </a>
+                        @else
+                        <a class="item" href="/daftar-profesi" style="margin-left:20px;margin-right:20px">
+                            Daftar Profesi
+                        </a>
+                        @endif
                     </div>
-                    <div class="navbarHeader-search smallsearch col-sm-6 col-xs-11">
-                        <div class="row">
-                            <form class="navbar-form navbar-right" method="GET" action="/get-search" style="margin-left: 0px;">
-                                <div class="searchbar">
-                                    <input class="search_input" type="text" name="cari" placeholder="Cari Project">
-                                    <input class="search_icon" type="submit" value="➤" style="cursor:pointer;">
+                </div>
+                <div class="ui teal top right pointing dropdown button" style="margin-left:15px">
+                    <i class="user circle icon"></i>
+                    <span>Akun</span>
+                    <div class="menu">
+                        <a href="/informasi-akun/profil">
+                            <div style="width:250px;padding:20px">
+                                <img class="ui circular centered image" src="{{asset(Session::get('foto'))}}"
+                                    style="border:5px solid teal;padding:3px;width:100px;height:100px;object-fit:cover">
+                                <div style="font-size:18px;text-align:center;margin-top:15px;color:black">
+                                    {{Session::get('name')}}
                                 </div>
-                            </form>
+                                <div style="font-weight:100;margin-top:10px;text-align:center;color:#4d4d4d">
+                                    {{Session::get('email')}}
+                                </div>
+                            </div>
+                        </a>
+                        <div class="divider"></div>
+                        @if(Session::get('username') == "admin")
+                        <a class="item" href="/halaman-admin">
+                            <div style="font-size:14px">
+                                <b>HALAMAN ADMIN</b>
+                            </div>
+                        </a>
+                        @endif
+                        <div class="header" style="font-size:14px">
+                            Informasi Akun
                         </div>
-                    </div>
-                    <div class="ukuran-besar-navBar col-sm-2 pull-right navbarBeliKategori" style="width: 162px; padding-left: 0px;">
-                      <li class="upper-links dropdown"><a href="/informasi-akun" class="dropdown-toggle links" data-toggle="dropdown"><i class="fas fa-user"></i> {{\Session::get('username')}}</a>
-                        <ul class="dropdown-menu">
-                          <li><a href="/informasi-akun">Informasi Akun</a></li>
-                          <li><a href="/progres-order">Progres Order</a></li>
-                          <li><a href="/riwayat-order">History Order</a></li>
-                          <li><a href="/logoutproses">Log Out</a></li>
-                        </ul>
-                      </li>
-                    </div>
-                    <div class="ukuran-besar-navBar col-sm-2 pull-right navbarBeliKategori" style="width: 162px; padding-left: 0px;">
-                        <li class="upper-links dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-archive"></i> KATEGORI</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/kategori/rumah"><i class="fas fa-home"></i> Rumah</a></li>
-                                <li><a href="/kategori/hotel"><i class="fas fa-hotel"></i> Hotel</a></li>
-                                <li><a href="/kategori/apartemen"><i class="fas fa-building"></i> Apartemen</a></li>
-                            </ul>
-                        </li>
+                        <a class="item" href="/informasi-akun/profil" style="margin-left:20px;margin-right:20px">
+                            Profil
+                        </a>
+                        <a class="item" href="/informasi-akun/progres" style="margin-left:20px;margin-right:20px">
+                            Progres Orderan
+                        </a>
+                        <a class="item" href="/informasi-akun/riwayat" style="margin-left:20px;margin-right:20px">
+                            Riwayat Orderan
+                        </a>
+                        <a href="/logoutproses">
+                            <button class="ui fluid teal button" style="margin-top:10px">
+                                <i class="sign-out icon"></i>
+                                Keluar
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="myNavbarSamping" class="navbar-samping">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <button class="dropdown-btn">
-                <i class="fas fa-user"></i> {{\Session::get('username')}} <i class="caret"></i>
-            </button>
-            <div class="dropdown-container-navBar-samping">
-                <a href="/informasi-akun">Informasi Akun</i></a>
-                <a href="/progres-order">Progres Order</a>
-                <a href="/riwayat-order">History Order</i></a>
-                <a href="/logoutproses">Log Out</i></a>
-            </div>
-            @if(Session::get('username') == "admin")
-            <a href="/halaman-admin">HALAMAN ADMIN</a>
-            @endif
-            @if(Session::has('nama_profesi'))
-            <button class="dropdown-btn">
-                <i class="fas fa-pencil-ruler"></i> PROFESI <i class="caret"></i>
-            </button>
-            <div class="dropdown-container-navBar-samping">
-                <a href="/tambah-project">Tambah Project</i></a>
-                <a href="/profesi/{{Session::get('id_profesi')}}">Profesi Saya</i></a>
-            </div>
-            @else
-            <a href="/daftar-profesi">DAFTAR PROFESI</a>
-            @endif
-            <button class="dropdown-btn">
-                <i class="fas fa-archive"></i> KATEGORI <i class="caret"></i>
-            </button>
-            <div class="dropdown-container-navBar-samping">
-                <a href="/kategori/rumah">Rumah <i class="fas fa-home"></i></a>
-                <a href="/kategori/hotel">Hotel <i class="fas fa-hotel"></i></a>
-                <a href="/kategori/apartemen">Apartemen <i class="fas fa-building"></i></a>
-            </div>
-            <a href="/order">ORDER</a>
-            <a href="/order-progres">ORDER PROGRES</a>
-            <a href="/home">BERANDA</a>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <div class="ui vertical inverted sidebar borderless menu left" style="background-color:#273d40">
+        <div class="item" style="margin-right:10px">
+            <a class="ui tiny image" href="#">
+                <img src="assets/image/HELPPET-LIGHT.png">
+            </a>
         </div>
-        </header>
+        <a class="item" href="/">Beranda</a>
+        <a class="item" href="/kategori/rumah">Rumah</a>
+        <a class="item" href="/kategori/hotel">Hotel</a>
+        <a class="item" href="/kategori/apartemen">Apartemen</a>
+        <div class="right item">
+            <div class="ui inverted top right pointing dropdown button">
+                <i class="briefcase icon"></i>
+                <span>Profesi</span>
+                <div class="menu">
+                    <div class="divider"></div>
+                    @if(Session::has('nama_profesi'))
+                    <div class="header" style="font-size:14px">
+                        Informasi Profesi
+                    </div>
+                    <a class="item" href="/halaman-profesi/{{Session::get('id_profesi')}}/informasi"
+                        style="margin-left:20px;margin-right:20px">
+                        Profil Profesi
+                    </a>
+                    <div class="header" style="font-size:14px">
+                        Proyek Profesi
+                    </div>
+                    <a class="item" href="/halaman-profesi/tambah-project" style="margin-left:20px;margin-right:20px">
+                        Tambah Proyek
+                    </a>
+                    <a class="item" href="/halaman-profesi/{{Session::get('id_profesi')}}/project" style="margin-left:20px;margin-right:20px">
+                        Kumpulan Proyek
+                    </a>
+                    <a class="item" href="/halaman-profesi/pesanan" style="margin-left:20px;margin-right:20px">
+                        Pesanan Proyek
+                    </a>
+                    <a class="item" href="/halaman-profesi/progres" style="margin-left:20px;margin-right:20px">
+                        Progres Pesanan Proyek
+                    </a>
+                    @else
+                    <a class="item" href="/daftar-profesi" style="margin-left:20px;margin-right:20px">
+                        Daftar Profesi
+                    </a>
+                    @endif
+                </div>
+            </div>
+            <div class="ui inverted top right pointing dropdown button" style="margin-left:15px">
+                <i class="user circle icon"></i>
+                <span>Akun</span>
+                <div class="menu">
+                    <a href="/informasi-akun/profil">
+                        <div style="width:250px;padding:20px">
+                            <img class="ui circular centered image" src="{{asset(Session::get('foto'))}}"
+                                style="border:5px solid teal;padding:3px;width:100px;height:100px;object-fit:cover">
+                            <div style="font-size:18px;text-align:center;margin-top:15px;color:black">
+                                {{Session::get('name')}}
+                            </div>
+                            <div style="font-weight:100;margin-top:10px;text-align:center;color:#4d4d4d">
+                                {{Session::get('email')}}
+                            </div>
+                        </div>
+                    </a>
+                    <div class="divider"></div>
+                    @if(Session::get('username') == "admin")
+                    <a class="item" href="/halaman-admin">
+                        <div style="font-size:14px">
+                            <b>HALAMAN ADMIN</b>
+                        </div>
+                    </a>
+                    @endif
+                    <div class="header" style="font-size:14px">
+                        Informasi Akun
+                    </div>
+                    <a class="item" href="/informasi-akun/profil" style="margin-left:20px;margin-right:20px">
+                        Profil
+                    </a>
+                    <a class="item" href="/informasi-akun/progres" style="margin-left:20px;margin-right:20px">
+                        Progres Orderan
+                    </a>
+                    <a class="item" href="/informasi-akun/riwayat" style="margin-left:20px;margin-right:20px">
+                        Riwayat Orderan
+                    </a>
+                    <a href="/logoutproses">
+                        <button class="ui fluid teal button" style="margin-top:10px">
+                            <i class="sign-out icon"></i>
+                            Keluar
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <section id="branda" class="container">
-            <br>
-            <br>
-
-            <br>@yield('content')</br>
-            <br><br><br><br><br><br><br>
-        </section>
-
-        <footer class="section footer-classic context-dark bg-image">
-            <div class="container">
-                <div class="row row-30">
-                    <div class="col-md-4 col-xl-5">
-                        <div class="pr-xl-4">
-                            <p><br>Universitas Brawijaya<br>Fakultas Ilmu Komputer</p>
-                            <!-- Rights-->
-                            <p class="rights"><span>©  </span><span class="copyright-year">2019</span><span> </span><span>ADERIM</span><span>. </span><span>Kelompok X.</span></p>
+    <!-- Main Menu -->
+    <div class="pusher">
+        <div class="ui inverted vertical center aligned segment" style="background-color:#273d40">
+            <div class="ui container">
+                <div class="ui large secondary inverted menu">
+                    <a class="toc item">
+                        <i class="sidebar icon"></i>
+                    </a>
+                    <div class="item" style="margin-right:10px">
+                        <a href="/" style="color:white">Aderim
+                            <i class="pencil icon"></i></a>
+                    </div>
+                    <a class="item" href="/">Beranda</a>
+                    <a class="item" href="/kategori/rumah">Rumah</a>
+                    <a class="item" href="/kategori/hotel">Hotel</a>
+                    <a class="item" href="/kategori/apartemen">Apartemen</a>
+                    <div class="item">
+                        <form class="ui icon input" method="get" action="/get-search" style="width:350px">
+                            <input type="text" placeholder="Cari sesuatu..." name="cari">
+                            <i class="search link icon"></i>
+                        </form>
+                    </div>
+                    <div class="right item">
+                        <div class="ui inverted top right pointing dropdown link button">
+                            <i class="briefcase icon"></i>
+                            <span>Profesi</span>
+                            <div class="menu">
+                                @if(Session::has('nama_profesi'))
+                                <div class="header" style="font-size:14px">
+                                    Informasi Profesi
+                                </div>
+                                <a class="item" href="/halaman-profesi/{{Session::get('id_profesi')}}/informasi"
+                                    style="margin-left:20px;margin-right:20px">
+                                    Profil Profesi
+                                </a>
+                                <div class="header" style="font-size:14px">
+                                    Proyek Profesi
+                                </div>
+                                <a class="item" href="/halaman-profesi/tambah-project" style="margin-left:20px;margin-right:20px">
+                                    Tambah Proyek
+                                </a>
+                                <a class="item" href="/halaman-profesi/{{Session::get('id_profesi')}}/project" style="margin-left:20px;margin-right:20px">
+                                    Kumpulan Proyek
+                                </a>
+                                <a class="item" href="/halaman-profesi/pesanan" style="margin-left:20px;margin-right:20px">
+                                    Pesanan Proyek
+                                </a>
+                                <a class="item" href="/halaman-profesi/progres" style="margin-left:20px;margin-right:20px">
+                                    Progres Pesanan Proyek
+                                </a>
+                                @else
+                                <a class="item" href="/daftar-profesi" style="margin-left:20px;margin-right:20px">
+                                    Daftar Profesi
+                                </a>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="ui inverted top right pointing dropdown button" style="margin-left:15px;">
+                            <i class="user circle icon"></i>
+                            <span>Akun</span>
+                            <div class="menu">
+                                <a href="/informasi-akun/profil">
+                                    <div style="width:250px;padding:20px">
+                                        <img class="ui circular centered image" src="{{asset(Session::get('foto'))}}"
+                                            style="border:5px solid teal;padding:3px;width:100px;height:100px;object-fit:cover">
+                                        <div style="font-size:18px;text-align:center;margin-top:15px;color:black">
+                                            {{Session::get('name')}}
+                                        </div>
+                                        <div style="font-weight:100;margin-top:10px;color:#4d4d4d;text-align:center">
+                                            {{Session::get('email')}}
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="divider"></div>
+                                @if(Session::get('username') == "admin")
+                                <a class="item" href="/halaman-admin">
+                                    <div style="font-size:14px">
+                                        <b>HALAMAN ADMIN</b>
+                                    </div>
+                                </a>
+                                @endif
+                                <div class="header" style="font-size:14px">
+                                    Informasi Akun
+                                </div>
+                                <a class="item" href="/informasi-akun/profil"
+                                    style="margin-left:20px;margin-right:20px">
+                                    Profil
+                                </a>
+                                <a class="item" href="/informasi-akun/progres"
+                                    style="margin-left:20px;margin-right:20px">
+                                    Progres Orderan
+                                </a>
+                                <a class="item" href="/informasi-akun/riwayat"
+                                    style="margin-left:20px;margin-right:20px">
+                                    Riwayat Orderan
+                                </a>
+                                <a href="/logoutproses">
+                                    <button class="ui fluid teal button" style="margin-top:10px">
+                                        <i class="sign-out icon"></i>
+                                        Keluar
+                                    </button>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                <div class="col-md-4">
-                    <h5>Kontak</h5>
-                    <dl class="contact-list">
-                        <dt>Alamat:</dt>
-                        <dd>Jl. Veteran No.8 Polinema</dd>
-                    </dl>
-                    <dl class="contact-list">
-                        <dt>Email:</dt>
-                        <dd><a href="mailto:#" style="color: white;"><u>aderimofficial@gmail.com</u></a></dd>
-                    </dl>
-                </div>
-                <div class="col-md-4 col-xl-3">
-                    <h5 style="color: red;">Tambahan</h5>
-                    <ul class="nav-list">
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Kelompok 10</a></li>
-                        <li><a href="#">Bcc 2019</a></li>
-                    </ul>
-                </div>
                 </div>
             </div>
-        </footer>
-        <button onclick="topFunction()" id="backtop" title="Kembali ke atas">&#8657</button>
+        </div>
 
-    </body>
+        @yield('content')
+    </div>
 
-    <!--SCRIPT-->
-    @yield('js')
-    <script src="{{asset('js/scriptLain.js')}}"></script>
+</body>
 
 </html>

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Project;
 use App\Order;
 use App\Profesi;
+use App\Project;
 use App\Progres;
 use App\User;
 use Carbon\Carbon;
@@ -23,7 +23,7 @@ class ProjectController extends Controller
         return view('home', ['items' => $items, 'profesis' => $profesis]); //
     }
 
-    public function tambahProject()
+    public function getTambahProjectProfesi()
     {
         $profesi = Profesi::where('id', Session::get('id_profesi'))->first();
         if (Session::has('nama_profesi')) {
@@ -36,7 +36,22 @@ class ProjectController extends Controller
             return redirect()->back()->with('alert', "Anda belum mendaftar profesi");
         }
     }
-    public function addProject(Request $request)
+
+    public function ubahProjectProses(Request $request, $id_project)
+    {
+        if ($request['files'] != null) {
+            $dataProfesi = Project::where('id_profesi', Session::get('id_profesi'))->where('id', $id_project)->update([
+                'namagambar' => implode(" ", $request['files']),
+                'namaProject' => $request->namaProject, 'deskripsi' => $request->deskripsi, 'spesifikasi' => $request->spesifikasi, 'category' => $request->category,
+                'daerah' => $request->daerah, 'estimasi' => $request->estimasi
+            ]);
+            return redirect('/')->with('alert', 'Project berhasil di ubah');
+        } else {
+            return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();
+        }
+    }
+
+    public function tambahProjectProses(Request $request)
     {
         if ($request['files'] != null) {
             $data = new Project();
@@ -52,20 +67,6 @@ class ProjectController extends Controller
             return redirect('/')->with('alert', 'Berhasil upload project');
         } else {
             return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();
-        }
-    }
-    public function uploadFotoProject(Request $request)
-    {
-        $time = Carbon::now();
-        $image = $request->file('file');
-        $extension = $image->getClientOriginalExtension();
-        $directory = date_format($time, 'Y') . '/' . date_format($time, 'm');
-        $filename = str_random(5) . date_format($time, 'd') . rand(1, 9) . date_format($time, 'h') . "." . $extension;
-        $upload_success = $image->storeAs($directory, $filename, 'public');
-        if ($upload_success) {
-            return response()->json($upload_success, 200);
-        } else {
-            return response()->json('error', 400);
         }
     }
 
@@ -91,7 +92,7 @@ class ProjectController extends Controller
         return redirect('/search?keyword=' . $request->urutkan);
     }
 
-    public function projectProfesi($id)
+    public function getProjectProfesi($id)
     {
         //informasi profesi
         $profesi = Profesi::where('id', Session::get('id_profesi'))->first();
@@ -104,7 +105,7 @@ class ProjectController extends Controller
                 $dataOrder2 = Order::where('id_profesi', Session::get('id_profesi'))->where('status', 'Pembayaran terkonfirmasi')->get();
                 $items2 = array();
                 for ($i = 0; $i < count($dataOrder2); $i++) {
-                $items2[$i] = Project::where('id', $dataOrder2[$i]->id_project)->first();
+                    $items2[$i] = Project::where('id', $dataOrder2[$i]->id_project)->first();
                 }
                 $users2 = array();
                 for ($i = 0; $i < count($dataOrder2); $i++) {
@@ -143,11 +144,13 @@ class ProjectController extends Controller
                 for ($i = 0; $i < count($dataOrder5); $i++) {
                     $users5[$i] = User::where('id', $dataOrder5[$i]->id_user)->first();
                 }
-                return view('halamanProfesi.kumpulanProyek', ['items' => $items, 'profesi' => $profesi,
-                'dataOrder2' => $dataOrder2, 'users2' => $users2, 'items2' => $items2,
-                'dataOrder3' => $dataOrder3, 'users3' => $users3, 'items3' => $items3,
-                'dataOrder4' => $dataOrder4, 'users4' => $users4, 'items4' => $items4,
-                'dataOrder5' => $dataOrder5, 'users5' => $users5, 'items5' => $items5]); 
+                return view('halamanProfesi.kumpulanProyek', [
+                    'items' => $items, 'profesi' => $profesi,
+                    'dataOrder2' => $dataOrder2, 'users2' => $users2, 'items2' => $items2,
+                    'dataOrder3' => $dataOrder3, 'users3' => $users3, 'items3' => $items3,
+                    'dataOrder4' => $dataOrder4, 'users4' => $users4, 'items4' => $items4,
+                    'dataOrder5' => $dataOrder5, 'users5' => $users5, 'items5' => $items5
+                ]);
             } else {
                 return redirect()->back()->with('alert', "Anda belum disetujui menjadi profesi");
             }
@@ -156,7 +159,7 @@ class ProjectController extends Controller
         }
     }
 
-    public function informasiProfesi($id)
+    public function getInformasiProfesi($id)
     {
         //informasi profesi
         $profesi = Profesi::where('id', Session::get('id_profesi'))->first();
@@ -169,7 +172,7 @@ class ProjectController extends Controller
                 $dataOrder2 = Order::where('id_profesi', Session::get('id_profesi'))->where('status', 'Pembayaran terkonfirmasi')->get();
                 $items2 = array();
                 for ($i = 0; $i < count($dataOrder2); $i++) {
-                $items2[$i] = Project::where('id', $dataOrder2[$i]->id_project)->first();
+                    $items2[$i] = Project::where('id', $dataOrder2[$i]->id_project)->first();
                 }
                 $users2 = array();
                 for ($i = 0; $i < count($dataOrder2); $i++) {
@@ -208,46 +211,49 @@ class ProjectController extends Controller
                 for ($i = 0; $i < count($dataOrder5); $i++) {
                     $users5[$i] = User::where('id', $dataOrder5[$i]->id_user)->first();
                 }
-                return view('halamanProfesi.profilProfesi', ['items' => $items, 'profesi' => $profesi,
-                'dataOrder2' => $dataOrder2, 'users2' => $users2, 'items2' => $items2,
-                'dataOrder3' => $dataOrder3, 'users3' => $users3, 'items3' => $items3,
-                'dataOrder4' => $dataOrder4, 'users4' => $users4, 'items4' => $items4,
-                'dataOrder5' => $dataOrder5, 'users5' => $users5, 'items5' => $items5]); 
+                return view('halamanProfesi.profilProfesi', [
+                    'items' => $items, 'profesi' => $profesi,
+                    'dataOrder2' => $dataOrder2, 'users2' => $users2, 'items2' => $items2,
+                    'dataOrder3' => $dataOrder3, 'users3' => $users3, 'items3' => $items3,
+                    'dataOrder4' => $dataOrder4, 'users4' => $users4, 'items4' => $items4,
+                    'dataOrder5' => $dataOrder5, 'users5' => $users5, 'items5' => $items5
+                ]);
             } else {
                 return redirect()->back()->with('alert', "Anda belum disetujui menjadi profesi");
             }
         } else {
             return redirect()->back()->with('alert', "Anda belum mendaftar profesi");
         }
-        // $profesi = Profesi::where('id', $id)->first();
-        // return view('halamanProfesiInfo', ['profesi' => $profesi]); //
     }
 
     public function search(Request $request)
     {
-        // if($request->input('keyword')!="baru" && $request->input('keyword')!="tinggi" && $request->input('keyword')!="rendah"){
         $items = Project::where('namaProject', 'like', '%' . $request->input('keyword') . '%');
-        // }else if($request->input('keyword')=="tinggi"){
-        // $items = Project::all()->orderBy('estimasi', 'desc');
-        // }else if($request->input('keyword')=="rendah"){
-        //     $items = Project::all()->orderBy('estimasi', 'asc');
-        // }else if($request->input('keyword')=="baru"){
-        //     $items = Project::all()->orderBy('created_at', 'desc');
-        // }
         $items = $items->get();
         $key = $request->input('keyword');
         $profesis = array();
         for ($i = 0; $i < count($items); $i++) {
             $profesis[$i] = Profesi::where('id', $items[$i]->id_profesi)->first();
         }
-    
-        return view('cari', ['items' => $items, 'profesis' => $profesis, 'key' =>$key]);
+
+        return view('cari', ['items' => $items, 'profesis' => $profesis, 'key' => $key]);
     }
 
-    public function project($id)
+    public function getUbahProject($id_project)
     {
-        $desProject = Project::where('id', $id)->first();
-        $profesi = Profesi::where('id', $desProject->id_profesi)->first();
-        return view('deskripsiProject', ['desProject' => $desProject, 'profesi' => $profesi]);
+        $dataProject = Project::where('id', $id_project)->where('id_profesi', Session::get('id_profesi'))->first();
+        $dataProfesi = Profesi::where('id', $dataProject->id_profesi)->first();
+        return view('halamanProfesi.ubahProyek', ['dataProject' => $dataProject, 'dataProfesi' => $dataProfesi]);
+    }
+
+    public function hapusProject(Request $request)
+    {
+        $dataProject = Project::where('id', $request->input('id'))->first();
+        $dataOrder =  Order::where('id_project', $dataProject->id)->first();
+        $dataProgres =  Progres::where('id_project', $dataProject->id)->first();
+        if ($dataOrder != null || $dataProgres != null) {
+            return redirect()->back()->with('alert', 'Project tidak dapat dihapus, karena memiliki progres atau pesanan');
+        }
+        return redirect('/')->with('alert', 'Project telah dihapus');
     }
 }

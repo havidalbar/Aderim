@@ -1,22 +1,21 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Profesi;
 use App\Order;
-use App\User;
+use App\Profesi;
 use App\Progres;
 use App\Project;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
 use Validator;
 
 class UserController extends Controller
 {
 
-    public function informasi()
+    public function informasiAkun()
     {
         if (Session::get('/')) {
             //informasi akun
@@ -30,52 +29,15 @@ class UserController extends Controller
             $orders = Order::where('id_user', Session::get('id'));
             $orders = $orders->where('status', "!=", "order")->get();
             $items = array();
-            $orderProgres = array();
             for ($i = 0; $i < count($orders); $i++) {
-                $orderProgres = Progres::where('id_order', $orders[$i]->id)->first();
                 $items[$i] = Project::where('id', $orders[$i]->id_project)->first();
             }
             $profesis = array();
             for ($i = 0; $i < count($orders); $i++) {
                 $profesis[$i] = Profesi::where('id', $items[$i]->id_profesi)->first();
             }
-            // $orders = Order::where('id_user', Session::get('id'));
-            // $orders = $orders->where('status', "!=", "order")->get();
-            // $orders2 = Order::where('id_user', Session::get('id'));
-            // $orders2 = $orders2->where('status',"==","Order sedang diproses")->get();
-            // $orders3 = Order::where('id_user', Session::get('id'));
-            // $orders3 = $orders3->where('status',"==","Selesai")->get();
-            // $orders4 = Order::where('id_user', Session::get('id'));
-            // $orders4 = $orders4->where('status',"==","Dibatalkan")->get();
-            //proses
-            // $items2 = array();
-            // for ($i = 0; $i < count($orders2); $i++) {
-            //     $items2[$i] = Project::where('id', $orders2[$i]->id_project)->first();
-            // }
-            // $profesis2 = array();
-            // for ($i = 0; $i < count($orders2); $i++) {
-            //     $profesis2[$i] = Profesi::where('id', $items2[$i]->id_profesi)->first();
-            // }
-            // //selesai
-            // $items3 = array();
-            // for ($i = 0; $i < count($orders3); $i++) {
-            //     $items3[$i] = Project::where('id', $orders3[$i]->id_project)->first();
-            // }
-            // $profesis3 = array();
-            // for ($i = 0; $i < count($orders3); $i++) {
-            //     $profesis3[$i] = Profesi::where('id', $items3[$i]->id_profesi)->first();
-            // }
-            // //dibatalkan
-            // $items4 = array();
-            // for ($i = 0; $i < count($orders4); $i++) {
-            //     $items4[$i] = Project::where('id', $orders4[$i]->id_project)->first();
-            // }
-            // $profesis4 = array();
-            // for ($i = 0; $i < count($orders4); $i++) {
-            //     $profesis4[$i] = Profesi::where('id', $items4[$i]->id_profesi)->first();
-            // }
-            return view('informasiAkun.informasiAkunProfil', ['histories' => $orders, 'items' => $items,'profesis' => $profesis,
-            'infos' => $infos,'orderProgres' => $orderProgres]);
+            return view('informasiAkun.informasiAkunProfil', ['histories' => $orders, 'items' => $items, 'profesis' => $profesis,
+                'infos' => $infos]);
         } else {
             return redirect('/login')->with('alert', 'Kamu harus login dulu');
         }
@@ -115,7 +77,7 @@ class UserController extends Controller
                     Session::put('foto_profesi', $dataProfesi->foto);
                 }
 
-                return redirect('/home')->with('alert', 'Anda telah login'); 
+                return redirect('/home')->with('alert', 'Anda telah login');
             } else {
                 return redirect()->back()->with('alert', 'Password salah!');
             }
@@ -139,11 +101,12 @@ class UserController extends Controller
         }
     }
 
-    private function generateId(){
+    private function generateId()
+    {
         $char = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
         $id = "";
-        for($i=0;$i<6;$i++){
-            $id = $id.$char[rand(0, 15)];
+        for ($i = 0; $i < 6; $i++) {
+            $id = $id . $char[rand(0, 15)];
         }
         return $id;
     }
@@ -169,8 +132,8 @@ class UserController extends Controller
             $filename = explode('.', $request->foto->getClientOriginalName());
             $fileExt = end($filename);
             $id = $this->generateId();
-            $filename = $id.'.'.$fileExt;
-            $path = $request->foto->storeAs('image/profile',$filename, 'public_uploads');
+            $filename = $id . '.' . $fileExt;
+            $path = $request->foto->storeAs('image/profile', $filename, 'public_uploads');
 
             $data = new User();
             $data->username = $request->username;
@@ -208,9 +171,9 @@ class UserController extends Controller
             $filename = explode('.', $request->foto->getClientOriginalName());
             $fileExt = end($filename);
             $id = $this->generateId();
-            $filename = $id.'.'.$fileExt;
-            $path = $request->foto->storeAs('image/profile',$filename, 'public_uploads');
-            
+            $filename = $id . '.' . $fileExt;
+            $path = $request->foto->storeAs('image/profile', $filename, 'public_uploads');
+
             $data = new Profesi();
             $data->foto = $path;
             $data->url_image = implode(" ", $request['files']);
@@ -226,20 +189,6 @@ class UserController extends Controller
             return redirect('/')->with('alert', 'Berhasil mendaftar profesi');
         } else {
             return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();
-        }
-    }
-    public function uploadFoto(Request $request)
-    {
-        $time = Carbon::now();
-        $image = $request->file('file');
-        $extension = $image->getClientOriginalExtension();
-        $directory = date_format($time, 'Y') . '/' . date_format($time, 'm');
-        $filename = str_random(5) . date_format($time, 'd') . rand(1, 9) . date_format($time, 'h') . "." . $extension;
-        $upload_success = $image->storeAs($directory, $filename, 'public');
-        if ($upload_success) {
-            return response()->json($upload_success, 200);
-        } else {
-            return response()->json('error', 400);
         }
     }
 }

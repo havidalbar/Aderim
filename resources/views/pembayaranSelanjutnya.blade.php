@@ -1,4 +1,4 @@
-@extends ('layouts.cobanavLogin')
+@extends (\Session::has('username') ? 'layouts.navLogin' : 'layouts.nav')
 @section('title', 'Pembayaran Progres Selanjutnya | Aderim')
 
 @section('js')
@@ -141,7 +141,7 @@ $(document)
                 <label style="font-size:18px">Sisa Biaya Proyek</label>
                 <div class="ui labeled fluid input" style="font-size:18px">
                     <label class="ui label">Rp</label>
-                    <input type="text" name="jumlah1" value="{{number_format(($transaksis->sisaharga),0,",",".")}}" readonly style="background-color:#e8e8e8;border:none">                    
+                    <input type="text" name="jumlah1" value="{{number_format(($transaksis->sisaharga),0,",",".")}}" readonly style="background-color:#e8e8e8;border:none">
                 </div>
             </div>
             <div class="field">
@@ -159,7 +159,7 @@ $(document)
                         value="{{number_format($sisa,0,",",".")}}" readonly
                         style="background-color:#e8e8e8;border:none">
                 </div>
-            </div>            
+            </div>
             {{csrf_field()}}
             <button class="ui big teal button fluid" onclick="" type="submit" name="submit" style="margin-top:40px">
                 Bayar
@@ -172,5 +172,5 @@ $(document)
     </div>
 </div>
 
-@include('layouts.cobafooter')
+@include('layouts.footer')
 @endsection

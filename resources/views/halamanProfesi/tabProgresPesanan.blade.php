@@ -4,7 +4,7 @@
 </div>
 <div
     style="margin-top:20px;background-color:#f8f8f8;border:5px solid #4b8991;border-radius:5px;padding:30px 20px 30px 20px;color:#4d4d4d">
-    @if(count($dataOrder5)<=0) 
+    @if(count($dataOrder5)<=0)
     <div class="ui container center aligned">
         <i class="huge icons">
             <i class="big teal dont icon"></i>
@@ -20,18 +20,18 @@
     <div class="ui stackable three doubling link special cards" style="margin-top:10px">
         @for($i=0;$i< count($dataOrder5);$i++) <?php
             $fotos = explode(" ", $dataOrder5[$i]->url_gambar);
-            ?> 
+            ?>
         <div class="card">
             <div class="blurring dimmable image">
                 <div class="ui dimmer">
                     <div class="content">
                         <span>
                             <button class="ui inverted medium button"
-                            onclick="window.location.href='/order-progres/{{ $dataOrder5[$i]->id}}'">Lihat</button>
+                            onclick="window.location.href='/halaman-profesi/{{ $dataOrder5[$i]->id}}/progres'">Lihat</button>
                         </span>
                         <span>
-                            <button class="ui inverted medium button" 
-                            onclick="window.location.href='/order-progres/{{ $dataOrder5[$i]->id}}'">Tambah</button>
+                            <button class="ui inverted medium button"
+                            onclick="window.location.href='/halaman-profesi/{{ $dataOrder5[$i]->id}}/tambah-progres'">Tambah</button>
                         </span>
                     </div>
                 </div>

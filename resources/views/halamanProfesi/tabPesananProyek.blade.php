@@ -8,7 +8,7 @@
         <a class="item" data-tab="konfirmasi-pesanan" style="font-size:17px;color:white"><b>Konfirmasi Pesanan</b></a>
         <a class="item" data-tab="riwayat-pesanan" style="font-size:17px;color:white"><b>Riwayat Pesanan</b></a>
     </div>
-    <div class="ui active tab" data-tab="terima-pesanan" style="padding:20px 20px 30px 20px">        
+    <div class="ui active tab" data-tab="terima-pesanan" style="padding:20px 20px 30px 20px">
         @if(count($dataOrder2)<=0)
             <div class="ui container center aligned">
                 <i class="huge icons">
@@ -32,10 +32,10 @@
                     <th>Konfirmasi</th>
                 </tr>
             </thead>
-            @for($i=0;$i< count($dataOrder2); $i++) 
+            @for($i=0;$i< count($dataOrder2); $i++)
             <?php
             $fotos= explode(" ", $dataOrder2[$i]->url_gambar);
-            ?> 
+            ?>
             <tbody>
                 <tr>
                     <td>{{$dataOrder2[$i]->id}}</td>
@@ -72,14 +72,14 @@
                 <!-- Dimmer Lihat desain -->
                 <div class="ui large modal lihat desain <?php echo $i ?>">
                     <div class="header">
-                        Portofolio Pendaftar
+                        Portofolio Permintaan
                     </div>
                     <div class="content">
                         <div class="ui two stackable cards">
-                        @for($j=0; $j < count($fotos); $j++) 
+                        @for($j=0; $j < count($fotos); $j++)
                             <div class="card">
                                 <img src="/{{$fotos[$j]}}" style="height:250px;object-fit:cover">
-                                <a class="ui teal bottom attached button" href="/{{$fotos[$j]}}" download="portofolio<?php echo $j+1 ?>">                                     
+                                <a class="ui teal bottom attached button" href="/{{$fotos[$j]}}" download="portofolio<?php echo $j+1 ?>">
                                     Download
                                 </a>
                             </div>
@@ -158,9 +158,9 @@
                     <th>Nama Proyek</th>
                     <th>Nominal Transaksi</th>
                 </tr>
-            </thead>            
+            </thead>
             <tbody>
-            @for($i=0;$i< count($dataOrder4);$i++) 
+            @for($i=0;$i< count($dataOrder4);$i++)
                 <tr>
                     <td>{{$dataOrder4[$i]->id}}</td>
                     <td>{{$users4[$i]->name}}</td>
