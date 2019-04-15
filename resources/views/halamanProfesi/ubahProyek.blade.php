@@ -40,11 +40,25 @@ Dropzone.options.myDropzone = {
             Anda akan melakukan perubahan pada proyek berikut :
         </div>
         <div class="ui stackable grid" style="margin-top:5px">
-            <div class="four wide column">
-                <img class="ui rounded image" src="{{asset('Apartemen1_2.jpg')}}"
-                    style="height:120px;object-fit:cover">
+            <div class="five wide column">
+                <div class="ui one special cards">
+                    <div class="card">
+                        <div class="blurring dimmable image">
+                            <div class="ui dimmer">
+                                <div class="content">
+                                    <span>
+                                        <button class="ui inverted medium button"
+                                            onclick="$('.ui.fullscreen.modal.lihat').modal('show');">Lihat</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <img class="ui rounded image" src="{{asset('Apartemen1_2.jpg')}}"
+                                style="height:150px;object-fit:cover">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="twelve wide left aligned column">
+            <div class="eleven wide left aligned column">
                 <div style="font-size:22px"><b>Hotel Mewah</b></div>
                 <div style="margin-top:10px;font-size:15px">
                     <span style="border:2px solid #d4d4d5;border-radius:4px;padding:3px 8px 3px 8px">
@@ -104,6 +118,107 @@ Dropzone.options.myDropzone = {
         </form>
     </div>
 </div>
+
+<!-- Modal detail -->
+<div class="ui fullscreen modal lihat">
+    <div class="content">
+        <div class="ui stackable grid">
+            <div class="nine wide column">
+                <div class="ui stackable grid" style="height:100%">
+                    <div class="twelve wide middle aligned column">
+                        <div class="ui one stackable cards">
+                            <div class="card">
+                                <div class="image">
+                                    <img class="ui big image" src="{{asset('Apartemen1_2.jpg')}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="four wide middle aligned column">
+
+                        <div class="ui one stackable cards">
+                            <div class="card">
+                                <div class="image">
+                                    <img src="{{asset('Apartemen1_2.jpg')}}" style="height:145px;object-fit:cover">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="seven wide column">
+                <div class="ui divider"></div>
+                <div class="ui grid">
+                    <div class="one wide middle aligned column">
+                        <i class="info circle large teal icon"></i>
+                    </div>
+                    <div class="fifteen wide column">
+                        <div style="font-size:22px;color:teal"><b>Detail Proyek</b></div>
+                    </div>
+                </div>
+                <div class="ui divider"></div>
+                <div class="ui stackable grid">
+                    <div class="three wide column">
+                        <img class="ui circular image" src="{{asset('arsitek.jpg')}}"
+                            style="width:80px;height:80px;object-fit:cover">
+                    </div>
+                    <div class="thirteen wide column">
+                        <div style="font-size:22px"><b>Arsitek Jaya</b></div>
+                        <div style="font-size:17px">Arsitektur</div>
+                    </div>
+                </div>
+                <div class="ui divider"></div>
+                <div class="ui stackable grid">
+                    <div class="twelve wide column">
+                        <div style="font-size:22px">
+                            <b>Hotel Mewah</b>
+                        </div>
+                        <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
+                            <div><i class="map marker alternate teal icon"></i></div>
+                            <div style="font-size:17px">Surabaya</div>
+                        </div>
+                    </div>
+                    <div class="four wide right aligned middle aligned column">
+                        <span
+                            style="border:2px solid #d4d4d5;border-radius:4px;padding:5px 15px 5px 15px;font-size:17px">
+                            Hotel
+                        </span>
+                    </div>
+                </div>
+                <div class="ui divider"></div>
+                <div>
+                    <div style="font-size:16px"><b>Deskripsi</b></div>
+                    <div style="font-size:15px">
+                        asasa
+                    </div>
+                </div>
+                <div style="margin-top:10px">
+                    <div style="font-size:16px"><b>Spesifikasi</b></div>
+                    <div style="font-size:15px">
+                        asasa
+                    </div>
+                </div>
+                <div class="ui divider"></div>
+                <div class="ui container fluid" style="text-align:right">
+                    <div style="font-size:22px"><b>Biaya Proyek</b></div>
+                    <div style="color:teal;font-size:20px">
+                        <b>
+                            <span>Rp </span>
+                            <span>100.000.000</span>
+                        </b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <button class="ui positive button">
+            Oke
+        </button>
+    </div>
+</div>
+<!-- Akhir Modal detail -->
 
 @include('layouts.cobafooter')
 @endsection
