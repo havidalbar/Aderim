@@ -26,7 +26,32 @@ Dropzone.options.myDropzone = {
         return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
     }
 };
-</script>@endsection
+</script>
+<script>
+$(document)
+    .ready(function() {
+        $('.ui.form')
+            .form({
+                fields: {
+                    pesan: {
+                        identifier: 'pesan',
+                        rules: [{
+                            type: 'empty',
+                            prompt: 'Silahkan masukkan deskripsi pesanan proyek anda terlebih dahulu'
+                        }]
+                    },
+                    alamat: {
+                        identifier: 'alamat',
+                        rules: [{
+                            type: 'empty',
+                            prompt: 'Alamat pengerjaan proyek tidak boleh dikosongkan!'
+                        }]
+                    }
+                }
+            });
+    });
+</script>
+@endsection
 
 @section('content')
 <div class="ui container" style="color:#4d4d4d;margin-top:50px">
@@ -56,6 +81,12 @@ Dropzone.options.myDropzone = {
                 {{csrf_field()}}
             </form>
             <button id="submit-all" type="submit" class="submitDropzone" style="display:none">Unggah</button>
+            <!-- Cek data -->
+            @if(\Session::has('alert'))
+            <div class="ui negative message">
+                <p>{{Session::get('alert')}}</p>
+            </div>
+            @endif
         </div>
         <form class="ui form" style="margin-top:15px" id="tambah-order" method='post'
             action="{{url('/tambah-orderproses')}}" enctype="multipart/form-data">
@@ -64,12 +95,11 @@ Dropzone.options.myDropzone = {
             <input type="hidden" name="id_profesi" value="{{$desProject->id_profesi}}" />
             <div class="field">
                 <label style="font-size:18px">Deskripsi Proyek</label>
-                <textarea name="pesan" maxlength="500" rows="6" placeholder="Tuliskan deskripsi pesanan proyek anda..."
-                    required=""></textarea>
+                <textarea name="pesan" maxlength="500" rows="6" placeholder="Tuliskan deskripsi pesanan proyek anda..."></textarea>
             </div>
             <div class="field">
                 <label style="font-size:18px">Alamat Pengerjaan Proyek</label>
-                <input name="alamat" required type="text">
+                <input type="text" name="alamat">
             </div>
             <div class="field">
                 <label style="font-size:18px">Total Biaya Proyek</label>
@@ -93,6 +123,10 @@ Dropzone.options.myDropzone = {
             <button class="ui big teal button fluid" onclick="" type="submit" name="submit" style="margin-top:30px">
                 Periksa Pesanan Proyek
             </button>
+            <div class="ui error message">
+                <ul class="list">
+                </ul>
+            </div>
         </form>
     </div>
 </div>

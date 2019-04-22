@@ -39,6 +39,7 @@ Route::get('/halaman-profesi/{id}/informasi', 'ProjectController@getInformasiPro
 Route::get('/halaman-profesi/pesanan', 'OrderController@getTerimaPesanan');
 Route::get('/halaman-profesi/progres','OrderController@getPesananProgresProfesi');
 Route::get('/halaman-profesi/{id_order}/progres', 'OrderController@getPesananProgresProfesiList');
+Route::get('/halaman-profesi/{id_order}/progres/{bulan}', 'OrderController@getPesananProgresProfesiListBulan');
 Route::get('/halaman-profesi/{id_order}/tambah-progres', 'OrderController@getPesananProgresProfesiTambah');
 Route::get('/halaman-profesi/tambah-project', 'ProjectController@getTambahProjectProfesi');
 Route::post('/tambah-projectproses', 'ProjectController@tambahProjectProses');
@@ -57,6 +58,7 @@ Route::get('/informasi-akun/profil', 'UserController@informasiAkun');
 Route::get('/informasi-akun/riwayat', 'OrderController@getHistoryAkun');
 Route::get('/informasi-akun/progres','OrderController@getProgresPesananAkun');
 Route::get('/informasi-akun/{id_order}/progres', 'OrderController@getProgresPesananDetail');
+Route::get('/informasi-akun/{id_order}/progres/{bulan}', 'OrderController@getProgresPesananDetailBulan');
 
 //Halaman Admin
 Route::get('/halaman-admin/profesi', 'OrderController@getHalamanAdminProfesi');

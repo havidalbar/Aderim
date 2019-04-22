@@ -4,31 +4,20 @@
 @section('js')
 <script type="text/javascript">
 Dropzone.options.myDropzone = {
-    autoProcessQueue: false,
     addRemoveLinks: true,
     paramName: 'file',
     maxFilesize: 20, // MB
-    maxFiles: 10,
-    parallelUploads: 10,
-    // acceptedFiles: ".jpeg,.jpg,.png,",
+    maxFiles: 4,
     acceptedFiles: "image/*",
-
     init: function() {
         this.on("success", function(file, response) {
             let hasil = 'image/' + response;
-
             var forms = document.getElementById('tambah-profesi');
             var files = document.createElement("input");
             files.setAttribute('name', 'files[]');
             files.setAttribute("type", "hidden");
             files.setAttribute("value", hasil);
             forms.appendChild(files);
-        });
-
-        var submitButton = document.querySelector("#submit-all");
-        myDropzone = this; // closure
-        submitButton.addEventListener("click", function() {
-            myDropzone.processQueue();
         });
         this.on("addedfile", function() {});
     },
@@ -37,6 +26,51 @@ Dropzone.options.myDropzone = {
         return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
     }
 };
+</script>
+<script>
+$(document)
+    .ready(function() {
+        $('.ui.form')
+            .form({
+                fields: {
+                    foto: {
+                        identifier: 'foto',
+                        rules: [{
+                            type: 'empty',
+                            prompt: 'Silahkan pilih foto profil profesi terlebih dahulu'
+                        }]
+                    },
+                    nama: {
+                        identifier: 'nama_profesi',
+                        rules: [{
+                            type: 'empty',
+                            prompt: 'Nama profesi tidak boleh dikosongkan'
+                        }]
+                    },
+                    job: {
+                        identifier: 'job_title',
+                        rules: [{
+                            type: 'empty',
+                            prompt: 'Silahkan pilih pekerjaan anda terlebih dahulu'
+                        }]
+                    },
+                    address: {
+                        identifier: 'address',
+                        rules: [{
+                            type: 'empty',
+                            prompt: 'Alamat profesi tidak boleh dikosongkan'
+                        }]
+                    },
+                    nohp: {
+                        identifier: 'nohp',
+                        rules: [{
+                            type: 'empty',
+                            prompt: 'Silahkan masukkan nomor telepon profesi terlebih dahulu'
+                        }]
+                    }
+                }
+            });
+    });
 </script>
 @endsection
 
@@ -51,14 +85,15 @@ Dropzone.options.myDropzone = {
         <div class="ui container fluid" style="margin-top:20px">
             <div style="font-size:18px"><b>Foto Portofolio</b></div>
             <form action="{{ url('/uploadFoto') }}" enctype="multipart/form-data" class="dropzone" id="my-dropzone"
-                style="margin-top:5px">
+                name="portofolio" style="margin-top:5px">
                 {{csrf_field()}}
             </form>
-            <label for="submit-all" class="ui large label" style="cursor:pointer;margin-top:10px">
-                <i class="cloud upload icon"></i>
-                Unggah Foto
-            </label>
-            <button id="submit-all" type="submit" class="submitDropzone" style="display:none">Unggah</button>
+            <!-- Cek data -->
+            @if(\Session::has('alert'))
+            <div class="ui negative message">
+                <p>{{Session::get('alert')}}</p>
+            </div>
+            @endif
         </div>
         <form class="ui form" style="margin-top:15px" id="tambah-profesi" method='post'
             action="{{url('/daftarprofesiproses')}}" enctype="multipart/form-data">
@@ -74,12 +109,12 @@ Dropzone.options.myDropzone = {
             </div>
             <div class="field">
                 <label style="font-size:18px">Nama Profesi</label>
-                <input type="text" name="nama_profesi" placeholder="Masukkan Nama Profesi" required>
+                <input type="text" name="nama_profesi" placeholder="Masukkan Nama Profesi">
             </div>
             <div class="field">
                 <label style="font-size:18px">Pekerjaan</label>
                 <div class="ui selection dropdown">
-                    <input type="hidden" name="job_title" required>
+                    <input type="hidden" name="job_title">
                     <i class="dropdown icon"></i>
                     <div class="default text">Pilih Pekerjaan</div>
                     <div class="menu">
@@ -90,16 +125,20 @@ Dropzone.options.myDropzone = {
             </div>
             <div class="field">
                 <label style="font-size:18px">Alamat Lengkap</label>
-                <input type="text" name="address" placeholder="Masukkan Alamat Lengkap" required>
+                <input type="text" name="address" placeholder="Masukkan Alamat Lengkap">
             </div>
             <div class="field">
                 <label style="font-size:18px">Nomor Telepon</label>
-                <input type="text" name="nohp" placeholder="Masukkan Nomor Telepon" required>
+                <input type="text" name="nohp" placeholder="Masukkan Nomor Telepon">
             </div>
             {{csrf_field()}}
             <button class="ui big teal button fluid" onclick="" type="submit" name="submit"
-                style="margin-top:40px">Kirim
-                Pendaftaran</button>
+                style="margin-top:40px">Kirim Pendaftaran
+            </button>
+            <div class="ui error message">
+                <ul class="list">
+                </ul>
+            </div>
         </form>
     </div>
 </div>

@@ -96,7 +96,7 @@ class OrderController extends Controller
             $data->save();
             return redirect('/order-check/'.$data->id)->with('alert', 'Permintaan anda telah di data, silahkan melanjutkan ke pembayaran');
         } else {
-            return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();
+            return redirect()->back()->with('alert', 'Masukkan gambar desain proyek terlebih dahulu!')->withInput();
         }
     }
 
@@ -413,7 +413,6 @@ class OrderController extends Controller
 
     public function getProgresPesananDetail($id_order)
     {
-
         $dataOrder = Order::where('id', $id_order)->where('status', "!=", "order")->first();
         $user = User::where('id', $dataOrder->id_user)->first();
         $orderProgres = Progres::where('id_order', $dataOrder->id)->where('status',$dataOrder->statusLagi)->first();
@@ -422,6 +421,21 @@ class OrderController extends Controller
         $user2 = User::where('id', $profesi->id_user)->first();
         if ($orderProgres != null) {
             return view('informasiAkun.lihatProgresProyek', ['dataOrder' => $dataOrder, 'user' => $user, 'user2' => $user2, 'orderProgres' => $orderProgres, 'items' => $items, 'profesi' => $profesi]);
+        } else {
+            return redirect()->back()->with('alert', 'Belum ada progres pengerjaan dari project yang anda pilih, silahkan cek dilain waktu');
+        }
+    }
+
+    public function getProgresPesananDetailBulan($id_order,$bulan)
+    {
+        $dataOrder = Order::where('id', $id_order)->where('status', "!=", "order")->first();
+        $user = User::where('id', $dataOrder->id_user)->first();
+        $orderProgres = Progres::where('id_order', $dataOrder->id)->where('status',$bulan)->first();
+        $items = Project::where('id', $dataOrder->id_project)->first();
+        $profesi = Profesi::where('id', $items->id_profesi)->first();
+        $user2 = User::where('id', $profesi->id_user)->first();
+        if ($orderProgres != null) {
+            return view('halamanProfesi.lihatProgresProyek', ['dataOrder' => $dataOrder, 'user' => $user, 'user2' => $user2, 'orderProgres' => $orderProgres, 'items' => $items, 'profesi' => $profesi]);
         } else {
             return redirect()->back()->with('alert', 'Belum ada progres dari project ini');
         }
@@ -503,6 +517,21 @@ class OrderController extends Controller
             return view('halamanProfesi.lihatProgresProyek', ['dataOrder' => $dataOrder, 'user' => $user, 'orderProgres' => $orderProgres, 'items' => $items, 'profesi' => $profesi]);
         } else {
             return redirect('/halaman-profesi/' . $id_order . '/tambah-progres')->with('alert', 'Progres order masih belum ada silahkan menambah terlebih dahulu');
+        }
+    }
+
+    public function getPesananProgresProfesiListBulan($id_order,$bulan)
+    {
+        $dataOrder = Order::where('id', $id_order)->where('status', "!=", "order")->first();
+        $user = User::where('id', $dataOrder->id_user)->first();
+        $orderProgres = Progres::where('id_order', $dataOrder->id)->where('status',$bulan)->first();
+        $items = Project::where('id', $dataOrder->id_project)->first();
+        $profesi = Profesi::where('id', $items->id_profesi)->first();
+        $user2 = User::where('id', $profesi->id_user)->first();
+        if ($orderProgres != null) {
+            return view('halamanProfesi.lihatProgresProyek', ['dataOrder' => $dataOrder, 'user' => $user, 'user2' => $user2, 'orderProgres' => $orderProgres, 'items' => $items, 'profesi' => $profesi]);
+        } else {
+            return redirect()->back()->with('alert', 'Belum ada progres dari project ini');
         }
     }
 

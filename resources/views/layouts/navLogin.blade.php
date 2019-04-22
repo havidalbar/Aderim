@@ -186,16 +186,11 @@
 </head>
 
 <body class="pushable">
-    @if(\Session::has('alert'))
+    <!-- @if(\Session::has('alert'))
     <script type="text/javascript">
     alert("{{Session::get('alert')}}");
     </script>
-    @endif
-    @if(\Session::has('alert-success'))
-    <script type="text/javascript">
-    alert("{{Session::get('alert-success')}}");
-    </script>
-    @endif
+    @endif -->
     <!-- Following Menu -->
     <div class="ui large top borderless menu fixed transition hidden">
         <div class="ui container">

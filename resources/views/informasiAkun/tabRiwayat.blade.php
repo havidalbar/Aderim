@@ -22,7 +22,7 @@
         <div style="font-size:20px;margin-top:15px">Yuk lakukan pemesanan sekarang...</div>
     </div>
     @elseif(count($histories)>0)
-        <div class="ui stackable three doubling link special cards" style="margin-top:10px">
+        <div class="ui stackable three doubling link special cards">
             @for($i = 0; $i < count($histories); $i++)
             <?php
             $fotos = explode(" ", $histories[$i]->url_gambar);
@@ -62,16 +62,16 @@
                         <div>{{$items[$i]->daerah}}</div>
                     </div>
                 </div>
-            </div>
-            @elseif($i==0 && $histories[$i]->statusLagi==0 && $histories[$i]->status!="Order sedang diproses" && $histories[$i]->status!="Pembayaran tidak terkonfirmasi")
-            <div class="ui container center aligned">
-                    <i class="shopping cart icon teal huge"></i>
-                    <div style="font-size:24px;margin-top:15px"><b>Oops, order anda belum ada progres :(</b></div>
-                    <div style="font-size:20px;margin-top:15px">Sabar yaa...</div>
-                </div>
+            </div>            
             @endif
             @endfor
         </div>
+        <!-- Cek data -->
+        @if(\Session::has('alert'))
+            <div class="ui negative message">
+                <p>{{Session::get('alert')}}</p>
+            </div>
+        @endif
         @endif
     </div>
     <div class="ui tab" data-tab="selesai" style="padding:20px 20px 30px 20px">
@@ -155,8 +155,7 @@
                             <i class="red times circle outline huge icon"></i>
                             <div style="font-size:22px;margin-top:10px;margin-bottom:20px">
                                 Dibatalkan
-                            </div>
-                            <div class="ui inverted medium button">Lihat</div>
+                            </div>                            
                         </div>
                     </div>
                     <img src="{{asset($fotos[count($fotos)-1])}}" style="object-fit:cover;height:250px">

@@ -47,7 +47,7 @@ class ProjectController extends Controller
             ]);
             return redirect('/')->with('alert', 'Project berhasil di ubah');
         } else {
-            return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();
+            return redirect()->back()->with('alert', 'Masukkan foto terbaru proyek anda terlebih dahulu!')->withInput();
         }
     }
 
@@ -66,7 +66,7 @@ class ProjectController extends Controller
             $data->save();
             return redirect('/')->with('alert', 'Berhasil upload project');
         } else {
-            return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();
+            return redirect()->back()->with('alert', 'Masukkan foto proyek anda terlebih dahulu!')->withInput();
         }
     }
 

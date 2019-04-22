@@ -188,11 +188,11 @@
                         <div>
                             <i class="user circle teal icon"></i>
                             {{$profesis[$i]->nama_profesi}}
-                        </div>                        
+                        </div>
                         <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
                             <div><i class="map marker alternate teal icon"></i></div>
                             <div>{{$items[$i]->daerah}}</div>
-                        </div>                        
+                        </div>
                     </div>
                 </div>
                 <!-- Modal Detail -->
@@ -288,15 +288,13 @@
                     </div>
                 </div>
                 <div class="actions">
-                    <a href="#">
-                        <button class="ui negative button">
-                            Pilih Lagi
-                        </button>
-                        <button class="ui positive button"
-                            onclick="window.location.href='/project/{{$items[$i]->id}}/order'">
-                            Pesan Proyek
-                        </button>
-                    </a>
+                    <button class="ui negative button">
+                        Pilih Lagi
+                    </button>
+                    <button class="ui positive button"
+                        onclick="window.location.href='/project/{{$items[$i]->id}}/order'">
+                        Pesan Proyek
+                    </button>
                 </div>
         </div>
         <!--Akhir Modal Detail -->

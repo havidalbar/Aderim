@@ -77,11 +77,11 @@
             <div style="font-size:20px"><b>Progres Proyek</b></div>
             <div style="font-size:17px;margin-top:10px">
                 <span>Bulan </span>
-            <span>{{$dataOrder->statusLagi}}</span>
+            <span>{{$orderProgres->status}}</span>
             </div>
             <div style="font-size:20px;margin-top:15px"><b>Deskripsi Progres</b></div>
             <div style="font-size:17px;margin-top:10px;line-height:1.5">
-                {{$dataOrder->pesan}}
+                {{$orderProgres->pesan}}
             </div>
             <div class="ui divider"></div>
             <button class="ui large button teal right floated" onclick="window.location.href='/halaman-profesi/{{ $dataOrder->id}}/tambah-progres'">Tambah Progres</button>
@@ -89,17 +89,15 @@
     </div>
 
     <div class="ui divider" style="margin-top:20px"></div>
-    <h3>Lihat Progres Pengerjaan Proyek Bulan Ke</h3>
-    <div class="ui pagination menu">
+    <h3>Lihat Progres Pengerjaan Proyek Bulan Ke</h3>    
     <?php
     $bulan = $dataOrder->statusLagi;
     ?>
-    @for($j=0; $j < $bulan; $j++)
-        <a class="item">
-            {{$j+1}}
-        </a>
+    <div class="ui pagination menu">
+    @for($j=1; $j<= $bulan; $j++)
+    <a class="item" onclick="window.location.href='/halaman-profesi/{{$dataOrder->id}}/progres/{{$j}}'">{{$j}}</a>
     @endfor
-    </div>
+    </div>        
 </div>
 
 @include('layouts.footer')

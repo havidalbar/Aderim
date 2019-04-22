@@ -78,7 +78,7 @@
             <div style="font-size:20px"><b>Progres Proyek</b></div>
             <div style="font-size:17px;margin-top:10px">
                 <span>Bulan </span>
-                <span>{{$dataOrder->statusLagi}}</span>
+                <span>{{$orderProgres->status}}</span>
             </div>
             <div style="font-size:20px;margin-top:15px"><b>Deskripsi Progres</b></div>
             <div style="font-size:17px;margin-top:10px;line-height:1.5">
@@ -90,9 +90,9 @@
                     ($dataOrder->status=="Pembayaran tidak terkonfirmasi" && $dataOrder->id_transaksi2==null)||
                     ($dataOrder->status=="Pembayaran tidak terkonfirmasi" && $dataOrder->id_transaksi3==null)||
                     ($dataOrder->status=="Pembayaran tidak terkonfirmasi" && $dataOrder->id_transaksi4==null))
-            <form class="ui button teal right floated" action='/bayarLagi?statusLagi={{$dataOrder->statusLagi}}&id={{$dataOrder->id}}' method="post">
+            <form action='/bayarLagi?statusLagi={{$dataOrder->statusLagi}}&id={{$dataOrder->id}}' method="post">
                 {{csrf_field()}}
-                <button type="submit" class="ui button teal right floated">Bayar Progres Selanjutnya</button>
+                <button type="submit" class="ui large button teal right floated">Bayar Progres Selanjutnya</button>
             </form>
             @endif
         </div>
@@ -111,15 +111,13 @@
     </div>
     <div class="ui divider" style="margin-top:30px"></div>
     <h3>Lihat Progres Pengerjaan Proyek Bulan Ke</h3>
+    <?php
+    $bulan = $dataOrder->statusLagi;
+    ?>
     <div class="ui pagination menu">
-            <?php
-            $bulan = $dataOrder->statusLagi;
-            ?>
-            @for($j=0; $j < $bulan; $j++)
-                <a class="item">
-                    {{$j+1}}
-                </a>
-            @endfor
+    @for($j=1; $j<= $bulan; $j++)
+    <a class="item" onclick="window.location.href='/informasi-akun/{{$dataOrder->id}}/progres/{{$j}}'">{{$j}}</a>
+    @endfor
     </div>
 </div>
 

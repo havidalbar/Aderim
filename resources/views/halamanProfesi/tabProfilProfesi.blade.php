@@ -30,7 +30,7 @@
     </div>
     <div style="margin-top:30px">
         <div style="font-size:16px;margin-top:10px">
-            Bergabung dengan Aderim sejak <b>{{ $profesi->created_at}}</b>
+            Bergabung dengan Aderim sejak <b>{{strftime("%d %b %Y",strtotime($profesi->created_at))}}</b>
         </div>
     </div>
 </div>

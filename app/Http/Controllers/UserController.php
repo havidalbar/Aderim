@@ -77,19 +77,19 @@ class UserController extends Controller
                     Session::put('foto_profesi', $dataProfesi->foto);
                 }
 
-                return redirect('/home')->with('alert', 'Anda telah login');
+                return redirect('/home');
             } else {
-                return redirect()->back()->with('alert', 'Password salah!');
+                return redirect()->back()->with('alert', 'Password yang anda masukan salah!');
             }
         } else {
-            return redirect()->back()->with('alert', 'Email atau Password salah!');
+            return redirect()->back()->with('alert', 'Email dan Password yang anda masukan tidak sesuai!');
         }
     }
 
     public function logout()
     {
         Session::flush();
-        return redirect('/')->with('alert', 'Kamu sudah logout'); //
+        return redirect('/'); //
     }
 
     public function getProfesi()
@@ -160,7 +160,7 @@ class UserController extends Controller
                 Session::put('foto_profesi', $dataProfesi->foto);
             }
 
-            return redirect('/home')->with('alert', 'Anda telah login'); //
+            return redirect('/home');
 
         }
     }
@@ -188,7 +188,7 @@ class UserController extends Controller
             Session::put('foto_profesi', $data->foto);
             return redirect('/')->with('alert', 'Berhasil mendaftar profesi');
         } else {
-            return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();
+            return redirect()->back()->with('alert', 'Anda wajib memberikan foto Portofolio kepada pihak Aderim!')->withInput();
         }
     }
 }

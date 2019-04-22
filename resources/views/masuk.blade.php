@@ -50,16 +50,6 @@
 </head>
 
 <body>
-        @if(\Session::has('alert'))
-        <script type="text/javascript">
-          alert("{{Session::get('alert')}}");
-        </script>
-      @endif
-      @if(\Session::has('alert-success'))
-      <script type="text/javascript">
-          alert("{{Session::get('alert-success')}}");
-        </script>
-      @endif
     <div class="ui container fluid"
         style="position:absolute;top: 50%;left: 50%;transform: translateX(-50%) translateY(-50%);margin:20px">
         <div class="ui container center aligned">
@@ -71,7 +61,8 @@
             </div>
             <div class="ui container" style="width:40%">
                 <div class="ui container">
-                    <form class="ui form" action="{{url('loginproses')}}" method="post" style="padding:20px" method="post">
+                    <form class="ui form" action="{{url('loginproses')}}" method="post" style="padding:20px"
+                        method="post">
                         {{csrf_field()}}
                         <div class="ui segment">
                             <div class="field" style="margin-top:20px">
@@ -100,12 +91,12 @@
                                 </div>
                             </div>
                             <a href="#">
-                            <button class="ui fluid large teal submit button" style="margin-top:15px;margin-bottom:20px">
-                                Masuk
-                            </button>
+                                <button class="ui fluid large teal submit button"
+                                    style="margin-top:15px;margin-bottom:20px">
+                                    Masuk
+                                </button>
                             </a>
-                            <div style="font-size:15px">Belum punya akun Aderim?<a
-                                    href="/register" style="color:teal">
+                            <div style="font-size:15px">Belum punya akun Aderim?<a href="/register" style="color:teal">
                                     Daftar</a></div>
                         </div>
 
@@ -118,6 +109,12 @@
                                 <li>Kata sandi yang anda masukan minimal harus 6 karakter</li>
                             </ul>
                         </div>
+                        <!-- Cek data -->
+                        @if(\Session::has('alert'))
+                        <div class="ui negative message">                                                                               
+                            <p>{{Session::get('alert')}}</p>
+                        </div>
+                        @endif
                     </form>
                 </div>
             </div>

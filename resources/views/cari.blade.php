@@ -165,15 +165,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="actions">
-                    <a href="#">
-                        <button class="ui negative button">
-                            Pilih Lagi
-                        </button>
-                        <button class="ui positive button" onclick="window.location.href='/project/{{$items[$i]->id}}/order'">
-                            Pesan Proyek
-                        </button>
-                    </a>
+                <div class="actions">                    
+                    <button class="ui negative button">
+                        Pilih Lagi
+                    </button>
+                    <button class="ui positive button" onclick="window.location.href='/project/{{$items[$i]->id}}/order'">
+                        Pesan Proyek
+                    </button>                    
                 </div>
             </div>
         <!--Akhir Modal Detail -->
