@@ -3,6 +3,19 @@
 
 @section('content')
 <div class="ui container fluid" style="background-color:#273d40">
+    @if(\Session::has('alert'))        
+    <div style="position:absolute;right:15px;top:15px;max-width:400px">
+        <div class="ui negative message alert" style="display:none">                        
+            {{Session::get('alert')}}         
+        </div>  
+    </div>                  
+    @elseif(\Session::has('alert-success'))
+    <div style="position:absolute;right:15px;top:15px;max-width:400px">
+        <div class="ui positive message alert" style="display:none">                        
+            {{Session::get('alert-success')}}         
+        </div>  
+    </div>  
+    @endif
     <div class="ui container center aligned">
         <div class="ui three row stackable grid">
             <div class="column">
@@ -301,7 +314,7 @@
         @endfor
     </div>
     <div class="ui center aligned container" style="margin-top:40px">
-        <a href="#">
+        <a href="/search-all">
             <div class="ui vertical animated large teal button" style="width:150px">
                 <div class="hidden content">Lihat Semua</div>
                 <div class="visible content">

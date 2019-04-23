@@ -45,7 +45,7 @@ class ProjectController extends Controller
                 'namaProject' => $request->namaProject, 'deskripsi' => $request->deskripsi, 'spesifikasi' => $request->spesifikasi, 'category' => $request->category,
                 'daerah' => $request->daerah, 'estimasi' => $request->estimasi
             ]);
-            return redirect('/')->with('alert', 'Project berhasil di ubah');
+            return redirect('/')->with('alert-success', 'Project berhasil di ubah');
         } else {
             return redirect()->back()->with('alert', 'Masukkan foto terbaru proyek anda terlebih dahulu!')->withInput();
         }
@@ -64,7 +64,7 @@ class ProjectController extends Controller
             $data->estimasi = $request->estimasi;
             $data->id_profesi = Session::get('id_profesi');
             $data->save();
-            return redirect('/')->with('alert', 'Berhasil upload project');
+            return redirect('/')->with('alert-success', 'Berhasil upload project');
         } else {
             return redirect()->back()->with('alert', 'Masukkan foto proyek anda terlebih dahulu!')->withInput();
         }
@@ -239,6 +239,16 @@ class ProjectController extends Controller
         return view('cari', ['items' => $items, 'profesis' => $profesis, 'key' => $key]);
     }
 
+    public function getAll(){
+        $items = Project::all();
+        $profesis = array();
+        for ($i = 0; $i < count($items); $i++) {
+            $profesis[$i] = Profesi::where('id', $items[$i]->id_profesi)->first();
+        }
+        $key = 'semua';
+        return view('cari', ['items' => $items, 'profesis' => $profesis, 'key' => $key]);
+    }
+
     public function getUbahProject($id_project)
     {
         $dataProject = Project::where('id', $id_project)->where('id_profesi', Session::get('id_profesi'))->first();
@@ -254,6 +264,7 @@ class ProjectController extends Controller
         if ($dataOrder != null || $dataProgres != null) {
             return redirect()->back()->with('alert', 'Project tidak dapat dihapus, karena memiliki progres atau pesanan');
         }
-        return redirect('/')->with('alert', 'Project telah dihapus');
+        $project = Project::where('id', $request->input('id'))->delete();
+        return redirect('/')->with('alert-success', 'Project telah dihapus');
     }
 }

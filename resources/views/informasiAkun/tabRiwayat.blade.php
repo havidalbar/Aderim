@@ -66,12 +66,12 @@
             @endif
             @endfor
         </div>
-        <!-- Cek data -->
+        <!-- Cek data
         @if(\Session::has('alert'))
             <div class="ui negative message">
                 <p>{{Session::get('alert')}}</p>
             </div>
-        @endif
+        @endif -->
         @endif
     </div>
     <div class="ui tab" data-tab="selesai" style="padding:20px 20px 30px 20px">

@@ -186,7 +186,7 @@ class UserController extends Controller
             Session::put('nama_profesi', $data->nama_profesi);
             Session::put('id_profesi', $data->id);
             Session::put('foto_profesi', $data->foto);
-            return redirect('/')->with('alert', 'Berhasil mendaftar profesi');
+            return redirect('/')->with('alert-success', 'Berhasil mendaftar profesi');
         } else {
             return redirect()->back()->with('alert', 'Anda wajib memberikan foto Portofolio kepada pihak Aderim!')->withInput();
         }

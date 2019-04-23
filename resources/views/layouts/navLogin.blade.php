@@ -120,6 +120,28 @@
             $('.special.cards .segments').dimmer({
                 on: 'hover'
             });
+            $('.ui.negative.message.alert').transition({
+                animation  : 'fade in',
+                duration   : '0.8s',
+                onComplete : function() {                    
+                    $(this).transition({
+                        interval   : '2000',
+                        animation  : 'fade out',
+                        duration   : '0.8s',
+                    });
+                }
+            });
+            $('.ui.positive.message.alert').transition({
+                animation  : 'fade in',
+                duration   : '0.8s',
+                onComplete : function() {                    
+                    $(this).transition({
+                        interval   : '2000',
+                        animation  : 'fade out',
+                        duration   : '0.8s',
+                    });
+                }
+            });
             //Get Data
             var date = $('.date');
             var inputD = $('#dateD');
@@ -128,9 +150,6 @@
                 var valueD = $(this).data('value');
                 var valueF = $(this).data('formatted');
                 alert(valueD);
-                /* inputD.val(valueD);
-                inputF.val(valueF);
-                console.log(valueD); */
             });
         });
     </script>
@@ -186,11 +205,6 @@
 </head>
 
 <body class="pushable">
-    <!-- @if(\Session::has('alert'))
-    <script type="text/javascript">
-    alert("{{Session::get('alert')}}");
-    </script>
-    @endif -->
     <!-- Following Menu -->
     <div class="ui large top borderless menu fixed transition hidden">
         <div class="ui container">
@@ -492,8 +506,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-
+        </div>        
         @yield('content')
     </div>
 

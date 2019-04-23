@@ -3,6 +3,19 @@
 
 @section('content')
 
+@if(\Session::has('alert'))        
+    <div style="position:absolute;right:15px;top:15px;max-width:400px">
+        <div class="ui negative message alert" style="display:none">                        
+            {{Session::get('alert')}}         
+        </div>  
+    </div>                  
+@elseif(\Session::has('alert-success'))
+    <div style="position:absolute;right:15px;top:15px;max-width:400px">
+        <div class="ui positive message alert" style="display:none">                        
+            {{Session::get('alert-success')}}         
+        </div>  
+    </div>  
+@endif
 <div class="ui container" style="margin-top:30px">
     <div style="margin-top:10px;font-size:24px">
         Silahkan cari hingga mendapatkan desain arsitek terbaik pilihan anda
@@ -16,7 +29,18 @@
 
 <div class="ui container">
     <form action="/get-urut" method="get">
-        <div class="ui checkbox">
+    <div class="ui selection dropdown right aligned">
+        <input type="hidden" name="gender">
+        <i class="dropdown icon"></i>
+        <div class="default text">Urutkan</div>
+        <div class="menu">
+            <div class="item" data-value="1">Desain Terbaru</div>
+            <div class="item" data-value="0">Harga Terendah</div>
+            <div class="item" data-value="0">Harga Tertinggi</div>
+        </div>        
+    </div>
+    <button class="ui teal button">Cari</button>
+        <!-- <div class="ui checkbox">
             <input type="checkbox" name="urutkan" value="baru">
             <label>Desain Terbaru</label>
         </div>
@@ -27,7 +51,7 @@
         <div class="ui checkbox">
             <input type="checkbox" name="urutkan" value="rendah">
             <label>Harga Terendah</label>
-        </div>
+        </div> -->
     </form>
 </div>
 

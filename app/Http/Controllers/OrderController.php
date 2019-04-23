@@ -73,7 +73,7 @@ class OrderController extends Controller
         $dataProfesi = Profesi::where('id', $request->input('id'))->first();
         $dataProfesi->status = 1;
         $dataProfesi->save();
-        return redirect()->back()->with('alert', 'Berhasil menerima profesi');
+        return redirect()->back()->with('alert-success', 'Berhasil menerima profesi');
     }
 
     public function tolakProfesi(Request $request)
@@ -94,7 +94,7 @@ class OrderController extends Controller
             $data->pesan = $request->pesan;
             $data->address = $request->alamat;
             $data->save();
-            return redirect('/order-check/'.$data->id)->with('alert', 'Permintaan anda telah di data, silahkan melanjutkan ke pembayaran');
+            return redirect('/order-check/'.$data->id);
         } else {
             return redirect()->back()->with('alert', 'Masukkan gambar desain proyek terlebih dahulu!')->withInput();
         }
@@ -109,7 +109,7 @@ class OrderController extends Controller
                 if ($dataOrder->status == "Menunggu pembayaran") {
                     return view('pilihMetodePembayaran', ['dataTransaksi' => $dataTransaksi, 'dataOrder' => $dataOrder]);
                 } else {
-                    return redirect("/history-transaksi")->with('alert', 'Transaksi telah disetujui');
+                    return redirect("/history-transaksi")->with('alert-succes', 'Transaksi telah disetujui');
                 }
             } else {
                 return redirect("/")->with('alert', 'Anda tidak memiliki hak untuk melihat transaksi user lain');
@@ -122,7 +122,7 @@ class OrderController extends Controller
     public function hapusOrder(Request $request)
     {
         $data = Order::where('id', $request->input('id'))->update(['status' => 'Dibatalkan']);
-        return redirect('/')->with('alert', 'Pesanan Telah Dibatalkan');
+        return redirect('/')->with('alert-success', 'Pesanan Telah Dibatalkan');
     }
 
     public function transaksiOrderProses(Request $request)
@@ -163,7 +163,7 @@ class OrderController extends Controller
             $data = Transaksi::where('id', $id_transaksi)->first();
             $data->gambar_konfirmasi = $request->gambarbukti;
             $data->save();
-            return redirect('/home')->with('alert', 'Permohonan konfirmasi telah dikirim');
+            return redirect('/home')->with('alert-success', 'Permohonan konfirmasi telah dikirim');
         } else {
             return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();
         }
@@ -182,7 +182,7 @@ class OrderController extends Controller
             } else if ($request->id_transaksi4 != 0) {
                 $dataOrder = Order::where('id', $request->id_order)->update(['id_transaksi4' => $id_transaksi, 'status' => 'Menunggu pembayaran']);
             }
-            return redirect('/home')->with('alert', 'Permohonan konfirmasi telah dikirim');
+            return redirect('/home')->with('alert-success', 'Permohonan konfirmasi telah dikirim');
         } else {
             return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();
         }
@@ -259,8 +259,7 @@ class OrderController extends Controller
                 }
             }
         }
-
-        return redirect()->back()->with('alert', 'berhasil mensetujui transfer');
+        return redirect()->back()->with('alert-success', 'Berhasil menyetujui transfer');
     }
 
     public function tolakTransfer(Request $request)
@@ -293,7 +292,7 @@ class OrderController extends Controller
             $dataOrder4[$i]->status = "Pembayaran tidak terkonfirmasi";
             $dataOrder4[$i]->save();
         }
-        return redirect()->back()->with('alert', 'berhasil menolak transfer');
+        return redirect()->back()->with('alert', 'Berhasil menolak transfer');
     }
 
     public function terimaOrder(Request $request)
@@ -301,7 +300,7 @@ class OrderController extends Controller
         $order = Order::where('id', $request->input('id'))->first();
         $order->status = "Order sedang diproses";
         $order->save();
-        return redirect()->back()->with('alert', 'berhasil mensetujui order');
+        return redirect()->back()->with('alert-success', 'Berhasil mensetujui order');
     }
 
     public function tolakOrder(Request $request)
@@ -309,7 +308,7 @@ class OrderController extends Controller
         $order = Order::where('id', $request->input('id'))->first();
         $order->status = "Order ditolak";
         $order->save();
-        return redirect()->back()->with('alert', 'berhasil menolak order');
+        return redirect()->back()->with('alert', 'Berhasil menolak order');
     }
 
     public function getTerimaPesanan()
@@ -382,7 +381,7 @@ class OrderController extends Controller
         $order = Order::where('id', $request->input('id'))->first();
         $order->status = "Selesai";
         $order->save();
-        return redirect()->back()->with('alert', 'Project telah selesai');
+        return redirect()->back()->with('alert-success', 'Project telah selesai');
     }
 
     public function getProgresPesananAkun()
@@ -516,7 +515,7 @@ class OrderController extends Controller
         if ($orderProgres != null) {
             return view('halamanProfesi.lihatProgresProyek', ['dataOrder' => $dataOrder, 'user' => $user, 'orderProgres' => $orderProgres, 'items' => $items, 'profesi' => $profesi]);
         } else {
-            return redirect('/halaman-profesi/' . $id_order . '/tambah-progres')->with('alert', 'Progres order masih belum ada silahkan menambah terlebih dahulu');
+            return redirect('/halaman-profesi/' . $id_order . '/tambah-progres')->with('alert', 'Progres order masih belum ada silahkan menambahkan terlebih dahulu');
         }
     }
 
@@ -593,7 +592,7 @@ class OrderController extends Controller
             $data->pesan = $request->pesan;
             $data->save();
             $this->setStatus($request->status, $id_order);
-            return redirect('/')->with('alert', 'Order Progres Telah Diupdate');
+            return redirect('/')->with('alert-success', 'Order Progres Telah Diupdate');
         } else {
             return redirect()->back()->with('alert', 'Masukkan gambar terlebih dahulu')->withInput();
         }

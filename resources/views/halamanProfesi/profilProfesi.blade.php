@@ -2,6 +2,19 @@
 @section('title', 'Informasi Profesi | Aderim')
 
 @section('content')
+@if(\Session::has('alert'))        
+    <div style="position:absolute;right:15px;top:15px;max-width:400px">
+        <div class="ui negative message alert" style="display:none">                        
+            {{Session::get('alert')}}         
+        </div>  
+    </div>                  
+    @elseif(\Session::has('alert-success'))
+    <div style="position:absolute;right:15px;top:15px;max-width:400px">
+        <div class="ui positive message alert" style="display:none">                        
+            {{Session::get('alert-success')}}         
+        </div>  
+    </div>  
+@endif
 <div class="ui container" style="margin-top:86px;margin-bottom:86px">
     <div class="ui stackable grid">
         <div class="four wide column">

@@ -161,7 +161,7 @@
                 </div>
             </div>
             <!--Akhir Modal Detail -->
-            <!-- Dimmer Batal -->
+            <!-- Dimmer hapus -->
             <div class="ui tiny modal hapus">
                 <div class="header">
                     Hapus Proyek
