@@ -3,18 +3,18 @@
 
 @section('content')
 <div class="ui container fluid" style="background-color:#273d40">
-    @if(\Session::has('alert'))        
+    @if(\Session::has('alert'))
     <div style="position:absolute;right:15px;top:15px;max-width:400px">
-        <div class="ui negative message alert" style="display:none">                        
-            {{Session::get('alert')}}         
-        </div>  
-    </div>                  
+        <div class="ui negative message alert" style="display:none">
+            {{Session::get('alert')}}
+        </div>
+    </div>
     @elseif(\Session::has('alert-success'))
     <div style="position:absolute;right:15px;top:15px;max-width:400px">
-        <div class="ui positive message alert" style="display:none">                        
-            {{Session::get('alert-success')}}         
-        </div>  
-    </div>  
+        <div class="ui positive message alert" style="display:none">
+            {{Session::get('alert-success')}}
+        </div>
+    </div>
     @endif
     <div class="ui container center aligned">
         <div class="ui three row stackable grid">
@@ -187,10 +187,10 @@
                         <img src="{{asset($fotos[0])}}" style="object-fit:cover;height:250px">
                     </div>
                     <div class="content">
-                        <div class="header">{{$items[$i]->namaProject}}</div>
+                        <div class="header">{{ucfirst($items[$i]->namaProject)}}</div>
                         <div class="meta" style="margin-top:5px">
                             <span style="border:2px solid #d4d4d5;border-radius:4px;padding:2px 4px 2px 4px">
-                                {{$items[$i]->category}}
+                                {{ucfirst($items[$i]->category)}}
                             </span>
                         </div>
                         <div class="description">
@@ -200,11 +200,11 @@
                     <div class="extra content">
                         <div>
                             <i class="user circle teal icon"></i>
-                            {{$profesis[$i]->nama_profesi}}
+                            {{ ucfirst($profesis[$i]->nama_profesi)}}
                         </div>
                         <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
                             <div><i class="map marker alternate teal icon"></i></div>
-                            <div>{{$items[$i]->daerah}}</div>
+                            <div>{{ucfirst($items[$i]->daerah)}}</div>
                         </div>
                     </div>
                 </div>
@@ -252,25 +252,25 @@
                                         style="width:80px;height:80px;object-fit:cover">
                                 </div>
                                 <div class="thirteen wide column">
-                                    <div style="font-size:22px"><b>{{$profesis[$i]->nama_profesi}}</b></div>
-                                    <div style="font-size:17px">{{$profesis[$i]->job_title}}</div>
+                                    <div style="font-size:22px"><b>{{ ucfirst($profesis[$i]->nama_profesi)}}</b></div>
+                                    <div style="font-size:17px">{{ ucfirst($profesis[$i]->job_title)}}</div>
                                 </div>
                             </div>
                             <div class="ui divider"></div>
                             <div class="ui stackable grid">
                                 <div class="twelve wide column">
                                     <div style="font-size:22px">
-                                        <b>{{$items[$i]->namaProject}}</b>
+                                        <b>{{ucfirst($items[$i]->namaProject)}}</b>
                                     </div>
                                     <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
                                         <div><i class="map marker alternate teal icon"></i></div>
-                                        <div style="font-size:17px">{{$items[$i]->daerah}}</div>
+                                        <div style="font-size:17px">{{ ucfirst($items[$i]->daerah)}}</div>
                                     </div>
                                 </div>
                                 <div class="four wide right aligned middle aligned column">
                                     <span
                                         style="border:2px solid #d4d4d5;border-radius:4px;padding:5px 15px 5px 15px;font-size:17px">
-                                        {{$items[$i]->category}}
+                                        {{ucfirst($items[$i]->category)}}
                                     </span>
                                 </div>
                             </div>

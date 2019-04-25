@@ -115,15 +115,15 @@ $(document)
                 </div>
             </div>
             <div class="eleven wide left aligned column">
-                <div style="font-size:22px"><b>{{$dataProject->namaProject}}</b></div>
+                <div style="font-size:22px"><b>{{ucfirst($dataProject->namaProject)}}</b></div>
                 <div style="margin-top:10px;font-size:15px">
                     <span style="border:2px solid #d4d4d5;border-radius:4px;padding:3px 8px 3px 8px">
-                        {{$dataProject->category}}
+                        {{ucfirst($dataProject->category)}}
                     </span>
                 </div>
                 <div style="margin-top:10px;display:flex;flex-direction:row;align-items: center">
                     <div><i class="map marker alternate grey icon"></i></div>
-                    <div style="font-size:19px">{{$dataProject->daerah}}</div>
+                    <div style="font-size:19px">{{ucfirst($dataProject->daerah)}}</div>
                 </div>
             </div>
         </div>
@@ -241,24 +241,24 @@ $(document)
                         style="width:80px;height:80px;object-fit:cover">
                 </div>
                 <div class="thirteen wide column">
-                    <div style="font-size:22px"><b>{{$dataProfesi->nama_profesi}}</b></div>
-                    <div style="font-size:17px">{{$dataProfesi->job_title}}</div>
+                    <div style="font-size:22px"><b>{{ucfirst($dataProfesi->nama_profesi)}}</b></div>
+                    <div style="font-size:17px">{{ucfirst($dataProfesi->job_title)}}</div>
                 </div>
             </div>
             <div class="ui divider"></div>
             <div class="ui stackable grid">
                 <div class="twelve wide column">
                     <div style="font-size:22px">
-                        <b>{{$dataProject->namaProject}}</b>
+                        <b>{{ucfirst($dataProject->namaProject)}}</b>
                     </div>
                     <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
                         <div><i class="map marker alternate teal icon"></i></div>
-                        <div style="font-size:17px">{{$dataProject->daerah}}</div>
+                        <div style="font-size:17px">{{ucfirst($dataProject->daerah)}}</div>
                     </div>
                 </div>
                 <div class="four wide right aligned middle aligned column">
                     <span style="border:2px solid #d4d4d5;border-radius:4px;padding:5px 15px 5px 15px;font-size:17px">
-                        {{$dataProject->category}}
+                        {{ucfirst($dataProject->category)}}
                     </span>
                 </div>
             </div>

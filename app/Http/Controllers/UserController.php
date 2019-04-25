@@ -3,10 +3,8 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\Profesi;
-use App\Progres;
 use App\Project;
 use App\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -17,13 +15,9 @@ class UserController extends Controller
 
     public function informasiAkun()
     {
-        if (Session::get('/')) {
+        if (Session::has('username')) {
             //informasi akun
-            if (Session::has('username')) {
-                $infos = User::where('username', Session::get('username'))->first();
-            } else {
-                $infos = User::where('email', Session::get('email'))->first();
-            }
+            $infos = User::where('username', Session::get('username'))->first();
 
             //progres order
             $orders = Order::where('id_user', Session::get('id'));
@@ -36,19 +30,12 @@ class UserController extends Controller
             for ($i = 0; $i < count($orders); $i++) {
                 $profesis[$i] = Profesi::where('id', $items[$i]->id_profesi)->first();
             }
-            return view('informasiAkun.informasiAkunProfil', ['histories' => $orders, 'items' => $items, 'profesis' => $profesis,
-                'infos' => $infos]);
+            return view('informasiAkun.informasiAkunProfil', [
+                'histories' => $orders, 'items' => $items, 'profesis' => $profesis,
+                'infos' => $infos
+            ]);
         } else {
             return redirect('/login')->with('alert', 'Kamu harus login dulu');
-        }
-    }
-
-    public function index()
-    {
-        if (Session::get('/')) {
-            return redirect('/')->with('alert', 'Kamu harus login dulu');
-        } else {
-            return view('home');
         }
     }
 
@@ -89,7 +76,7 @@ class UserController extends Controller
     public function logout()
     {
         Session::flush();
-        return redirect('/'); //
+        return redirect('/');
     }
 
     public function getProfesi()
@@ -153,15 +140,12 @@ class UserController extends Controller
             Session::put('/', true);
 
             $dataProfesi = Profesi::where('id_user', $data->id)->first();
-
             if ($dataProfesi != null) {
                 Session::put('nama_profesi', $dataProfesi->nama_profesi);
                 Session::put('id_profesi', $dataProfesi->id);
                 Session::put('foto_profesi', $dataProfesi->foto);
             }
-
             return redirect('/home');
-
         }
     }
 

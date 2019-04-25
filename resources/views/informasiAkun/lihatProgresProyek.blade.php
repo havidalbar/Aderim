@@ -52,25 +52,25 @@
                         style="width:80px;height:80px;object-fit:cover">
                 </div>
                 <div class="twelve wide middle aligned column">
-                <div style="font-size:22px"><b>{{$profesi->nama_profesi}}</b></div>
-                    <div style="font-size:17px;margin-top:5px">{{$profesi->job_title}}</div>
-                <div style="font-size:17px;margin-top:5px">{{$user2->email}}</div>
+                <div style="font-size:22px"><b>{{ucfirst($profesi->nama_profesi)}}</b></div>
+                    <div style="font-size:17px;margin-top:5px">{{ucfirst($profesi->job_title)}}</div>
+                <div style="font-size:17px;margin-top:5px">{{$user->email}}</div>
                 </div>
             </div>
             <div class="ui divider"></div>
             <div class="ui stackable grid">
                 <div class="twelve wide middle aligned column">
                     <div style="font-size:22px">
-                        <b>{{$items->namaProject}}</b>
+                        <b>{{ucfirst($items->namaProject)}}</b>
                     </div>
                     <div style="margin-top:10px;display:flex;flex-direction:row;align-items: center">
                         <div><i class="map marker alternate teal icon"></i></div>
-                        <div style="font-size:16px">{{$dataOrder->address}}</div>
+                        <div style="font-size:16px">{{ucfirst($dataOrder->address)}}</div>
                     </div>
                 </div>
                 <div class="four wide right aligned middle aligned column">
                     <span style="border:2px solid #d4d4d5;border-radius:4px;padding:5px 15px 5px 15px;font-size:17px">
-                        {{$items->category}}
+                        {{ucfirst($items->category)}}
                     </span>
                 </div>
             </div>

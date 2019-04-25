@@ -66,10 +66,10 @@ $(document)
                     style="width:80px;height:80px;object-fit:cover">
             </div>
             <div class="thirteen wide column">
-                <div style="font-size:22px"><b>{{$profesi->nama_profesi}}</b></div>
+                <div style="font-size:22px"><b>{{ucfirst($profesi->nama_profesi)}}</b></div>
                 <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
                     <div><i class="map marker alternate teal icon"></i></div>
-                    <div style="font-size:18px">{{$desProject->daerah}}</div>
+                    <div style="font-size:18px">{{ucfirst($desProject->daerah)}}</div>
                 </div>
             </div>
         </div>

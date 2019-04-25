@@ -35,10 +35,10 @@
                 <img src="{{asset($fotos[0])}}" style="object-fit:cover;height:250px">
             </div>
             <div class="content">
-            <div class="header">{{$items[$i]->namaProject}}</div>
+            <div class="header">{{ucfirst($items[$i]->namaProject)}}</div>
                 <div class="meta" style="margin-top:5px">
                     <span style="border:2px solid #d4d4d5;border-radius:4px;padding:2px 4px 2px 4px">
-                        {{$items[$i]->category}}
+                        {{ucfirst($items[$i]->category)}}
                     </span>
                 </div>
                 <div class="description">
@@ -48,11 +48,11 @@
             <div class="extra content">
                 <div>
                     <i class="user circle teal icon"></i>
-                    {{$profesi->nama_profesi}}
+                    {{ucfirst($profesi->nama_profesi)}}
                 </div>
                 <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
                     <div><i class="map marker alternate teal icon"></i></div>
-                    <div>{{$items[$i]->daerah}}</div>
+                    <div>{{ucfirst($items[$i]->daerah)}}</div>
                 </div>
             </div>
         </div>
@@ -101,25 +101,25 @@
                                         style="width:80px;height:80px;object-fit:cover">
                                 </div>
                                 <div class="thirteen wide column">
-                                    <div style="font-size:22px"><b>{{$profesi->nama_profesi}}</b></div>
-                                    <div style="font-size:17px">{{$profesi->job_title}}</div>
+                                    <div style="font-size:22px"><b>{{ucfirst($profesi->nama_profesi)}}</b></div>
+                                    <div style="font-size:17px">{{ucfirst($profesi->job_title)}}</div>
                                 </div>
                             </div>
                             <div class="ui divider"></div>
                             <div class="ui stackable grid">
                                 <div class="twelve wide column">
                                     <div style="font-size:22px">
-                                        <b>{{$items[$i]->namaProject}}</b>
+                                        <b>{{ucfirst($items[$i]->namaProject)}}</b>
                                     </div>
                                     <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
                                         <div><i class="map marker alternate teal icon"></i></div>
-                                        <div style="font-size:17px">{{$items[$i]->daerah}}</div>
+                                        <div style="font-size:17px">{{ucfirst($items[$i]->daerah)}}</div>
                                     </div>
                                 </div>
                                 <div class="four wide right aligned middle aligned column">
                                     <span
                                         style="border:2px solid #d4d4d5;border-radius:4px;padding:5px 15px 5px 15px;font-size:17px">
-                                        {{$items[$i]->category}}
+                                        {{ucfirst($items[$i]->category)}}
                                     </span>
                                 </div>
                             </div>

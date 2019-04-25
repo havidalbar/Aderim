@@ -62,12 +62,12 @@ Route::get('/informasi-akun/{id_order}/progres', 'OrderController@getProgresPesa
 Route::get('/informasi-akun/{id_order}/progres/{bulan}', 'OrderController@getProgresPesananDetailBulan');
 
 //Halaman Admin
-Route::get('/halaman-admin/profesi', 'OrderController@getHalamanAdminProfesi');
-Route::get('/halaman-admin', 'OrderController@getHalamanAdminPembayaran');
-Route::post('/tolak-transfer', 'OrderController@tolakTransfer');
-Route::post('/terima-transfer', 'OrderController@terimaTransfer');
-Route::post('/tolak-profesi', 'OrderController@tolakProfesi');
-Route::post('/terima-profesi', 'OrderController@terimaProfesi');
+Route::get('/halaman-admin/profesi', 'AdminController@getHalamanAdminProfesi');
+Route::get('/halaman-admin', 'AdminController@getHalamanAdminPembayaran');
+Route::post('/tolak-transfer', 'AdminController@tolakTransfer');
+Route::post('/terima-transfer', 'AdminController@terimaTransfer');
+Route::post('/tolak-profesi', 'AdminController@tolakProfesi');
+Route::post('/terima-profesi', 'AdminController@terimaProfesi');
 
 //Alur Transaksi
 Route::get('/project/{id}/order', 'OrderController@getPesanProject');

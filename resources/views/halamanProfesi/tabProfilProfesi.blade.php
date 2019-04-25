@@ -25,7 +25,7 @@
     <div style="margin-top:30px">
         <label style="font-size:22px"><b>Pekerjaan</b></label>
         <div style="font-size:18px;margin-top:10px">
-            {{ $profesi->job_title}}
+            {{ucfirst($profesi->job_title)}}
         </div>
     </div>
     <div style="margin-top:30px">

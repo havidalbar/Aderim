@@ -34,10 +34,10 @@
                     <img src="{{asset($fotos[count($fotos)-1])}}" style="object-fit:cover;height:250px">
                 </div>
                 <div class="content">
-                    <div class="header">{{$items[$i]->namaProject}}</div>
+                    <div class="header">{{ucfirst($items[$i]->namaProject)}}</div>
                     <div class="meta" style="margin-top:5px">
                         <span style="border:2px solid #d4d4d5;border-radius:4px;padding:2px 4px 2px 4px">
-                            {{$items[$i]->category}}
+                            {{ucfirst($items[$i]->category)}}
                         </span>
                     </div>
                     <div class="description">
@@ -47,11 +47,11 @@
                 <div class="extra content">
                     <div>
                         <i class="user circle teal icon"></i>
-                        {{$profesis[$i]->nama_profesi}}
+                        {{ucfirst($profesis[$i]->nama_profesi)}}
                     </div>
                     <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
                         <div><i class="map marker alternate teal icon"></i></div>
-                        <div>{{$items[$i]->daerah}}</div>
+                        <div>{{ucfirst($items[$i]->daerah)}}</div>
                     </div>
                 </div>
             </div>

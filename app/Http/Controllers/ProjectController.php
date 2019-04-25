@@ -7,7 +7,6 @@ use App\Profesi;
 use App\Project;
 use App\Progres;
 use App\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -20,7 +19,7 @@ class ProjectController extends Controller
         for ($i = 0; $i < count($items); $i++) {
             $profesis[$i] = Profesi::where('id', $items[$i]->id_profesi)->first();
         }
-        return view('home', ['items' => $items, 'profesis' => $profesis]); //
+        return view('home', ['items' => $items, 'profesis' => $profesis]);
     }
 
     public function getTambahProjectProfesi()
@@ -70,7 +69,7 @@ class ProjectController extends Controller
         }
     }
 
-    public function category($category, Request $request)
+    public function category($category)
     {
         $items = Project::where('category', $category);
         $items = $items->get();
@@ -134,22 +133,11 @@ class ProjectController extends Controller
                     $users4[$i] = User::where('id', $dataOrder4[$i]->id_user)->first();
                 }
 
-                //progres order
-                $dataOrder5 = Order::where('status', 'Order sedang diproses')->where('id_profesi', Session::get('id_profesi'))->get();
-                $items5 = array();
-                for ($i = 0; $i < count($dataOrder5); $i++) {
-                    $items5[$i] = Project::where('id', $dataOrder5[$i]->id_project)->first();
-                }
-                $users5 = array();
-                for ($i = 0; $i < count($dataOrder5); $i++) {
-                    $users5[$i] = User::where('id', $dataOrder5[$i]->id_user)->first();
-                }
                 return view('halamanProfesi.kumpulanProyek', [
                     'items' => $items, 'profesi' => $profesi,
                     'dataOrder2' => $dataOrder2, 'users2' => $users2, 'items2' => $items2,
                     'dataOrder3' => $dataOrder3, 'users3' => $users3, 'items3' => $items3,
                     'dataOrder4' => $dataOrder4, 'users4' => $users4, 'items4' => $items4,
-                    'dataOrder5' => $dataOrder5, 'users5' => $users5, 'items5' => $items5
                 ]);
             } else {
                 return redirect()->back()->with('alert', "Anda belum disetujui menjadi profesi");
@@ -201,22 +189,11 @@ class ProjectController extends Controller
                     $users4[$i] = User::where('id', $dataOrder4[$i]->id_user)->first();
                 }
 
-                //progres order
-                $dataOrder5 = Order::where('status', 'Order sedang diproses')->where('id_profesi', Session::get('id_profesi'))->get();
-                $items5 = array();
-                for ($i = 0; $i < count($dataOrder5); $i++) {
-                    $items5[$i] = Project::where('id', $dataOrder5[$i]->id_project)->first();
-                }
-                $users5 = array();
-                for ($i = 0; $i < count($dataOrder5); $i++) {
-                    $users5[$i] = User::where('id', $dataOrder5[$i]->id_user)->first();
-                }
                 return view('halamanProfesi.profilProfesi', [
                     'items' => $items, 'profesi' => $profesi,
                     'dataOrder2' => $dataOrder2, 'users2' => $users2, 'items2' => $items2,
                     'dataOrder3' => $dataOrder3, 'users3' => $users3, 'items3' => $items3,
-                    'dataOrder4' => $dataOrder4, 'users4' => $users4, 'items4' => $items4,
-                    'dataOrder5' => $dataOrder5, 'users5' => $users5, 'items5' => $items5
+                    'dataOrder4' => $dataOrder4, 'users4' => $users4, 'items4' => $items4
                 ]);
             } else {
                 return redirect()->back()->with('alert', "Anda belum disetujui menjadi profesi");
@@ -235,11 +212,11 @@ class ProjectController extends Controller
         for ($i = 0; $i < count($items); $i++) {
             $profesis[$i] = Profesi::where('id', $items[$i]->id_profesi)->first();
         }
-
         return view('cari', ['items' => $items, 'profesis' => $profesis, 'key' => $key]);
     }
 
-    public function getAll(){
+    public function getAll()
+    {
         $items = Project::all();
         $profesis = array();
         for ($i = 0; $i < count($items); $i++) {
