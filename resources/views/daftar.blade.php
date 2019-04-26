@@ -106,10 +106,10 @@
 </head>
 
 <body>
-    <div class="ui container fluid" style="margin-top:30px;line-height:1.5">
+    <div class="ui container fluid" style="margin-top:30px;margin-bottom:20px;line-height:1.5">
         <div class="ui container center aligned">
             <a href="/">
-                <img class="ui small centered image" src="{{asset('z_BannerAderim.png')}}" style="margin-bottom:30px">
+                <img class="ui centered image" src="{{asset('logo/logo_biru.png')}}" style="margin-bottom:20px;max-height:90px">
             </a>
             <form class="ui form" action="{{url('registerproses')}}" method="post" enctype="multipart/form-data">
                 <div class="ui centered stackable grid">

@@ -4,7 +4,7 @@
         <div class="ui two column stackable grid">
             <div class="row middle aligned">
                 <div class="column">
-                    <a href="#"><img class="ui medium image" src="assets/image/HELPPET-DARK.png"></a>
+                    <a href="/"><img class="ui small image" src="{{asset('logo/logo_hijau.png')}}"></a>
                 </div>
                 <div class="column">
                     <div style="display:flex;flex-direction:row;float: right;">

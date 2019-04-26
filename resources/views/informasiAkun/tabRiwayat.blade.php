@@ -39,7 +39,10 @@
                             <button class="ui inverted medium button" onclick="window.location.href='/informasi-akun/{{ $histories[$i]->id}}/progres'">Lihat</button>
                         </div>
                     </div>
-                    <img src="{{asset($fotos[count($fotos)-1])}}" style="object-fit:cover;height:250px">
+                    <img class="ui fluid image" src="{{asset($fotos[count($fotos)-1])}}" style="object-fit:cover;height:250px">
+                    <div class="ui top right attached teal large label" style="max-width:55%">
+                        {{$histories[$i]->status}}
+                    </div>
                 </div>
                 <div class="content">
                     <div class="header">{{ ucfirst($items[$i]->namaProject)}}</div>
@@ -66,12 +69,6 @@
             @endif
             @endfor
         </div>
-        <!-- Cek data
-        @if(\Session::has('alert'))
-            <div class="ui negative message">
-                <p>{{Session::get('alert')}}</p>
-            </div>
-        @endif -->
         @endif
     </div>
     <div class="ui tab" data-tab="selesai" style="padding:20px 20px 30px 20px">
@@ -82,7 +79,7 @@
         <div style="font-size:20px;margin-top:15px">Yuk lakukan pemesanan sekarang...</div>
     </div>
     @elseif(count($histories)>0)
-        <div class="ui stackable three doubling link special cards" style="margin-top:10px">
+        <div class="ui stackable three doubling link special cards">
             @for($i = 0; $i < count($histories); $i++)
             <?php
             $fotos = explode(" ", $histories[$i]->url_gambar);
@@ -142,7 +139,7 @@
                 <div style="font-size:20px;margin-top:15px">Yuk lakukan pemesanan sekarang...</div>
             </div>
             @elseif(count($histories)>0)
-        <div class="ui stackable three doubling link special cards" style="margin-top:10px">
+        <div class="ui stackable three doubling link special cards">
                 @for($i = 0; $i < count($histories); $i++)
                 <?php
                 $fotos = explode(" ", $histories[$i]->url_gambar);

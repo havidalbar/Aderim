@@ -22,7 +22,7 @@
             @if(($histories[$i]->status=="Order sedang diproses" || $histories[$i]->status=="Pembayaran tidak terkonfirmasi" || $histories[$i]->status=="Menunggu pembayaran") && $histories[$i]->statusLagi>=0)
             <div class="card">
                 <div class="blurring dimmable image">
-                    <div class="ui dimmer">
+                    <div class="ui dimmer">                        
                         <div class="content">
                             <i class="teal clock outline huge icon"></i>
                             <div style="font-size:22px;margin-top:10px;margin-bottom:20px">
@@ -31,7 +31,10 @@
                             <button class="ui inverted medium button" onclick="window.location.href='/informasi-akun/{{ $histories[$i]->id}}/progres'">Lihat</button>
                         </div>
                     </div>
-                    <img src="{{asset($fotos[count($fotos)-1])}}" style="object-fit:cover;height:250px">
+                    <img class="ui fluid image" src="{{asset($fotos[count($fotos)-1])}}" style="object-fit:cover;height:250px">
+                    <div class="ui top right attached teal large label" style="max-width:55%">
+                        {{$histories[$i]->status}}
+                    </div>
                 </div>
                 <div class="content">
                     <div class="header">{{ucfirst($items[$i]->namaProject)}}</div>
