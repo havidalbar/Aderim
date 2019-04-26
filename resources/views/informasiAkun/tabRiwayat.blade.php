@@ -59,8 +59,13 @@
                     </div>
                     <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
                         <div><i class="map marker alternate teal icon"></i></div>
+<<<<<<< HEAD
                         <div>{{ucfirst($items[$i]->daerah)}}</div>
                     </div>
+=======
+                        <div>{{$items[$i]->daerah}}</div>
+                    </div>                    
+>>>>>>> master
                 </div>
             </div>
             @endif
@@ -119,8 +124,13 @@
                     </div>
                     <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
                         <div><i class="map marker alternate teal icon"></i></div>
+<<<<<<< HEAD
                         <div>{{ucfirst($items[$i]->daerah)}}</div>
                     </div>
+=======
+                        <div>{{$items[$i]->daerah}}</div>
+                    </div> 
+>>>>>>> master
                 </div>
             </div>
             @elseif($i==0 && $histories[$i]->status!="Selesai")
@@ -178,8 +188,13 @@
                     </div>
                     <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
                         <div><i class="map marker alternate teal icon"></i></div>
+<<<<<<< HEAD
                         <div>{{ucfirst($items[$i]->daerah)}}</div>
                     </div>
+=======
+                        <div>{{$items[$i]->daerah}}</div>
+                    </div> 
+>>>>>>> master
                 </div>
             </div>
             @endif

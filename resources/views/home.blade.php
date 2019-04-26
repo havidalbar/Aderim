@@ -187,10 +187,17 @@
                         <img src="{{asset($fotos[0])}}" style="object-fit:cover;height:250px">
                     </div>
                     <div class="content">
+<<<<<<< HEAD
                         <div class="header">{{ucfirst($items[$i]->namaProject)}}</div>
                         <div class="meta" style="margin-top:5px">
                             <span style="border:2px solid #d4d4d5;border-radius:4px;padding:2px 4px 2px 4px">
                                 {{ucfirst($items[$i]->category)}}
+=======
+                        <div class="header">{{$items[$i]->namaProject}}</div>
+                        <div class="meta" style="margin-top:5px">
+                            <span style="border:2px solid #d4d4d5;border-radius:4px;padding:2px 4px 2px 4px">
+                                {{$items[$i]->category}}
+>>>>>>> master
                             </span>
                         </div>
                         <div class="description">
@@ -200,12 +207,21 @@
                     <div class="extra content">
                         <div>
                             <i class="user circle teal icon"></i>
+<<<<<<< HEAD
                             {{ ucfirst($profesis[$i]->nama_profesi)}}
                         </div>
                         <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
                             <div><i class="map marker alternate teal icon"></i></div>
                             <div>{{ucfirst($items[$i]->daerah)}}</div>
                         </div>
+=======
+                            {{$profesis[$i]->nama_profesi}}
+                        </div>                        
+                        <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
+                            <div><i class="map marker alternate teal icon"></i></div>
+                            <div>{{$items[$i]->daerah}}</div>
+                        </div>                        
+>>>>>>> master
                     </div>
                 </div>
                 <!-- Modal Detail -->
@@ -260,17 +276,29 @@
                             <div class="ui stackable grid">
                                 <div class="twelve wide column">
                                     <div style="font-size:22px">
+<<<<<<< HEAD
                                         <b>{{ucfirst($items[$i]->namaProject)}}</b>
                                     </div>
                                     <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
                                         <div><i class="map marker alternate teal icon"></i></div>
                                         <div style="font-size:17px">{{ ucfirst($items[$i]->daerah)}}</div>
+=======
+                                        <b>{{$items[$i]->namaProject}}</b>
+                                    </div>
+                                    <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
+                                        <div><i class="map marker alternate teal icon"></i></div>
+                                        <div style="font-size:17px">{{$items[$i]->daerah}}</div>
+>>>>>>> master
                                     </div>
                                 </div>
                                 <div class="four wide right aligned middle aligned column">
                                     <span
                                         style="border:2px solid #d4d4d5;border-radius:4px;padding:5px 15px 5px 15px;font-size:17px">
+<<<<<<< HEAD
                                         {{ucfirst($items[$i]->category)}}
+=======
+                                        {{$items[$i]->category}}
+>>>>>>> master
                                     </span>
                                 </div>
                             </div>
@@ -301,6 +329,7 @@
                     </div>
                 </div>
                 <div class="actions">
+<<<<<<< HEAD
                     <button class="ui negative button">
                         Pilih Lagi
                     </button>
@@ -308,6 +337,17 @@
                         onclick="window.location.href='/project/{{$items[$i]->id}}/order'">
                         Pesan Proyek
                     </button>
+=======
+                    <a href="#">
+                        <button class="ui negative button">
+                            Pilih Lagi
+                        </button>
+                        <button class="ui positive button"
+                            onclick="window.location.href='/project/{{$items[$i]->id}}/order'">
+                            Pesan Proyek
+                        </button>
+                    </a>
+>>>>>>> master
                 </div>
         </div>
         <!--Akhir Modal Detail -->
