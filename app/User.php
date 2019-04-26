@@ -17,9 +17,15 @@ class User extends Authenticatable
      */
     protected $table = 'users';
     protected $fillable = [
-        'name', 'email', 'password',
+        'username','nama', 'email', 'password' ,'address','nohp','foto',
     ];
-
+    protected $primaryKey='id';
+    function profesi(){
+		return $this->hasOne('App\Profesi');
+    }
+    function order(){
+		return $this->hasMany('App\Order','id_user');
+	}
     /**
      * The attributes that should be hidden for arrays.
      *
