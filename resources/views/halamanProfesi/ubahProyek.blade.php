@@ -12,11 +12,7 @@ Dropzone.options.myDropzone = {
     init: function() {
         this.on("success", function(file, response) {
             let hasil = 'image/' + response;
-<<<<<<< HEAD
             var forms = document.getElementById('ubah-project');
-=======
-            var forms = document.getElementById('tambah-project');
->>>>>>> master
             var files = document.createElement("input");
             files.setAttribute('name', 'files[]');
             files.setAttribute("type", "hidden");
@@ -30,7 +26,6 @@ Dropzone.options.myDropzone = {
         return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
     }
 };
-<<<<<<< HEAD
 </script>
 <script>
 $(document)
@@ -85,9 +80,6 @@ $(document)
     });
 </script>
 @endsection
-=======
-</script>@endsection
->>>>>>> master
 
 @section('content')
 <div class="ui container" style="color:#4d4d4d;margin-top:50px">
@@ -113,40 +105,25 @@ $(document)
                                     </span>
                                 </div>
                             </div>
-<<<<<<< HEAD
                             <?php
                             $fotos= explode(" ", $dataProject->namagambar);
                             ?>
                             <img class="ui rounded image" src="{{asset($fotos[0])}}"
-=======
-                            <img class="ui rounded image" src="{{asset('Apartemen1_2.jpg')}}"
->>>>>>> master
                                 style="height:150px;object-fit:cover">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="eleven wide left aligned column">
-<<<<<<< HEAD
                 <div style="font-size:22px"><b>{{ucfirst($dataProject->namaProject)}}</b></div>
                 <div style="margin-top:10px;font-size:15px">
                     <span style="border:2px solid #d4d4d5;border-radius:4px;padding:3px 8px 3px 8px">
                         {{ucfirst($dataProject->category)}}
-=======
-                <div style="font-size:22px"><b>Hotel Mewah</b></div>
-                <div style="margin-top:10px;font-size:15px">
-                    <span style="border:2px solid #d4d4d5;border-radius:4px;padding:3px 8px 3px 8px">
-                        Hotel
->>>>>>> master
                     </span>
                 </div>
                 <div style="margin-top:10px;display:flex;flex-direction:row;align-items: center">
                     <div><i class="map marker alternate grey icon"></i></div>
-<<<<<<< HEAD
                     <div style="font-size:19px">{{ucfirst($dataProject->daerah)}}</div>
-=======
-                    <div style="font-size:19px">Surabaya</div>
->>>>>>> master
                 </div>
             </div>
         </div>
@@ -169,7 +146,6 @@ $(document)
             action="{{url('/update-projectproses/'.$dataProject->id)}}" enctype="multipart/form-data">
             <div class="field">
                 <label style="font-size:18px">Nama Proyek</label>
-<<<<<<< HEAD
                 <input type="text" name="namaProject" placeholder="Hotel Mewah">
             </div>
             <div class="field">
@@ -184,13 +160,6 @@ $(document)
                         <div class="item" value="Apartemen">Apartemen</div>
                     </div>
                 </div>
-=======
-                <input type="text" name="namaProject" placeholder="Hotel Mewah" readonly>
-            </div>
-            <div class="field">
-                <label style="font-size:18px">Kategori Proyek</label>
-                <input type="text" name="category" placeholder="Hotel" readonly>
->>>>>>> master
             </div>
             <div class="field">
                 <label style="font-size:18px">Deskripsi Singkat Proyek</label>
@@ -235,11 +204,7 @@ $(document)
                         <div class="ui one stackable cards">
                             <div class="card">
                                 <div class="image">
-<<<<<<< HEAD
                                     <img class="ui big image" src="{{asset($fotos[0])}}">
-=======
-                                    <img class="ui big image" src="{{asset('Apartemen1_2.jpg')}}">
->>>>>>> master
                                 </div>
                             </div>
                         </div>
@@ -247,7 +212,6 @@ $(document)
                     <div class="four wide middle aligned column">
 
                         <div class="ui one stackable cards">
-<<<<<<< HEAD
                             @for($i=0;$i<count($fotos);$i++) <div class="card">
                                 <div class="image">
                                     <img class="ui big image" src="{{asset($fotos[$i])}}"
@@ -319,84 +283,10 @@ $(document)
                         <span>Rp </span>
                         <span>{{number_format(($dataProject->estimasi),0,",",".")}}</span>
                     </b>
-=======
-                            <div class="card">
-                                <div class="image">
-                                    <img src="{{asset('Apartemen1_2.jpg')}}" style="height:145px;object-fit:cover">
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="seven wide column">
-                <div class="ui divider"></div>
-                <div class="ui grid">
-                    <div class="one wide middle aligned column">
-                        <i class="info circle large teal icon"></i>
-                    </div>
-                    <div class="fifteen wide column">
-                        <div style="font-size:22px;color:teal"><b>Detail Proyek</b></div>
-                    </div>
-                </div>
-                <div class="ui divider"></div>
-                <div class="ui stackable grid">
-                    <div class="three wide column">
-                        <img class="ui circular image" src="{{asset('arsitek.jpg')}}"
-                            style="width:80px;height:80px;object-fit:cover">
-                    </div>
-                    <div class="thirteen wide column">
-                        <div style="font-size:22px"><b>Arsitek Jaya</b></div>
-                        <div style="font-size:17px">Arsitektur</div>
-                    </div>
-                </div>
-                <div class="ui divider"></div>
-                <div class="ui stackable grid">
-                    <div class="twelve wide column">
-                        <div style="font-size:22px">
-                            <b>Hotel Mewah</b>
-                        </div>
-                        <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
-                            <div><i class="map marker alternate teal icon"></i></div>
-                            <div style="font-size:17px">Surabaya</div>
-                        </div>
-                    </div>
-                    <div class="four wide right aligned middle aligned column">
-                        <span
-                            style="border:2px solid #d4d4d5;border-radius:4px;padding:5px 15px 5px 15px;font-size:17px">
-                            Hotel
-                        </span>
-                    </div>
-                </div>
-                <div class="ui divider"></div>
-                <div>
-                    <div style="font-size:16px"><b>Deskripsi</b></div>
-                    <div style="font-size:15px">
-                        asasa
-                    </div>
-                </div>
-                <div style="margin-top:10px">
-                    <div style="font-size:16px"><b>Spesifikasi</b></div>
-                    <div style="font-size:15px">
-                        asasa
-                    </div>
-                </div>
-                <div class="ui divider"></div>
-                <div class="ui container fluid" style="text-align:right">
-                    <div style="font-size:22px"><b>Biaya Proyek</b></div>
-                    <div style="color:teal;font-size:20px">
-                        <b>
-                            <span>Rp </span>
-                            <span>100.000.000</span>
-                        </b>
-                    </div>
->>>>>>> master
                 </div>
             </div>
         </div>
     </div>
-<<<<<<< HEAD
 </div>
 <div class="actions">
     <button class="ui positive button">
@@ -408,15 +298,3 @@ $(document)
 
 @include('layouts.footer')
 @endsection
-=======
-    <div class="actions">
-        <button class="ui positive button">
-            Oke
-        </button>
-    </div>
-</div>
-<!-- Akhir Modal detail -->
-
-@include('layouts.cobafooter')
-@endsection
->>>>>>> master

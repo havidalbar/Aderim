@@ -64,7 +64,6 @@
                     </div>
                     <div style="margin-top:10px;display:flex;flex-direction:row;align-items: center">
                         <div><i class="map marker alternate teal icon"></i></div>
-<<<<<<< HEAD
                         <div style="font-size:16px">{{ucfirst($dataOrder->address)}}</div>
                     </div>
                 </div>
@@ -74,17 +73,6 @@
                     </span>
                 </div>
             </div>
-=======
-                        <div style="font-size:16px">{{$dataOrder->address}}</div>
-                    </div>  
-                </div>
-                <div class="four wide right aligned middle aligned column">
-                    <span style="border:2px solid #d4d4d5;border-radius:4px;padding:5px 15px 5px 15px;font-size:17px">
-                        {{$items->category}}
-                    </span>
-                </div>
-            </div>            
->>>>>>> master
             <div class="ui divider"></div>
             <div style="font-size:20px"><b>Progres Proyek</b></div>
             <div style="font-size:17px;margin-top:10px">
@@ -93,11 +81,7 @@
             </div>
             <div style="font-size:20px;margin-top:15px"><b>Deskripsi Progres</b></div>
             <div style="font-size:17px;margin-top:10px;line-height:1.5">
-<<<<<<< HEAD
                 {{$orderProgres->pesan}}
-=======
-                {{$dataOrder->pesan}}
->>>>>>> master
             </div>
             <div class="ui divider"></div>
             <button class="ui large button teal right floated" onclick="window.location.href='/halaman-profesi/{{ $dataOrder->id}}/tambah-progres'">Tambah Progres</button>

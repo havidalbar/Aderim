@@ -6,17 +6,10 @@
     style="margin-top:20px;background-color:#f8f8f8;border:5px solid #4b8991;border-radius:5px;padding:30px 20px 30px 20px;color:#4d4d4d">
     @if(count($items)<=0)
         <div class="ui container center aligned">
-<<<<<<< HEAD
             <i class="huge search teal icon"></i>
             <div style="font-size:24px;line-height:1.5;margin-top:15px"><b>Oops, anda belum memiliki proyek :(</b></div>
             <div style="font-size:20px;line-height:1.5;margin-top:15px">Yuk tambahkan proyek anda ke Aderim agar calon pemesan tertarik dengan jasa yang anda tawarkan.</div>
             <button class="ui large teal button"  style="margin-top:15px" onclick="window.location.href='/halaman-profesi/tambah-project'">Tambah Proyek</button>
-=======
-            <i class="huge search teal icon"></i>            
-            <div style="font-size:24px;line-height:1.5;margin-top:15px"><b>Oops, anda belum memiliki proyek :(</b></div>
-            <div style="font-size:20px;line-height:1.5;margin-top:15px">Yuk tambahkan proyek anda ke Aderim agar calon pemesan tertarik dengan jasa yang anda tawarkan.</div>
-            <button class="ui large teal button"  style="margin-top:15px" onclick="window.location.href='/tambah-project'">Tambah Proyek</button>
->>>>>>> master
         </div>
     @else
     <div style="font-size:20px">
@@ -59,13 +52,8 @@
                 </div>
                 <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
                     <div><i class="map marker alternate teal icon"></i></div>
-<<<<<<< HEAD
                     <div>{{ucfirst($items[$i]->daerah)}}</div>
                 </div>
-=======
-                    <div>{{$items[$i]->daerah}}</div>
-                </div>  
->>>>>>> master
             </div>
         </div>
             <!-- Modal Detail -->
@@ -121,29 +109,17 @@
                             <div class="ui stackable grid">
                                 <div class="twelve wide column">
                                     <div style="font-size:22px">
-<<<<<<< HEAD
                                         <b>{{ucfirst($items[$i]->namaProject)}}</b>
                                     </div>
                                     <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
                                         <div><i class="map marker alternate teal icon"></i></div>
                                         <div style="font-size:17px">{{ucfirst($items[$i]->daerah)}}</div>
-=======
-                                        <b>{{$items[$i]->namaProject}}</b>
-                                    </div>
-                                    <div style="margin-top:5px;display:flex;flex-direction:row;align-items: center">
-                                        <div><i class="map marker alternate teal icon"></i></div>
-                                        <div style="font-size:17px">{{$items[$i]->daerah}}</div>
->>>>>>> master
                                     </div>
                                 </div>
                                 <div class="four wide right aligned middle aligned column">
                                     <span
                                         style="border:2px solid #d4d4d5;border-radius:4px;padding:5px 15px 5px 15px;font-size:17px">
-<<<<<<< HEAD
                                         {{ucfirst($items[$i]->category)}}
-=======
-                                        {{$items[$i]->category}}
->>>>>>> master
                                     </span>
                                 </div>
                             </div>
@@ -178,22 +154,14 @@
                         <button class="ui negative button" onclick="$('.ui.tiny.modal.hapus').modal('show')">
                             Hapus Proyek
                         </button>
-<<<<<<< HEAD
                         <button class="ui teal button" onclick="window.location.href='/project/{{$items[$i]->id}}/ubah'">
-=======
-                        <button class="ui teal button">
->>>>>>> master
                             Ubah Detail Proyek
                         </button>
                     </a>
                 </div>
             </div>
             <!--Akhir Modal Detail -->
-<<<<<<< HEAD
             <!-- Dimmer hapus -->
-=======
-            <!-- Dimmer Batal -->
->>>>>>> master
             <div class="ui tiny modal hapus">
                 <div class="header">
                     Hapus Proyek
@@ -203,20 +171,12 @@
                 </div>
                 <div class="actions">
                     <div style="display:flex;flex-direction:row-reverse">
-<<<<<<< HEAD
                         <form action='/hapusproyek?id={{$items[$i]->id}}' method="post">
                             {{csrf_field()}}
                             <button class="ui positive button">
                                 Iya
                             </button>
                         </form>
-=======
-                        <!-- <form action='#' method="post">                             -->
-                            <button class="ui positive button">
-                                Iya
-                            </button>
-                        <!-- </form> -->
->>>>>>> master
                         <button class="ui negative button" style="margin-right:10px">
                             Tidak
                         </button>
@@ -244,12 +204,6 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
     </div>
     @endif
 </div>
-=======
-    </div>    
-    @endif
-</div>
->>>>>>> master
