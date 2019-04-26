@@ -43,34 +43,13 @@
     <div class="ui stackable grid">
         <div class="four wide column">
             <div class="ui card">
-                <form class="ui form" action="" method="get" style="padding:15px">                                            
-                    <label><b>Kategori</b></label>
-                    <div class="grouped fields">
-                        <div class="field">
-                            <div class="ui checkbox">
-                                <input type="checkbox" name="rumah">
-                                <label>Rumah</label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui checkbox">
-                                <input type="checkbox" name="hotel">
-                                <label>Hotel</label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui checkbox">
-                                <input type="checkbox" name="apartemen">
-                                <label>Apartemen</label>
-                            </div>
-                        </div>
-                    </div>
+                <form class="ui form" action="#" method="get" style="padding:15px">                                            
                     <div class="ui divider"></div>
                     <label><b>Lokasi</b></label>
                     <div class="grouped fields">
                         <div class="field">
                             <div class="ui checkbox">
-                                <input type="checkbox" name="jakarta">
+                                <input type="checkbox" name="jakarta" value="jakarta">
                                 <label>Jakarta</label>
                             </div>
                         </div>
@@ -88,18 +67,6 @@
                         </div>
                         <div class="field">
                             <div class="ui checkbox">
-                                <input type="checkbox" name="medan">
-                                <label>Medan</label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui checkbox">
-                                <input type="checkbox" name="semarang">
-                                <label>Semarang</label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui checkbox">
                                 <input type="checkbox" name="malang">
                                 <label>Malang</label>
                             </div>
@@ -110,7 +77,7 @@
                     <div class="grouped fields">
                         <div class="field">                                
                             <div class="ui input">
-                                <input type="number" name="minimum" placeholder="Maksimum">
+                                <input type="number" name="minimum" placeholder="Manimum">
                             </div>
                         </div>
                         <div class="field">                                

@@ -111,7 +111,7 @@ class AdminController extends Controller
         $dataTransaksi->save();
         $dataOrder = Order::where('id_transaksi', $dataTransaksi->id)->get();
         for ($i = 0; $i < count($dataOrder); $i++) {
-            $dataOrder[$i]->status = "Pembayaran tidak terkonfirmasi";
+            $dataOrder[$i]->status = "Dibatalkan";
             $dataOrder[$i]->save();
         }
         $dataOrder2 = Order::where('id_transaksi2', $dataTransaksi->id)->get();
