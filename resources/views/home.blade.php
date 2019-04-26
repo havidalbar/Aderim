@@ -182,9 +182,13 @@
                 <?php
                 $fotos = explode(" ", $items[$i]->namagambar);
                 ?>
-                <div class="card" onclick="$('.ui.fullscreen.modal.detail.<?php echo $i ?>').modal('show');">
-                    <div class="image">
-                        <img src="{{asset($fotos[0])}}" style="object-fit:cover;height:250px">
+                <div class="card" onclick="$('.ui.fullscreen.modal.detail.<?php echo $i ?>').modal('show');">                                    
+                    <img class="ui fluid image" src="{{asset($fotos[0])}}" style="object-fit:cover;height:250px">
+                    <div class="ui top right attached teal large label">
+                        <b>
+                            <span>Rp </span>
+                            <span>{{number_format(($items[$i]->estimasi),0,",",".")}}</span>
+                        </b>
                     </div>
                     <div class="content">
                         <div class="header">{{ucfirst($items[$i]->namaProject)}}</div>
