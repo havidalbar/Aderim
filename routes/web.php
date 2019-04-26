@@ -31,7 +31,7 @@ Route::get('/get-urut', 'ProjectController@getUrut');
 Route::get('/search', 'ProjectController@search');
 Route::get('/kategori/{category}', 'ProjectController@category');
 Route::get('/search-all', 'ProjectController@getAll');
-// Route::get('/search-spesifik', 'ProjectController@categoryCari');
+Route::get('/search-price/{category}', 'ProjectController@category');
 
 //Halaman Profesi
 Route::get('/daftar-profesi', 'UserController@getProfesi');

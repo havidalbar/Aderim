@@ -73,10 +73,10 @@ class ProjectController extends Controller
     {
         $items = Project::where('category', $category);
         if($request->input('max') != null) {
-            $items->where('harga', '<=', $request->input('max'));
+            $items->where('estimasi', '<=', $request->input('max'));
         }
         if($request->input('min') != null) {
-            $items->where('harga', '>=', $request->input('min'));
+            $items->where('estimasi', '>=', $request->input('min'));
         }
         $items = $items->get();
         $key = $category;
