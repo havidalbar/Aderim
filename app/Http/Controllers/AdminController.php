@@ -19,7 +19,7 @@ class AdminController extends Controller
             $transaksis = Transaksi::where('status', 0)->get();
             $users = array();
             for ($i = 0; $i < count($profesis); $i++) {
-                $users[$i] = User::where('id', $profesis[$i]->id_profesi)->first();
+                $users[$i] = User::where('id', $profesis[$i]->id_user)->first();
             }
             return view('halamanAdmin.halamanAdminTransfer', ['transaksis' => $transaksis, 'profesis' => $profesis, 'users' => $users]);
         } else {
@@ -34,7 +34,7 @@ class AdminController extends Controller
             $transaksis = Transaksi::where('status', 0)->get();
             $users = array();
             for ($i = 0; $i < count($profesis); $i++) {
-                $users[$i] = User::where('id', $profesis[$i]->id_profesi)->first();
+                $users[$i] = User::where('id', $profesis[$i]->id_user)->first();
             }
             return view('halamanAdmin.halamanAdminProfesi', ['profesis' => $profesis, 'users' => $users, 'transaksis' => $transaksis]);
         } else {
@@ -81,6 +81,7 @@ class AdminController extends Controller
         $dataOrder3 = Order::where('id_transaksi3', $dataTransaksi->id)->get();
         $dataOrder4 = Order::where('id_transaksi4', $dataTransaksi->id)->get();
         for ($i = 0; $i < count($dataOrder2); $i++) {
+            $id_project = $dataOrder2[$i]->id_project;
             if ($dataOrder2[$i]->id_transaksi != 0) {
                 if ($dataOrder2[$i]->status == "Menunggu pembayaran" || $dataOrder2[$i]->status == "Pembayaran tidak terkonfirmasi") {
                     $dataOrder2[$i]->status = "Order sedang diproses";
@@ -89,6 +90,7 @@ class AdminController extends Controller
             }
         }
         for ($i = 0; $i < count($dataOrder3); $i++) {
+            $id_project = $dataOrder3[$i]->id_project;
             if ($dataOrder3[$i]->id_transaksi != 0 && $dataOrder3[$i]->id_transaksi2 != 0) {
                 if ($dataOrder3[$i]->status == "Menunggu pembayaran" || $dataOrder3[$i]->status == "Pembayaran tidak terkonfirmasi") {
                     $dataOrder3[$i]->status = "Order sedang diproses";
@@ -97,6 +99,7 @@ class AdminController extends Controller
             }
         }
         for ($i = 0; $i < count($dataOrder4); $i++) {
+            $id_project = $dataOrder4[$i]->id_project;
             if ($dataOrder4[$i]->id_transaksi != 0 && $dataOrder4[$i]->id_transaksi2 != 0 && $dataOrder4[$i]->id_transaksi3 != 0) {
                 if ($dataOrder4[$i]->status == "Menunggu pembayaran" || $dataOrder4[$i]->status == "Pembayaran tidak terkonfirmasi") {
                     $dataOrder4[$i]->status = "Order sedang diproses";
