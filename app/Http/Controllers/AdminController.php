@@ -6,6 +6,7 @@ use App\Order;
 use App\Profesi;
 use App\Transaksi;
 use App\User;
+use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -67,8 +68,10 @@ class AdminController extends Controller
             $dataTransaksi->statusLagi += 1;
             $dataTransaksi->save();
         }
+        $id_project=null;
         $dataOrder = Order::where('id_transaksi', $dataTransaksi->id)->get();
         for ($i = 0; $i < count($dataOrder); $i++) {
+            $id_project = $dataOrder[$i]->id_project;
             if ($dataOrder[$i]->status == "Menunggu pembayaran") {
                 $dataOrder[$i]->status = "Pembayaran terkonfirmasi";
                 $dataOrder[$i]->save();
@@ -101,6 +104,10 @@ class AdminController extends Controller
                 }
             }
         }
+        $project = Project::where('id',$id_project)->first();
+        $admin = User::where('username','admin')->first();
+        $credit = (($project->estimasi)*0.25)+$admin->credit;
+        $admin1 = User::where('username','admin')->update(['credit'=>$credit]);
         return redirect()->back()->with('alert-success', 'Berhasil menyetujui transfer');
     }
 
