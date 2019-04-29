@@ -101,12 +101,45 @@
                         }
                     }
                 });
+            $('.ui.negative.message.alert').transition({
+                animation  : 'fade in',
+                duration   : '0.8s',
+                onComplete : function() {                    
+                    $(this).transition({
+                        interval   : '2000',
+                        animation  : 'fade out',
+                        duration   : '0.8s',
+                    });
+                }
+            });
+            $('.ui.positive.message.alert').transition({
+                animation  : 'fade in',
+                duration   : '0.8s',
+                onComplete : function() {                    
+                    $(this).transition({
+                        interval   : '2000',
+                        animation  : 'fade out',
+                        duration   : '0.8s',
+                    });
+                }
+            });
         });
     </script>
 </head>
 
-<body>
+<body>    
     <div class="ui container fluid" style="margin-top:30px;margin-bottom:20px;line-height:1.5">
+        @if(\Session::has('errors'))
+        <div style="position:absolute;right:15px;top:15px;max-width:400px">
+            <div class="ui negative message alert" style="display:none">                    
+            @foreach($errors->all() as $key => $value)
+                <div>
+                    {{$value}}
+                </div>
+            @endforeach
+            </div>
+        </div>
+        @endif
         <div class="ui container center aligned">
             <a href="/">
                 <img class="ui centered image" src="{{asset('logo/logo_biru.png')}}" style="margin-bottom:20px;max-height:90px">

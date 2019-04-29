@@ -98,8 +98,16 @@ class UserController extends Controller
         return $id;
     }
 
+    // public function messages()
+    // {
+    //     return [
+    //         'username.unique:users' => 'A title is required',
+    //         // 'body.required'  => 'A message is required',
+    //     ];
+    // }
+
     public function registerproses(Request $request)
-    {
+    {     
         $validator = Validator::make($request->all(), [
             'username' => 'required|min:3|max:100|unique:users',
             'nama' => 'required|min:3|max:100',
@@ -109,12 +117,8 @@ class UserController extends Controller
             'address' => 'required',
             'nohp' => 'required|min:6|max:15|unique:users',
         ]);
-
         if ($validator->fails()) {
-            return redirect()
-                ->back()
-                ->withErrors($validator)
-                ->withInput();
+            return redirect()->back()->withErrors($validator)->withInput();
         } else {
             $filename = explode('.', $request->foto->getClientOriginalName());
             $fileExt = end($filename);
