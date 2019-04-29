@@ -45,7 +45,7 @@
             <div class="ui card">
                 <form class="ui form" action="/search-price/{{$key}}" method="get" style="padding:15px">
                     <div class="ui divider"></div>
-                    <div class="ui divider"></div>
+                    <!-- <div class="ui divider"></div> -->
                     <label><b>Harga</b></label>
                     <div class="grouped fields">
                         <div class="field">
@@ -61,6 +61,7 @@
                     </div>
                     <div class="ui divider"></div>
                     <button class="ui teal button fluid">Filter</button>
+                    <div class="ui divider"></div>
                 </form>
             </div>
         </div>

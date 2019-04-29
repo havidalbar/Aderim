@@ -121,11 +121,11 @@
                 </div>
             </div>
             @elseif($i==0 && $histories[$i]->status!="Selesai")
-            <div class="ui container center aligned">
+            <!-- <div class="ui container center aligned">
                     <i class="shopping cart icon teal huge"></i>
                     <div style="font-size:24px;margin-top:15px"><b>Oops, order anda belum ada yang selesai :(</b></div>
                     <div style="font-size:20px;margin-top:15px">Sabar yaa...</div>
-                </div>
+                </div> -->
             @endif
             @endfor
         </div>
