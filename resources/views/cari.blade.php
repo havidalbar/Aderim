@@ -28,7 +28,7 @@
 <div class="ui divider"></div>
 
 <div class="ui container" style="margin-top:30px">
-    @if(count($items) <= 0) 
+    @if(count($items) <= 0)
     <!-- Kalo gak ketemu -->
     <div class="ui container center aligned">
         <i class="search icon teal huge"></i>
@@ -43,44 +43,17 @@
     <div class="ui stackable grid">
         <div class="four wide column">
             <div class="ui card">
-                <form class="ui form" action="/search-price/{{$key}}" method="get" style="padding:15px">                                            
+                <form class="ui form" action="/search-price/{{$key}}" method="get" style="padding:15px">
                     <div class="ui divider"></div>
-                    {{-- <label><b>Lokasi</b></label>
-                    <div class="grouped fields">
-                        <div class="field">
-                            <div class="ui checkbox">
-                                <input type="checkbox" name="jakarta" value="jakarta">
-                                <label>Jakarta</label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui checkbox">
-                                <input type="checkbox" name="bandung">
-                                <label>Bandung</label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui checkbox">
-                                <input type="checkbox" name="surabaya">
-                                <label>Surabaya</label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui checkbox">
-                                <input type="checkbox" name="malang">
-                                <label>Malang</label>
-                            </div>
-                        </div>
-                    </div> --}}
                     <div class="ui divider"></div>
                     <label><b>Harga</b></label>
                     <div class="grouped fields">
-                        <div class="field">                                
+                        <div class="field">
                             <div class="ui input">
                                 <input type="number" name="min" placeholder="Minimum">
                             </div>
                         </div>
-                        <div class="field">                                
+                        <div class="field">
                             <div class="ui input">
                                 <input type="number" name="max" placeholder="Maksimum">
                             </div>
@@ -93,7 +66,7 @@
         </div>
         <div class="twelve wide column">
             <div class="ui three stackable doubling link cards">
-                @for($i=0;$i < count($items);$i++) 
+                @for($i=0;$i < count($items);$i++)
                 <?php $fotos = explode(" ", $items[$i]->namagambar);?>
                 <div class="card" onclick="$('.ui.fullscreen.modal.detail.<?php echo $i ?>').modal('show');">
                     <img class="ui fluid image" src="{{asset($fotos[0])}}" style="object-fit:cover;height:250px">
@@ -124,7 +97,7 @@
                             <div>{{ ucfirst($items[$i]->daerah)}}</div>
                         </div>
                     </div>
-                </div>                
+                </div>
                 <!-- Modal Detail -->
                 <div class="ui fullscreen modal detail <?php echo $i ?>">
                     <div class="content">
@@ -141,7 +114,7 @@
                                         </div>
                                     </div>
                                     <div class="four wide middle aligned column">
-                                        @for($j=0; $j < count($fotos); $j++) 
+                                        @for($j=0; $j < count($fotos); $j++)
                                         <div class="ui one stackable cards">
                                             <div class="card">
                                                 <div class="image">
