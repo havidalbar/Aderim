@@ -87,55 +87,9 @@ class ProjectController extends Controller
         return view('cari', ['items' => $items, 'profesis' => $profesis, 'key' => $key]);
     }
 
-    // public function categoryCari(Request $request){
-    //     $items = Project::get();
-    //     if($request->jakarta!=null && $request->bandung!=null && $request->surabaya!=null && $request->min != null){
-    //     $items->where('daerah','jakarta')->where('daerah','bandung')->where('daerah','surabaya')->where('estimasi','>=',$request->min);
-    //     }else if($request->jakarta!=null && $request->bandung!=null && $request->surabaya!=null){
-    //     $items->where('daerah','jakarta')->where('daerah','bandung')->where('daerah','surabaya');
-    //     }else if($request->jakarta!=null && $request->surabaya!=null && $request->malang!=null){
-    //     $items->where('daerah','jakarta')->where('daerah','surabaya')->where('daerah','malang');
-    //     }else if($request->bandung!=null && $request->surabaya!=null && $request->malang!=null){
-    //     $items->where('daerah','bandung')->where('daerah','surabaya')->where('daerah','malang');
-    //     }else if($request->jakarta!=null && $request->surabaya!=null){
-    //     $items->where('daerah','jakarta')->where('daerah','surabaya');
-    //     }else if($request->jakarta!=null && $request->bandung!=null){
-    //     $items->where('daerah','jakarta')->where('daerah','bandung');
-    //     }else if($request->jakarta!=null && $request->malang!=null){
-    //     $items->where('daerah','jakarta')->where('daerah','malang');
-    //     }else if($request->surabaya!=null && $request->bandung!=null){
-    //     $items->where('daerah','surabaya')->where('daerah','bandung');
-    //     }else if($request->surabaya!=null && $request->malang!=null){
-    //     $items->where('daerah','surabaya')->where('daerah','malang');
-    //     }else if($request->bandung!=null && $request->malang!=null){
-    //     $items->where('daerah','bandung')->where('daerah','malang');
-    //     }else if($request->surabaya!=null){
-    //     $items->where('daerah','surabaya');
-    //     }else if($request->jakarta!=null){
-    //     $items->where('daerah','jakarta');
-    //     }else if($request->bandung!=null){
-    //     $items->where('daerah','bandung');
-    //     }else if($request->malang!=null){
-    //     $items->where('daerah','malang');
-    //     }
-    //     $key = $items[0]->daerah;
-    //     $profesis = array();
-    //     for ($i = 0; $i < count($items); $i++) {
-    //         $profesis[$i] = Profesi::where('id', $items[$i]->id_profesi)->first();
-    //     }
-    //     return view('cari', ['items' => $items, 'profesis' => $profesis, 'key' => $key]);
-    // }
-
-    
-
     public function getSearch(Request $request)
     {
         return redirect('/search?keyword=' . $request->cari);
-    }
-
-    public function getUrut(Request $request)
-    {
-        return redirect('/search?keyword=' . $request->urutkan);
     }
 
     public function getProjectProfesi($id)
