@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Validator;
+use App\Http\Controllers\DateTime;
 
 class UserController extends Controller
 {
@@ -98,16 +99,9 @@ class UserController extends Controller
         return $id;
     }
 
-    // public function messages()
-    // {
-    //     return [
-    //         'username.unique:users' => 'A title is required',
-    //         // 'body.required'  => 'A message is required',
-    //     ];
-    // }
 
     public function registerproses(Request $request)
-    {     
+    {
         $validator = Validator::make($request->all(), [
             'username' => 'required|min:3|max:100|unique:users',
             'nama' => 'required|min:3|max:100',
