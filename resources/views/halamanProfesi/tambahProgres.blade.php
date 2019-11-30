@@ -30,6 +30,19 @@ Dropzone.options.myDropzone = {
 @endsection
 
 @section('content')
+@if(\Session::has('alert'))        
+    <div style="position:absolute;right:15px;top:15px;max-width:400px">
+        <div class="ui negative message alert" style="display:none">                        
+            {{Session::get('alert')}}         
+        </div>  
+    </div>                  
+@elseif(\Session::has('alert-success'))
+    <div style="position:absolute;right:15px;top:15px;max-width:400px">
+        <div class="ui positive message alert" style="display:none">                        
+            {{Session::get('alert-success')}}         
+        </div>  
+    </div>  
+@endif
 <div class="ui container" style="color:#4d4d4d;margin-top:50px">
     <div style="max-width:700px;margin: 0 auto;border:1px solid #e1e2e3;border-radius:6px;padding:40px 45px 40px 45px">
         <div style="font-size:28px"><b>Tambah Progres</b></div>

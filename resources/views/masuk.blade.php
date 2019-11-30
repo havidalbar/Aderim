@@ -45,16 +45,51 @@
                         }
                     }
                 });
+            $('.ui.negative.message.alert').transition({
+                animation  : 'fade in',
+                duration   : '0.8s',
+                onComplete : function() {                    
+                    $(this).transition({
+                        interval   : '2000',
+                        animation  : 'fade out',
+                        duration   : '0.8s',
+                    });
+                }
+            });
+            $('.ui.positive.message.alert').transition({
+                animation  : 'fade in',
+                duration   : '0.8s',
+                onComplete : function() {                    
+                    $(this).transition({
+                        interval   : '2000',
+                        animation  : 'fade out',
+                        duration   : '0.8s',
+                    });
+                }
+            });
         });
     </script>
 </head>
 
 <body>
+    @if(\Session::has('alert'))
+    <div style="position:absolute;right:15px;top:15px;max-width:400px">
+        <div class="ui negative message alert" style="display:none">
+            {{Session::get('alert')}}
+        </div>
+    </div>
+    @elseif(\Session::has('alert-success'))
+    <div style="position:absolute;right:15px;top:15px;max-width:400px">
+        <div class="ui positive message alert" style="display:none">
+            {{Session::get('alert-success')}}
+        </div>
+    </div>
+    @endif
     <div class="ui container fluid"
         style="position:absolute;top: 50%;left: 50%;transform: translateX(-50%) translateY(-50%);margin:20px">
         <div class="ui container center aligned">
             <a href="/">
-                <img class="ui centered medium image " src="{{asset('z_BannerAderim.png')}}">
+                <img class="ui centered image " src="{{asset('logo/logo_biru.png')}}" style="max-height:150px">
             </a>
             <div style="margin-top:20px">
                 <h2>Silahkan Masuk Ke Akun Anda</h2>
@@ -109,12 +144,6 @@
                                 <li>Kata sandi yang anda masukan minimal harus 6 karakter</li>
                             </ul>
                         </div>
-                        <!-- Cek data -->
-                        @if(\Session::has('alert'))
-                        <div class="ui negative message">                                                                               
-                            <p>{{Session::get('alert')}}</p>
-                        </div>
-                        @endif
                     </form>
                 </div>
             </div>

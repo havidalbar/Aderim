@@ -93,7 +93,7 @@ Dropzone.options.myDropzone = {
     <div style="max-width:600px;margin: 0 auto;border:1px solid #e1e2e3;border-radius:6px;background-color:white">
         <div class="ui container center aligned" style="padding:40px 60px 40px 60px">
             <div>
-                <p style="font-size:16px">Transfer ke rekening a/n <b>Yayasan Aderim</b> berikut ini :</p>
+                <p style="font-size:16px">Transfer ke rekening a/n <b>PT. Aderim</b> berikut ini :</p>
             </div>
             <div class="ui stackable grid"
                 style="border:1px solid #e1e2e3;border-radius:6px;margin:20px 5px 20px 5px;padding:10px">
@@ -132,7 +132,7 @@ Dropzone.options.myDropzone = {
             </div>
             <div style="border:1px solid #e1e2e3;border-radius:6px;margin:20px 5px 0px 5px;padding:10px">
                 <div style="font-size:16px;text-align:left;line-height:1.5;padding:10px">
-                    Transfer sebelum <b>25 Maret 2019 12:00 WIB</b> atau pembayaran anda otomatis dibatalkan oleh
+                    Transfer sebelum <b>30 April 2019 17:00 WIB</b> atau pembayaran anda otomatis dibatalkan oleh
                     sistem.
                 </div>
             </div>

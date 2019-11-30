@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Validator;
+use App\Http\Controllers\DateTime;
 
 class UserController extends Controller
 {
@@ -98,10 +99,11 @@ class UserController extends Controller
         return $id;
     }
 
+
     public function registerproses(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'username' => 'required|min:3|max:100',
+            'username' => 'required|min:3|max:100|unique:users',
             'nama' => 'required|min:3|max:100',
             'email' => 'required|min:4|email|unique:users',
             'password' => 'required|min:6|max:20',
@@ -109,12 +111,8 @@ class UserController extends Controller
             'address' => 'required',
             'nohp' => 'required|min:6|max:15|unique:users',
         ]);
-
         if ($validator->fails()) {
-            return redirect()
-                ->back()
-                ->withErrors($validator)
-                ->withInput();
+            return redirect()->back()->withErrors($validator)->withInput();
         } else {
             $filename = explode('.', $request->foto->getClientOriginalName());
             $fileExt = end($filename);

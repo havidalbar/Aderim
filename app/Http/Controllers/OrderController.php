@@ -21,7 +21,7 @@ class OrderController extends Controller
             $profesi = Profesi::where('id', $desProject->id_profesi)->first();
             return view('pesanProyek', ['desProject' => $desProject, 'profesi' => $profesi]);
         } else {
-            return redirect()->back()->with('alert', 'Kamu harus login dulu');
+            return redirect('/login')->with('alert', 'Kamu harus login dulu');
         }
     }
 

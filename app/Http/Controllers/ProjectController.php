@@ -69,9 +69,15 @@ class ProjectController extends Controller
         }
     }
 
-    public function category($category)
+    public function category($category,Request $request)
     {
         $items = Project::where('category', $category);
+        if($request->input('max') != null) {
+            $items->where('estimasi', '<=', $request->input('max'));
+        }
+        if($request->input('min') != null) {
+            $items->where('estimasi', '>=', $request->input('min'));
+        }
         $items = $items->get();
         $key = $category;
         $profesis = array();
@@ -84,11 +90,6 @@ class ProjectController extends Controller
     public function getSearch(Request $request)
     {
         return redirect('/search?keyword=' . $request->cari);
-    }
-
-    public function getUrut(Request $request)
-    {
-        return redirect('/search?keyword=' . $request->urutkan);
     }
 
     public function getProjectProfesi($id)

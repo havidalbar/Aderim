@@ -6,6 +6,7 @@ use App\Order;
 use App\Profesi;
 use App\Transaksi;
 use App\User;
+use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -18,7 +19,7 @@ class AdminController extends Controller
             $transaksis = Transaksi::where('status', 0)->get();
             $users = array();
             for ($i = 0; $i < count($profesis); $i++) {
-                $users[$i] = User::where('id', $profesis[$i]->id_profesi)->first();
+                $users[$i] = User::where('id', $profesis[$i]->id_user)->first();
             }
             return view('halamanAdmin.halamanAdminTransfer', ['transaksis' => $transaksis, 'profesis' => $profesis, 'users' => $users]);
         } else {
@@ -33,7 +34,7 @@ class AdminController extends Controller
             $transaksis = Transaksi::where('status', 0)->get();
             $users = array();
             for ($i = 0; $i < count($profesis); $i++) {
-                $users[$i] = User::where('id', $profesis[$i]->id_profesi)->first();
+                $users[$i] = User::where('id', $profesis[$i]->id_user)->first();
             }
             return view('halamanAdmin.halamanAdminProfesi', ['profesis' => $profesis, 'users' => $users, 'transaksis' => $transaksis]);
         } else {
@@ -67,8 +68,10 @@ class AdminController extends Controller
             $dataTransaksi->statusLagi += 1;
             $dataTransaksi->save();
         }
+        $id_project=null;
         $dataOrder = Order::where('id_transaksi', $dataTransaksi->id)->get();
         for ($i = 0; $i < count($dataOrder); $i++) {
+            $id_project = $dataOrder[$i]->id_project;
             if ($dataOrder[$i]->status == "Menunggu pembayaran") {
                 $dataOrder[$i]->status = "Pembayaran terkonfirmasi";
                 $dataOrder[$i]->save();
@@ -78,6 +81,7 @@ class AdminController extends Controller
         $dataOrder3 = Order::where('id_transaksi3', $dataTransaksi->id)->get();
         $dataOrder4 = Order::where('id_transaksi4', $dataTransaksi->id)->get();
         for ($i = 0; $i < count($dataOrder2); $i++) {
+            $id_project = $dataOrder2[$i]->id_project;
             if ($dataOrder2[$i]->id_transaksi != 0) {
                 if ($dataOrder2[$i]->status == "Menunggu pembayaran" || $dataOrder2[$i]->status == "Pembayaran tidak terkonfirmasi") {
                     $dataOrder2[$i]->status = "Order sedang diproses";
@@ -86,6 +90,7 @@ class AdminController extends Controller
             }
         }
         for ($i = 0; $i < count($dataOrder3); $i++) {
+            $id_project = $dataOrder3[$i]->id_project;
             if ($dataOrder3[$i]->id_transaksi != 0 && $dataOrder3[$i]->id_transaksi2 != 0) {
                 if ($dataOrder3[$i]->status == "Menunggu pembayaran" || $dataOrder3[$i]->status == "Pembayaran tidak terkonfirmasi") {
                     $dataOrder3[$i]->status = "Order sedang diproses";
@@ -94,6 +99,7 @@ class AdminController extends Controller
             }
         }
         for ($i = 0; $i < count($dataOrder4); $i++) {
+            $id_project = $dataOrder4[$i]->id_project;
             if ($dataOrder4[$i]->id_transaksi != 0 && $dataOrder4[$i]->id_transaksi2 != 0 && $dataOrder4[$i]->id_transaksi3 != 0) {
                 if ($dataOrder4[$i]->status == "Menunggu pembayaran" || $dataOrder4[$i]->status == "Pembayaran tidak terkonfirmasi") {
                     $dataOrder4[$i]->status = "Order sedang diproses";
@@ -101,6 +107,10 @@ class AdminController extends Controller
                 }
             }
         }
+        $project = Project::where('id',$id_project)->first();
+        $admin = User::where('username','admin')->first();
+        $credit = (($project->estimasi)*0.25)+$admin->credit;
+        $admin1 = User::where('username','admin')->update(['credit'=>$credit]);
         return redirect()->back()->with('alert-success', 'Berhasil menyetujui transfer');
     }
 
@@ -111,7 +121,7 @@ class AdminController extends Controller
         $dataTransaksi->save();
         $dataOrder = Order::where('id_transaksi', $dataTransaksi->id)->get();
         for ($i = 0; $i < count($dataOrder); $i++) {
-            $dataOrder[$i]->status = "Pembayaran tidak terkonfirmasi";
+            $dataOrder[$i]->status = "Dibatalkan";
             $dataOrder[$i]->save();
         }
         $dataOrder2 = Order::where('id_transaksi2', $dataTransaksi->id)->get();

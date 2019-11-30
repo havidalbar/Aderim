@@ -164,6 +164,7 @@
                 <tr>
                     <td>{{$dataOrder4[$i]->id}}</td>
                     <td>{{$users4[$i]->name}}</td>
+                    <h1>{{$dataOrder4[$i]->status}}</h1>
                     <td>{{$items4[$i]->namaProject}}</td>
                     <td>
                         <span>Rp </span>
